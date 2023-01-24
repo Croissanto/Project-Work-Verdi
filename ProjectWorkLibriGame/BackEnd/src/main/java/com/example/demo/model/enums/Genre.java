@@ -1,5 +1,6 @@
 package com.example.demo.model.enums;
 
-public class Genre {
-
+public enum Genre {
+	ACTION,
+	HORROR
 }
