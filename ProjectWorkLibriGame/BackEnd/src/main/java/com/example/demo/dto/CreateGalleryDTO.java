@@ -5,6 +5,7 @@ import java.util.List;
 public class CreateGalleryDTO {
 	private int idLibroGame;
 	private String titoloSaga;
+	//togli
 	private int numeroLibri;
 	private List<Integer> idLibriGame;
 

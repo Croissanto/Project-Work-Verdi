@@ -30,10 +30,10 @@ public class GalleryRestController {
 			Optional<LibriGame> opt2 = repoL.findById(id);
 			if(opt2.isPresent()) {
 				list.add(opt2.get());
-			}
-			Gallery gallery = new Gallery(dtoG.getTitoloSaga(), list,dtoG.getNumeroLibri());
-			repoG.save(gallery);
+			}	
 		}
+		Gallery gallery = new Gallery(dtoG.getTitoloSaga(), list,dtoG.getNumeroLibri());
+		repoG.save(gallery);
 			return true;
 		}catch(Exception e) {
 			
