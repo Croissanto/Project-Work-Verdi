@@ -51,7 +51,7 @@ public class AuthorRestController {
 	@GetMapping("/getauthorbyid/{id}")
 	public Author getAuthorById(@PathVariable("id") int id) {
 		Optional<Author> opt = repository.findById(id);
-		if (opt.isEmpty()) {
+		if (opt.isPresent()) {
 			return opt.get();
 		}
 		return new Author(id, null, null, null, null);

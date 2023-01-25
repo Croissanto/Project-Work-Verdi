@@ -49,6 +49,12 @@ public class LibriGame {
 		this.genre = genre;
 	}
 
+	public LibriGame(int id, Author autore) {
+		this.id= id;
+		this.autore= autore;
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,23 @@ class AuthorTest {
 
 	@Test
 	public void createAuthor() {
-		Author author = new Author("Antonio", "Talluccio", null,"Rimini");
-		assertTrue(repository.save(author) != null);
+		Author author = new Author("Frediano", "Nigro", null,"OLLRAIT");
+		assertNotNull(repository.save(author));
 	}
+	@Test
+	public void getAllAuthor() {
+		assertNotNull(repository.findAll());
+	}
+	
+	@Test
+	public void getAuthorById() {
+		
+		assertNotNull(repository.findById(1));
+		System.out.println(repository.findById(1));
+		
+		
+		
+	}
+	
 
 }
