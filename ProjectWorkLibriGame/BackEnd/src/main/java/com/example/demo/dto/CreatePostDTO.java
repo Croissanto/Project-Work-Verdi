@@ -9,9 +9,9 @@ public class CreatePostDTO {
 	private int idUser;
 	private String contenuto;
 	private String link;
-	private Date date;
-	private Time time;
-	
+	private String date;
+	private String time;
+	private int blogId;
 	
 	public CreatePostDTO() {
 		
@@ -19,7 +19,7 @@ public class CreatePostDTO {
 	}
 
 
-	public CreatePostDTO(int idCommento, int idUser, String contenuto, String link, Date date, Time time) {
+	public CreatePostDTO(int idCommento, int idUser, String contenuto, String link, String date, String time,int blogId) {
 		super();
 		this.idCommento = idCommento;
 		this.idUser = idUser;
@@ -27,6 +27,7 @@ public class CreatePostDTO {
 		this.link = link;
 		this.date = date;
 		this.time = time;
+		this.blogId = blogId;
 	}
 
 
@@ -70,23 +71,33 @@ public class CreatePostDTO {
 	}
 
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
 
-	public Time getTime() {
+	public String getTime() {
 		return time;
 	}
 
 
-	public void setTime(Time time) {
+	public void setTime(String time) {
 		this.time = time;
+	}
+
+
+	public int getBlogId() {
+		return blogId;
+	}
+
+
+	public void setBlogId(int blogId) {
+		this.blogId = blogId;
 	}
 	
 	
