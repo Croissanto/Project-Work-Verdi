@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Doc</title>
+</head>
+
+<body>
+	<input type="text" id="username" placeholder="Qui il tema">
+
+
+	<button onclick="sendU()">Manda user</button>
+	<script>
+		function sendU(){
+	let data={
+		username: username.value
+	}
+	
+	fetch('/createuserdummy', {
+  		method: 'POST',
+  		headers: {
+    		'Content-Type': 'application/json',
+  		},
+  		body: JSON.stringify(data),
+	}).then(username.innerHTML = "");
+}	
+	</script>
+</body>
+
+</html>
