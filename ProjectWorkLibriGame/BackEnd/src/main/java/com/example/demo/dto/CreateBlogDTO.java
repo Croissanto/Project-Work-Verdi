@@ -46,5 +46,5 @@ public class CreateBlogDTO {
 	public String toString() {
 		return "CreateBlogDTO [titolo=" + titolo + ", tema=" + tema + ", idListaPost=" + idListaPost + "]";
 	}
-
+	
 }
