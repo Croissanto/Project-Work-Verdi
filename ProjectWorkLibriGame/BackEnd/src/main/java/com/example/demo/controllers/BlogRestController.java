@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CreateBlogDTO;
+import com.example.demo.model.Author;
 import com.example.demo.model.Blog;
 import com.example.demo.model.Post;
 import com.example.demo.model.repositories.BlogRepository;
@@ -42,5 +43,17 @@ public class BlogRestController {
 			blog = tmp.get();
 		}
 		return blog;
+	}
+	
+
+	@GetMapping("/getpostlist/{id}")
+	public List<Post> getPostList(@PathVariable("id") int id) {
+		Optional<Blog> tmp = blogRepo.findById(id);
+		Blog blog = new Blog();
+		if(tmp.isPresent()) {
+			blog = tmp.get();
+			return blog.getListaDeiPost();
+		}
+		return null;
 	}
 }
