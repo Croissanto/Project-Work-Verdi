@@ -75,5 +75,14 @@ public class PostRestController {
 		}
 		return null;
 	}
-
+	
+	@GetMapping("/getAllOrderByDateAndTime")
+	public List<Post> getAll () {
+		Iterable<Post> tmp = postRepo.findTop10ByOrderByDateDescTimeAsc();
+		List<Post> postList = new LinkedList<>();
+		for (Post post : tmp) {
+			postList.add(post);
+		}
+		return postList;
+	}
 }
