@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,29 +22,35 @@ public class GalleryRestController {
 	private GalleryRepository repoG;
 	@Autowired
 	private LibriGameRepository repoL;
-	
+
 	@PostMapping("/creategallery")
 	public boolean createGallery(@RequestBody CreateGalleryDTO dtoG) {
-			try {
-		List<LibriGame> list = new LinkedList<>();
-		for (Integer id : dtoG.getIdLibriGame()) {
-			Optional<LibriGame> opt2 = repoL.findById(id);
-			if(opt2.isPresent()) {
-				list.add(opt2.get());
-			}	
-		}
-		Gallery gallery = new Gallery(dtoG.getTitoloSaga(), list,dtoG.getNumeroLibri());
-		repoG.save(gallery);
+		try {
+			List<LibriGame> list = new LinkedList<>();
+			for (Integer id : dtoG.getIdLibriGame()) {
+				Optional<LibriGame> opt2 = repoL.findById(id);
+				if (opt2.isPresent()) {
+					list.add(opt2.get());
+				}
+			}
+			Gallery gallery = new Gallery(dtoG.getTitoloSaga(), list, dtoG.getNumeroLibri());
+			repoG.save(gallery);
 			return true;
-		}catch(Exception e) {
-			
+		} catch (Exception e) {
+
 			return false;
-		}
 		}
 	}
 
-		
-	
+	@GetMapping("/getallgallery")
+	public List<Gallery> getAllGallery() {
+		Iterable<Gallery> it = repoG.findAll();
+		List<Gallery> list = new LinkedList<>();
+		for (Gallery gallery : it) {
+			list.add(gallery);
+		}
+		return list;
 
+	}
 
-
+}

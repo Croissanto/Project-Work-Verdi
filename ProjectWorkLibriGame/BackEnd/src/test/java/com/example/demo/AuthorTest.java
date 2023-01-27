@@ -15,7 +15,7 @@ class AuthorTest {
 
 	@Test
 	public void createAuthor() {
-		Author author = new Author("Frediano", "Nigro", null,"OLLRAIT");
+		Author author = new Author("Alberto", "Barroero", null,"TRAPANI");
 		assertNotNull(repository.save(author));
 	}
 	@Test
