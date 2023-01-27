@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +24,7 @@ import com.example.demo.model.repositories.UserDummyRepository;
 
 @RestController
 public class PostRestController {
-	
+
 	@Autowired
 	private BlogRepository blogRepo;
 
@@ -37,9 +39,9 @@ public class PostRestController {
 		try {
 			Optional<Blog> tmp = blogRepo.findById(dto.getBlogId());
 			Blog blog = new Blog();
-			if(tmp.isPresent()) {
+			if (tmp.isPresent()) {
 				blog = tmp.get();
-				}
+			}
 			List<Post> postList = blog.getListaDeiPost();
 			List<Commento> list = new LinkedList<>();
 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
@@ -48,10 +50,8 @@ public class PostRestController {
 
 				user = opt.get();
 			}
-			Date date;
-			Time time;
-			date = Date.valueOf(dto.getDate());
-			time = Time.valueOf(dto.getTime());
+			Date date = Date.valueOf(dto.getDate());
+			Time time = Time.valueOf(dto.getTime());
 			Post post = new Post(user, dto.getContenuto(), dto.getLink(), date, time, list);
 			postRepo.save(post);
 			postList.add(post);
@@ -63,15 +63,17 @@ public class PostRestController {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// commlist sta per lista di commenti
+	@GetMapping("/getcommlist/{id}")
+	public List<Commento> getCommList(@PathVariable("id") int id) {
+		Optional<Post> tmp = postRepo.findById(id);
+		Post post = new Post();
+		if (tmp.isPresent()) {
+			post = tmp.get();
+			return post.getCommento();
+		}
+		return null;
+	}
 
 }
