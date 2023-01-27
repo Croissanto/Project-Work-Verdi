@@ -27,13 +27,7 @@ public class GalleryRestController {
 	public boolean createGallery(@RequestBody CreateGalleryDTO dtoG) {
 		try {
 			List<LibriGame> list = new LinkedList<>();
-			for (Integer id : dtoG.getIdLibriGame()) {
-				Optional<LibriGame> opt2 = repoL.findById(id);
-				if (opt2.isPresent()) {
-					list.add(opt2.get());
-				}
-			}
-			Gallery gallery = new Gallery(dtoG.getTitoloSaga(), list, dtoG.getNumeroLibri());
+			Gallery gallery = new Gallery(dtoG.getTitoloSaga(),list);
 			repoG.save(gallery);
 			return true;
 		} catch (Exception e) {
@@ -52,5 +46,7 @@ public class GalleryRestController {
 		return list;
 
 	}
+	
+	
 
 }

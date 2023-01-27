@@ -5,11 +5,17 @@ import java.util.List;
 public class CreateGalleryDTO {
 	private int idLibroGame;
 	private String titoloSaga;
-	//togli
+	// togli
 	private int numeroLibri;
 	private List<Integer> idLibriGame;
 
 	public CreateGalleryDTO() {
+
+	}
+
+	public CreateGalleryDTO(String titoloSaga) {
+
+		this.titoloSaga = titoloSaga;
 
 	}
 
@@ -58,7 +64,5 @@ public class CreateGalleryDTO {
 		return "CreateGalleryDTO [idLibroGame=" + idLibroGame + ", titoloSaga=" + titoloSaga + ", numeroLibri="
 				+ numeroLibri + ", idLibriGame=" + idLibriGame + "]";
 	}
-	
-
 
 }

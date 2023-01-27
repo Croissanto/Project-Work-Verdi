@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CreateLibriGameDTO;
 import com.example.demo.model.Author;
+import com.example.demo.model.Gallery;
 import com.example.demo.model.LibriGame;
 import com.example.demo.model.repositories.AuthorRepository;
+import com.example.demo.model.repositories.GalleryRepository;
 import com.example.demo.model.repositories.LibriGameRepository;
 
 @RestController
@@ -25,6 +27,8 @@ public class LibriGameRestController {
 	private AuthorRepository repoA;
 	@Autowired
 	private LibriGameRepository repoL;
+	@Autowired
+	private GalleryRepository repoG;
 
 	@PostMapping("/createlibrogame")
 	public boolean createLibroGame(@RequestBody CreateLibriGameDTO dtoLibro) {
@@ -56,13 +60,13 @@ public class LibriGameRestController {
 	}
 
 	@GetMapping("/getlibrogamebyid/{id}")
-	public LibriGame getLibroGameById(@PathVariable("id")int id) {
+	public LibriGame getLibroGameById(@PathVariable("id") int id) {
 		Optional<LibriGame> opt = repoL.findById(id);
-		if(opt.isPresent()) {
-		return opt.get();
+		if (opt.isPresent()) {
+			return opt.get();
 		}
-	return new LibriGame(id,null);
-		
+		return new LibriGame(id, null);
+
 	}
 
 	@DeleteMapping("deletelibrogamebyid/{id}")
@@ -77,6 +81,18 @@ public class LibriGameRestController {
 
 		}
 
+	}
+
+	@GetMapping("/getlibrigamebygalleryid/{id}")
+	public List<LibriGame> getLibriGameByGalleryId(@PathVariable("id") int id) {
+		Optional<Gallery> opt = repoG.findById(id);
+		Gallery gallery = new Gallery();
+		if (opt.isPresent()) {
+
+			gallery = opt.get();
+		}
+		List<LibriGame> list = gallery.getLibriGame();
+		return list;
 	}
 
 }
