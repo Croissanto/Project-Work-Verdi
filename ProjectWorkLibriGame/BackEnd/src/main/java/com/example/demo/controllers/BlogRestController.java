@@ -45,6 +45,15 @@ public class BlogRestController {
 		return blog;
 	}
 	
+	@GetMapping("/allblog")
+	public List<Blog> getAll (){
+		Iterable<Blog> tmp = blogRepo.findAll();
+		List<Blog> blogList = new LinkedList<>();
+		for (Blog blog : tmp) {
+			blogList.add(blog);
+		}
+		return blogList;
+	}
 
 	@GetMapping("/getpostlist/{id}")
 	public List<Post> getPostList(@PathVariable("id") int id) {
