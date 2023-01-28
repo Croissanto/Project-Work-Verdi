@@ -30,7 +30,7 @@ function showPost(id) {
 			postList.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
-				elem.innerHTML = tmp.userPost.username + " <br> " + tmp.contenuto;
+				elem.innerHTML = "<br>"+ tmp.userPost.username + " <br> " + tmp.contenuto;
 				let p = document.createElement("p");
 				p.id = tmp.id;
 				p.innerHTML = "Visualizza i commenti";
@@ -71,7 +71,7 @@ function showCommenti(id) {
 			thisUl.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
-				elem.innerHTML = tmp.contenuto + " " + tmp.date + " " + tmp.time;
+				elem.innerHTML = tmp.contenuto + " " + tmp.date + " " + tmp.time + " <br>";
 
 				thisUl.appendChild(elem);
 
