@@ -19,12 +19,14 @@ public class CreateReazioneDTO {
 		this.downVote = downVote;
 	}
 
-	public CreateReazioneDTO(int idUser, int upVote, int downVote) {
+	public CreateReazioneDTO(int idPost, int upVote, int downVote) {
 		super();
-		this.idUser = idUser;
+		this.idPost = idPost;
 		this.upVote = upVote;
 		this.downVote = downVote;
 	}
+	
+	
 
 	public int getIdPost() {
 		return idPost;
