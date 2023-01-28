@@ -8,13 +8,12 @@ function showAll() {
 	fetch(`http://localhost:8080/allblog`).then((r) => { return r.json() })
 		.then((r) => {
 
-			blog.innerHTML = "";
+			threadList.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
-				elem.innerHTML = tmp.titolo;
+				elem.innerHTML = "<a href=/"+tmp.tema+".html>"+tmp.titolo+"</a>";
 				elem.setAttribute("onclick", "showPost(" + tmp.id + ")");
-
-				blog.appendChild(elem);
+				threadList.appendChild(elem);
 
 
 			}
