@@ -6,7 +6,7 @@ function send(){
 		titolo: titolo.value,
 		contenuto: contenuto.value,
 		date: date.value,
-		time: time.value,
+		time: time.value+":00",
 		blogId: blogId.value
 	}
 	

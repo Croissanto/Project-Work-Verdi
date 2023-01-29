@@ -3,7 +3,7 @@ function send(){
 	let data={
 		contenuto: contenuto.value,
 		date: date.value,
-		time: time.value,
+		time: time.value+":00",
 		idUser: idUser.value,
 		idPost: idPost.value
 	}
