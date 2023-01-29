@@ -13,12 +13,18 @@ public enum Genre {
 	SCI_FI("Sci-Fi"),
 	SPORT("Sport");
 
-	public final String label;
+	public String label;
 
     private Genre(String label) {
         this.label = label;
     }
+
+	public String getLabel() {
+		return label;
+	}
 	
-	
+	public void setLabel(String label) {
+		this.label=label;
+	}
 	
 }
