@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -16,7 +16,7 @@ public class Gallery {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gallery_sequence")
 	private int idGallery;
 	private String titoloSaga;
-	@ManyToMany
+	@OneToMany
 	private List<LibriGame> libriGame;
 	private int numeroLibri;
 

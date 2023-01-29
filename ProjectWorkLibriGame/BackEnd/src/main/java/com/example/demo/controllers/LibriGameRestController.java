@@ -91,8 +91,9 @@ public class LibriGameRestController {
 
 			gallery = opt.get();
 		}
-		List<LibriGame> list = gallery.getLibriGame();
-		return list;
+		
+            List<LibriGame> list= gallery.getLibriGame();
+		    return list;
 	}
 
 }
