@@ -78,6 +78,18 @@ public class PostRestController {
 		return null;
 	}
 	
+	@GetMapping("/getreactlist/{id}")
+	public List<Reazione> getReactList(@PathVariable("id") int id) {
+		Optional<Post> tmp = postRepo.findById(id);
+		Post post = new Post();
+		if (tmp.isPresent()) {
+			post = tmp.get();
+			return post.getReazione();
+		}
+		return null;
+	}
+	
+	
 	@GetMapping("/getAllOrderByDateAndTime")
 	public List<Post> getAll () {
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
