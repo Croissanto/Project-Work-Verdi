@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CreateReazioneDTO;
 
-import com.example.demo.model.Post;
 import com.example.demo.model.Reazione;
 import com.example.demo.model.UserDummy;
-import com.example.demo.model.repositories.PostRepository;
+
 import com.example.demo.model.repositories.ReazioneRepository;
 import com.example.demo.model.repositories.UserDummyRepository;
 
@@ -27,24 +26,21 @@ public class ReazioneRestController {
 	private ReazioneRepository reazioneRepo;
 	@Autowired
 	private UserDummyRepository userDummyRepo;
-	@Autowired
-	private PostRepository postRepo;
 
 	@PostMapping("/createreazione")
 	public boolean createReazione(@RequestBody CreateReazioneDTO dto) {
 		try {
 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
-			Optional<Post> opt2 = postRepo.findById(dto.getIdPost());
+
 			UserDummy user = new UserDummy();
-			Post post = new Post();
-			if (opt.isPresent() && opt2.isPresent()) {
+
+			if (opt.isPresent()) {
 
 				user = opt.get();
-				post = opt2.get();
 
 			}
 
-			Reazione reazione = new Reazione(post, user, dto.getUpVote(), dto.getDownVote());
+			Reazione reazione = new Reazione(user, dto.getUpVote(), dto.getDownVote());
 			reazioneRepo.save(reazione);
 			return true;
 		} catch (Exception e) {
@@ -65,7 +61,5 @@ public class ReazioneRestController {
 		}
 		return list;
 	}
-	
-	
 
 }
