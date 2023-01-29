@@ -1,10 +1,7 @@
 function send(){
 	
-	var lista = [];
 	let data={
-		titolo: titolo.value ,
-		tema: tema.value ,
-        idListaPost: lista
+		titolo: titolo.value 
 	}
 	
 	fetch('/createBlog', {
@@ -13,8 +10,7 @@ function send(){
     		'Content-Type': 'application/json',
   		},
   		body: JSON.stringify(data),
-	}) ;
-	titolo.innerHTML = "";
-	tema.innerHTML = "";
+	}).then(
+	titolo.innerHTML = "");
 	
 }

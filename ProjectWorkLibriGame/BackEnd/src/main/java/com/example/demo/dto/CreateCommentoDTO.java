@@ -1,24 +1,22 @@
 package com.example.demo.dto;
 
-import java.sql.Date;
-import java.sql.Time;
 
 public class CreateCommentoDTO {
 	private String contenuto;
 	private String date;
 	private String time;
-	private int idUserCommento;
+	private int idUser;
 	private int idPost;
 
 	public CreateCommentoDTO() {
 
 	}
 
-	public CreateCommentoDTO(String contenuto, String date, String time, int idUserCommento, int idPost) {
+	public CreateCommentoDTO(String contenuto, String date, String time, int idUser, int idPost) {
 		this.contenuto = contenuto;
 		this.date = date;
 		this.time = time;
-		this.idUserCommento = idUserCommento;
+		this.idUser = idUser;
 		this.idPost = idPost;
 	}
 
@@ -46,12 +44,12 @@ public class CreateCommentoDTO {
 		this.time = time;
 	}
 
-	public int getIdUserCommento() {
-		return idUserCommento;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setIdUserCommento(int idUserCommento) {
-		this.idUserCommento = idUserCommento;
+	public void setIdUserCommento(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public int getIdPost() {

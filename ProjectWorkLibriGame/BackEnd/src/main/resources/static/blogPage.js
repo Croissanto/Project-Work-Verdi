@@ -49,14 +49,17 @@ function showLastPost() {
 	
 	fetch('http://localhost:8080/getAllOrderByDateAndTime').then((r) => { return r.json() })
 		.then((r) => {
-
-			postList.innerHTML = "";
+			let i = 1;
 			for (let tmp of r) {
-				let elem = document.createElement("li");
-				elem.innerHTML = tmp.contenuto + " " + tmp.date + " " + tmp.time;
-
-				postList.appendChild(elem);
-
+				let date = document.getElementById("date"+i);
+				date.innerHTML = "Scritto il "+tmp.date+" alle "+tmp.time;
+				let titolo = document.getElementById("titolo"+i);
+				titolo.innerHTML = tmp.link;
+				let contenuto = document.getElementById("contenuto"+i);
+				contenuto.innerHTML = tmp.contenuto;
+				let user = document.getElementById("user"+i);
+				user.innerHTML = "Scritto da "+tmp.userPost.username;
+				i++;
 			}
 
 		});

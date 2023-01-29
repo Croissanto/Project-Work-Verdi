@@ -52,7 +52,7 @@ public class PostRestController {
 			}
 			Date date = Date.valueOf(dto.getDate());
 			Time time = Time.valueOf(dto.getTime());
-			Post post = new Post(user, dto.getContenuto(), dto.getLink(), date, time, list);
+			Post post = new Post(user, dto.getTitolo(), dto.getContenuto(), date, time, list);
 			postRepo.save(post);
 			postList.add(post);
 			blogRepo.save(blog);
@@ -78,7 +78,7 @@ public class PostRestController {
 	
 	@GetMapping("/getAllOrderByDateAndTime")
 	public List<Post> getAll () {
-		Iterable<Post> tmp = postRepo.findTop10ByOrderByDateDescTimeDesc();
+		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
 		List<Post> postList = new LinkedList<>();
 		for (Post post : tmp) {
 			postList.add(post);

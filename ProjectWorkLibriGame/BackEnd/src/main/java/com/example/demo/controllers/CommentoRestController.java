@@ -40,7 +40,7 @@ public class CommentoRestController {
 				post = tmp.get();
 			}
 			List<Commento> commList = post.getCommento();
-			Optional<UserDummy> opt = repoU.findById(dto.getIdUserCommento());
+			Optional<UserDummy> opt = repoU.findById(dto.getIdUser());
 			UserDummy user = new UserDummy();
 			if (opt.isPresent()) {
 

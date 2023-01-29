@@ -24,9 +24,9 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")
 	private int id;
 	@ManyToOne
-	private UserDummy userPost;
+	private UserDummy user;
+	private String titolo;
 	private String contenuto;
-	private String link;
 	private Date date;
 	private Time time;
 	@OneToMany
@@ -36,21 +36,21 @@ public class Post {
 		
 	}
 
-	public Post(int id, UserDummy userPost, String contenuto, String link, Date date, Time time,
+	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time,
 			List<Commento> commento) {
 		this.id = id;
-		this.userPost = userPost;
+		this.user = user;
+		this.titolo = titolo;
 		this.contenuto = contenuto;
-		this.link = link;
 		this.date = date;
 		this.time = time;
 		this.commento = commento;
 	}
 
-	public Post(UserDummy userPost, String contenuto, String link, Date date, Time time, List<Commento> commento) {
-		this.userPost = userPost;
+	public Post(UserDummy user, String titolo, String contenuto,  Date date, Time time, List<Commento> commento) {
+		this.user = user;
+		this.titolo = titolo;
 		this.contenuto = contenuto;
-		this.link = link;
 		this.date = date;
 		this.time = time;
 		this.commento = commento;
@@ -64,12 +64,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public UserDummy getUserPost() {
-		return userPost;
+	public UserDummy getUser() {
+		return user;
 	}
 
-	public void setUserPost(UserDummy userPost) {
-		this.userPost = userPost;
+	public void setUserPost(UserDummy user) {
+		this.user = user;
 	}
 
 	public String getContenuto() {
@@ -80,12 +80,12 @@ public class Post {
 		this.contenuto = contenuto;
 	}
 
-	public String getLink() {
-		return link;
+	public String getTitolo() {
+		return titolo;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
 	public Date getDate() {
@@ -114,7 +114,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", userPost=" + userPost + ", contenuto=" + contenuto + ", link=" + link + ", date="
+		return "Post [id=" + id + ", userPost=" + user + ", contenuto=" + contenuto + ", titolo=" + titolo + ", date="
 				+ date + ", time=" + time + ", commento=" + commento + "]";
 	}
 	

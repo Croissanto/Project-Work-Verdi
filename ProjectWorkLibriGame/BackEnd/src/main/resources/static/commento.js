@@ -1,11 +1,10 @@
 function send(){
 	
-	
 	let data={
 		contenuto: contenuto.value,
 		date: date.value,
 		time: time.value,
-		idUserCommento: idUser.value,
+		idUser: idUser.value,
 		idPost: idPost.value
 	}
 	

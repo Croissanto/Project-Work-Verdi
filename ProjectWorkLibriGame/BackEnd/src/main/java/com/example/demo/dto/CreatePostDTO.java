@@ -1,14 +1,11 @@
 package com.example.demo.dto;
 
-import java.sql.Date;
-import java.sql.Time;
 
 public class CreatePostDTO {
 	
-	private int idCommento;
 	private int idUser;
+	private String titolo;
 	private String contenuto;
-	private String link;
 	private String date;
 	private String time;
 	private int blogId;
@@ -19,25 +16,13 @@ public class CreatePostDTO {
 	}
 
 
-	public CreatePostDTO(int idCommento, int idUser, String contenuto, String link, String date, String time,int blogId) {
-		super();
-		this.idCommento = idCommento;
+	public CreatePostDTO(int idUser, String titolo, String contenuto, String date, String time,int blogId) {
 		this.idUser = idUser;
+		this.titolo = titolo;
 		this.contenuto = contenuto;
-		this.link = link;
 		this.date = date;
 		this.time = time;
 		this.blogId = blogId;
-	}
-
-
-	public int getIdCommento() {
-		return idCommento;
-	}
-
-
-	public void setIdCommento(int idCommento) {
-		this.idCommento = idCommento;
 	}
 
 
@@ -61,13 +46,13 @@ public class CreatePostDTO {
 	}
 
 
-	public String getLink() {
-		return link;
+	public String getTitolo() {
+		return titolo;
 	}
 
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
 

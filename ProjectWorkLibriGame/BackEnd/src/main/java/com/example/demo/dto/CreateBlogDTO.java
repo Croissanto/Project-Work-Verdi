@@ -4,17 +4,15 @@ import java.util.List;
 
 public class CreateBlogDTO {
 	private String titolo;
-	private String tema;
 	private List<Integer> idListaPost;
 
 	public CreateBlogDTO() {
 
 	}
 
-	public CreateBlogDTO(String titolo, String tema, List<Integer> idListaPost) {
+	public CreateBlogDTO(String titolo, List<Integer> idListaPost) {
 		super();
 		this.titolo = titolo;
-		this.tema = tema;
 		this.idListaPost = idListaPost;
 	}
 
@@ -24,14 +22,6 @@ public class CreateBlogDTO {
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
-	}
-
-	public String getTema() {
-		return tema;
-	}
-
-	public void setTema(String tema) {
-		this.tema = tema;
 	}
 
 	public List<Integer> getIdListaPost() {
@@ -44,7 +34,7 @@ public class CreateBlogDTO {
 
 	@Override
 	public String toString() {
-		return "CreateBlogDTO [titolo=" + titolo + ", tema=" + tema + ", idListaPost=" + idListaPost + "]";
+		return "CreateBlogDTO [titolo=" + titolo + ", idListaPost=" + idListaPost + "]";
 	}
 	
 }
