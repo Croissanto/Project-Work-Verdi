@@ -1,0 +1,31 @@
+nav{
+    background-color: #8456a2;
+}
+
+.nav-link{
+    color: yellow;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: yellow;
+    background-color: purple;
+}
+
+body {
+  background-image: url('/img/backgroundWallpaper.jpeg');
+  background-position: relative;
+  background-repeat: no-repeat;
+}
+
+#paragrafo{
+    color: yellow;
+}
+
+#benvenuti{
+    color: yellow;
+}
+
+footer{
+    background-color: #8456a2;
+}
