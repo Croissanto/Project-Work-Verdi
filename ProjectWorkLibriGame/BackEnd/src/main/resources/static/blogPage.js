@@ -54,11 +54,11 @@ function showLastPost() {
 				let date = document.getElementById("date"+i);
 				date.innerHTML = "Scritto il "+tmp.date+" alle "+tmp.time;
 				let titolo = document.getElementById("titolo"+i);
-				titolo.innerHTML = tmp.link;
+				titolo.innerHTML = tmp.titolo;
 				let contenuto = document.getElementById("contenuto"+i);
 				contenuto.innerHTML = tmp.contenuto;
 				let user = document.getElementById("user"+i);
-				user.innerHTML = "Scritto da "+tmp.userPost.username;
+				user.innerHTML = "Scritto da "+tmp.user.username;
 				i++;
 			}
 
