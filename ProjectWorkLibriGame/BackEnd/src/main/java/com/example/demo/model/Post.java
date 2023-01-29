@@ -8,8 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -26,7 +28,7 @@ public class Post {
 	private Date date;
 	private Time time;
 	@OneToMany
-	private Reazione reazione;
+	private List<Reazione> reazione;
 	@OneToMany
 	private List<Commento> commento;
 
@@ -34,7 +36,7 @@ public class Post {
 
 	}
 
-	public Post(UserDummy user, String titolo, String contenuto, Date date, Time time, Reazione reazione,
+	public Post(UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
 			List<Commento> commento) {
 		super();
 		this.user = user;
@@ -46,7 +48,7 @@ public class Post {
 		this.commento = commento;
 	}
 
-	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time, Reazione reazione,
+	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
 			List<Commento> commento) {
 		super();
 		this.id = id;
@@ -59,25 +61,9 @@ public class Post {
 		this.commento = commento;
 	}
 
-	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time,
-			List<Commento> commento) {
-		this.id = id;
-		this.user = user;
-		this.titolo = titolo;
-		this.contenuto = contenuto;
-		this.date = date;
-		this.time = time;
-		this.commento = commento;
-	}
+	
 
-	public Post(UserDummy user, String titolo, String contenuto, Date date, Time time, List<Commento> commento) {
-		this.user = user;
-		this.titolo = titolo;
-		this.contenuto = contenuto;
-		this.date = date;
-		this.time = time;
-		this.commento = commento;
-	}
+	
 
 	public int getId() {
 		return id;
@@ -135,11 +121,11 @@ public class Post {
 		this.commento = commento;
 	}
 
-	public Reazione getReazione() {
+	public List<Reazione> getReazione() {
 		return reazione;
 	}
 
-	public void setReazione(Reazione reazione) {
+	public void setReazione(List<Reazione> reazione) {
 		this.reazione = reazione;
 	}
 

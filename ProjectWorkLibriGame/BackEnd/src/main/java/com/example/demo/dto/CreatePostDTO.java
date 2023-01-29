@@ -2,7 +2,6 @@ package com.example.demo.dto;
 
 public class CreatePostDTO {
 
-	private int idReazione;
 	private int idUser;
 	private String titolo;
 	private String contenuto;
@@ -21,26 +20,6 @@ public class CreatePostDTO {
 		this.date = date;
 		this.time = time;
 		this.blogId = blogId;
-	}
-
-	public CreatePostDTO(int idReazione, int idUser, String titolo, String contenuto, String date, String time,
-			int blogId) {
-		super();
-		this.idReazione = idReazione;
-		this.idUser = idUser;
-		this.titolo = titolo;
-		this.contenuto = contenuto;
-		this.date = date;
-		this.time = time;
-		this.blogId = blogId;
-	}
-
-	public int getIdReazione() {
-		return idReazione;
-	}
-
-	public void setIdReazione(int idReazione) {
-		this.idReazione = idReazione;
 	}
 
 	public int getIdUser() {

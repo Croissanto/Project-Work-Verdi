@@ -17,6 +17,7 @@ import com.example.demo.dto.CreatePostDTO;
 import com.example.demo.model.Blog;
 import com.example.demo.model.Commento;
 import com.example.demo.model.Post;
+import com.example.demo.model.Reazione;
 import com.example.demo.model.UserDummy;
 import com.example.demo.model.repositories.BlogRepository;
 import com.example.demo.model.repositories.PostRepository;
@@ -44,7 +45,8 @@ public class PostRestController {
 			}
 			List<Post> postList = blog.getListaDeiPost();
 			List<Commento> list = new LinkedList<>();
-			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
+			List<Reazione> reactList = new LinkedList<>();
+ 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
 			UserDummy user = new UserDummy();
 			if (opt.isPresent()) {
 
@@ -52,7 +54,7 @@ public class PostRestController {
 			}
 			Date date = Date.valueOf(dto.getDate());
 			Time time = Time.valueOf(dto.getTime());
-			Post post = new Post(user, dto.getTitolo(), dto.getContenuto(), date, time, list);
+			Post post = new Post(user, dto.getTitolo(), dto.getContenuto(), date, time, reactList, list);
 			postRepo.save(post);
 			postList.add(post);
 			blogRepo.save(blog);
