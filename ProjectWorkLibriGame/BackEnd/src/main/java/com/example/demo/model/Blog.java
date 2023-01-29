@@ -21,7 +21,6 @@ public class Blog {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blog_sequence")
 	private int id;
 	private String titolo;
-	private String tema;
 	@OneToMany
 	private List<Post> listaDeiPost;
 	
@@ -29,16 +28,14 @@ public class Blog {
 	
 	}
 
-	public Blog(int id, String titolo, String tema, List<Post> listaDeiPost) {
+	public Blog(int id, String titolo, List<Post> listaDeiPost) {
 		this.id = id;
 		this.titolo = titolo;
-		this.tema = tema;
 		this.listaDeiPost = listaDeiPost;
 	}
 
-	public Blog(String titolo, String tema, List<Post> listaDeiPost) {
+	public Blog(String titolo, List<Post> listaDeiPost) {
 		this.titolo = titolo;
-		this.tema = tema;
 		this.listaDeiPost = listaDeiPost;
 	}
 
@@ -58,14 +55,6 @@ public class Blog {
 		this.titolo = titolo;
 	}
 
-	public String getTema() {
-		return tema;
-	}
-
-	public void setTema(String tema) {
-		this.tema = tema;
-	}
-
 	public List<Post> getListaDeiPost() {
 		return listaDeiPost;
 	}
@@ -76,7 +65,7 @@ public class Blog {
 
 	@Override
 	public String toString() {
-		return "Blog [id=" + id + ", titolo=" + titolo + ", tema=" + tema + ", listaDeiPost=" + listaDeiPost + "]";
+		return "Blog [id=" + id + ", titolo=" + titolo +", listaDeiPost=" + listaDeiPost + "]";
 	}
 	
 	

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CreateBlogDTO;
-import com.example.demo.model.Author;
 import com.example.demo.model.Blog;
 import com.example.demo.model.Post;
 import com.example.demo.model.repositories.BlogRepository;
@@ -27,7 +26,7 @@ public class BlogRestController {
 	public boolean createBlog(@RequestBody CreateBlogDTO dto) {
 		try {
 			List<Post> idPost = new LinkedList<>();
-			Blog crBlog = new Blog(dto.getTitolo(), dto.getTema(), idPost);
+			Blog crBlog = new Blog(dto.getTitolo(), idPost);
 			blogRepo.save(crBlog);
 			return true;
 		} catch (Exception e) {

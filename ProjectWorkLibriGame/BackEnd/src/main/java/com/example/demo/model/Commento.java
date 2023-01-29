@@ -26,25 +26,25 @@ public class Commento {
 	private Date date;
 	private Time time;
 	@ManyToOne
-	private UserDummy userCommento;
+	private UserDummy user;
 	
 	public Commento() {
 		
 	}
 
-	public Commento(int id, String contenuto, Date date, Time time, UserDummy userCommento) {
+	public Commento(int id, String contenuto, Date date, Time time, UserDummy user) {
 		this.id = id;
 		this.contenuto = contenuto;
 		this.date = date;
 		this.time = time;
-		this.userCommento = userCommento;
+		this.user = user;
 	}
 
-	public Commento(String contenuto, Date date, Time time, UserDummy userCommento) {
+	public Commento(String contenuto, Date date, Time time, UserDummy user) {
 		this.contenuto = contenuto;
 		this.date = date;
 		this.time = time;
-		this.userCommento = userCommento;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -79,21 +79,18 @@ public class Commento {
 		this.time = time;
 	}
 
-	public UserDummy getUserCommento() {
-		return userCommento;
+	public UserDummy getUser() {
+		return user;
 	}
 
-	public void setUserCommento(UserDummy userCommento) {
-		this.userCommento = userCommento;
+	public void setUserCommento(UserDummy user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
 		return "Commento [id=" + id + ", contenuto=" + contenuto + ", date=" + date + ", time=" + time
-				+ ", userCommento=" + userCommento + "]";
+				+ ", user=" + user + "]";
 	}
 
-	
-	
-	
 }
