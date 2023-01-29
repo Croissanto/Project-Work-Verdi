@@ -8,19 +8,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Post {
-	
+
 	@Id
-	@SequenceGenerator(
-			name = "post_sequence", 
-			sequenceName ="post_sequence", 
-			allocationSize =1
-			)
+	@SequenceGenerator(name = "post_sequence", sequenceName = "post_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")
 	private int id;
 	@ManyToOne
@@ -30,31 +28,42 @@ public class Post {
 	private Date date;
 	private Time time;
 	@OneToMany
+	private List<Reazione> reazione;
+	@OneToMany
 	private List<Commento> commento;
-	
+
 	public Post() {
-		
+
 	}
 
-	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time,
+	public Post(UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
 			List<Commento> commento) {
+		super();
+		this.user = user;
+		this.titolo = titolo;
+		this.contenuto = contenuto;
+		this.date = date;
+		this.time = time;
+		this.reazione = reazione;
+		this.commento = commento;
+	}
+
+	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
+			List<Commento> commento) {
+		super();
 		this.id = id;
 		this.user = user;
 		this.titolo = titolo;
 		this.contenuto = contenuto;
 		this.date = date;
 		this.time = time;
+		this.reazione = reazione;
 		this.commento = commento;
 	}
 
-	public Post(UserDummy user, String titolo, String contenuto,  Date date, Time time, List<Commento> commento) {
-		this.user = user;
-		this.titolo = titolo;
-		this.contenuto = contenuto;
-		this.date = date;
-		this.time = time;
-		this.commento = commento;
-	}
+	
+
+	
 
 	public int getId() {
 		return id;
@@ -68,7 +77,7 @@ public class Post {
 		return user;
 	}
 
-	public void setUserPost(UserDummy user) {
+	public void setUser(UserDummy user) {
 		this.user = user;
 	}
 
@@ -112,11 +121,18 @@ public class Post {
 		this.commento = commento;
 	}
 
+	public List<Reazione> getReazione() {
+		return reazione;
+	}
+
+	public void setReazione(List<Reazione> reazione) {
+		this.reazione = reazione;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", userPost=" + user + ", contenuto=" + contenuto + ", titolo=" + titolo + ", date="
 				+ date + ", time=" + time + ", commento=" + commento + "]";
 	}
-	
-	
+
 }

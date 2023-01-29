@@ -15,8 +15,6 @@ public class Reazione {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reazione_sequence")
 	private int id;
 	@ManyToOne
-	private Post post;
-	@ManyToOne
 	private UserDummy user;
 	private int upvote;
 	private int downvote;
@@ -25,18 +23,17 @@ public class Reazione {
 
 	}
 
-	public Reazione(int id, Post post, UserDummy user, int upvote, int downvote) {
+	public Reazione(int id, UserDummy user, int upvote, int downvote) {
 		super();
 		this.id = id;
-		this.post = post;
 		this.user = user;
 		this.upvote = upvote;
 		this.downvote = downvote;
 	}
 
-	public Reazione(Post post, UserDummy user, int upvote, int downvote) {
+	public Reazione( UserDummy user, int upvote, int downvote) {
 		super();
-		this.post = post;
+		
 		this.user = user;
 		this.upvote = upvote;
 		this.downvote = downvote;
@@ -50,13 +47,6 @@ public class Reazione {
 		this.id = id;
 	}
 
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
 
 	public UserDummy getUser() {
 		return user;
