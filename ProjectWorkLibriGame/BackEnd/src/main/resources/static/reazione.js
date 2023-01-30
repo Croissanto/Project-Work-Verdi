@@ -47,13 +47,13 @@ function showAllReactions() {
 					map[reazione.reactions]++;
 
 				}
-				p.innerHTML += map["LIKE"] + ' ' +
-				map["CUORE"] + ' ' +
-				map["VOMITINO"] +' ' +
-				map["TRISTE"] + ' ' +
-				map["WOW"] +' ' +
-				map["RISATA"] +' ' +
-				map["GRRR"] 
+				p.innerHTML += map["LIKE"] + 'like ' + ' ' +
+				map["CUORE"] + 'cuori' +  ' ' +
+				map["VOMITINO"] +'vomitini' +  ' ' + 
+				map["TRISTE"] + 'tristi ' +  ' ' +
+				map["WOW"] +' woow' +  ' ' +
+				map["RISATA"] +' risate' +  ' ' +
+				map["GRRR"] +'grrrr'
 			}
 
 
