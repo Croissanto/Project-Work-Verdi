@@ -11,7 +11,7 @@ function showAll() {
 			for (let tmp of r) {
 				let elem = document.createElement("li");
 				elem.innerHTML = tmp.titoloSaga;
-				elem.setAttribute("onclick" ,"showLibriGame("+tmp.idGallery+")");
+				elem.setAttribute("onclick", "showLibriGame(" + tmp.idGallery + ")");
 				console.log(tmp.idGallery)
 				gallery.appendChild(elem);
 
@@ -30,13 +30,25 @@ function showLibriGame(id) {
 				elem.innerHTML = tmp.title;
 				librigame.appendChild(elem);
 
-
-
-
-
-
 			}
 		});
+
+}
+function send(s) {
+
+	let data = {
+		userId: 3,
+		libroId: 1,
+		star: s
+	}
+	fetch('http://localhost:8080/createrating', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	});
+
 }
 
 
