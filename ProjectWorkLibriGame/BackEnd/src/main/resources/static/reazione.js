@@ -47,18 +47,14 @@ function showAllReactions() {
 					map[reazione.reactions]++;
 
 				}
-				p.innerHTML += map["LIKE"] + 'like ' + ' ' +
-				map["CUORE"] + 'cuori' +  ' ' +
-				map["VOMITINO"] +'vomitini' +  ' ' + 
-				map["TRISTE"] + 'tristi ' +  ' ' +
-				map["WOW"] +' woow' +  ' ' +
-				map["RISATA"] +' risate' +  ' ' +
-				map["GRRR"] +'grrrr'
+				p.innerHTML += map["LIKE"] + ' like ' + ' ' +
+				map["CUORE"] + ' cuori ' +  ' ' +
+				map["VOMITINO"] +' vomitini ' +  ' ' + 
+				map["TRISTE"] + ' tristi ' +  ' ' +
+				map["WOW"] +' woow ' +  ' ' +
+				map["RISATA"] +' risate ' +  ' ' +
+				map["GRRR"] +' grrrr '
 			}
-
-
-
-
 
 		})
 
