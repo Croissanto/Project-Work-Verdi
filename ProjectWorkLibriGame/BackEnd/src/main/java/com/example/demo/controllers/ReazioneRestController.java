@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,7 @@ public class ReazioneRestController {
 	private ReazioneRepository reazioneRepo;
 	@Autowired
 	private UserDummyRepository userDummyRepo;
-	
+
 	@Autowired
 	private PostRepository postRepo;
 
@@ -35,19 +34,15 @@ public class ReazioneRestController {
 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
 			Optional<Post> tmp = postRepo.findById(dto.getIdPost());
 			Post post = new Post();
-			if (tmp.isPresent()) {
-				post = tmp.get();
-			}
-			List<Reazione> reactList = post.getReazione();
 			UserDummy user = new UserDummy();
+			List<Reazione> reactList = post.getReazione();
 
-			if (opt.isPresent()) {
-
+			if (tmp.isPresent() && opt.isPresent()) {
+				post = tmp.get();
 				user = opt.get();
-
 			}
 
-			Reazione reazione = new Reazione(user, dto.getUpVote(), dto.getDownVote());
+			Reazione reazione = new Reazione(user, dto.getReactions());
 			reactList.add(reazione);
 			reazioneRepo.save(reazione);
 			postRepo.save(post);
@@ -59,5 +54,4 @@ public class ReazioneRestController {
 
 	}
 
-	
 }

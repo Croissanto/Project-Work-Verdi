@@ -46,7 +46,7 @@ public class PostRestController {
 			List<Post> postList = blog.getListaDeiPost();
 			List<Commento> list = new LinkedList<>();
 			List<Reazione> reactList = new LinkedList<>();
- 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
+			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
 			UserDummy user = new UserDummy();
 			if (opt.isPresent()) {
 
@@ -77,7 +77,7 @@ public class PostRestController {
 		}
 		return null;
 	}
-	
+
 	@GetMapping("/getreactlist/{id}")
 	public List<Reazione> getReactList(@PathVariable("id") int id) {
 		Optional<Post> tmp = postRepo.findById(id);
@@ -88,10 +88,9 @@ public class PostRestController {
 		}
 		return null;
 	}
-	
-	
+
 	@GetMapping("/getAllOrderByDateAndTime")
-	public List<Post> getAll () {
+	public List<Post> getAll() {
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
 		List<Post> postList = new LinkedList<>();
 		for (Post post : tmp) {
