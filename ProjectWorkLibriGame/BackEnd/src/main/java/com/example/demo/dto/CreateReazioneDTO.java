@@ -1,32 +1,23 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.enums.Reactions;
+
 public class CreateReazioneDTO {
 
 	private int idPost;
 	private int idUser;
-	private int upVote;
-	private int downVote;
+	private Reactions reactions;
 
 	public CreateReazioneDTO() {
 
 	}
 
-	public CreateReazioneDTO(int idPost, int idUser, int upVote, int downVote) {
+	public CreateReazioneDTO(int idPost, int idUser, Reactions reactions) {
 		super();
 		this.idPost = idPost;
 		this.idUser = idUser;
-		this.upVote = upVote;
-		this.downVote = downVote;
+		this.reactions = reactions;
 	}
-
-	public CreateReazioneDTO(int idPost, int upVote, int downVote) {
-		super();
-		this.idPost = idPost;
-		this.upVote = upVote;
-		this.downVote = downVote;
-	}
-	
-	
 
 	public int getIdPost() {
 		return idPost;
@@ -44,20 +35,13 @@ public class CreateReazioneDTO {
 		this.idUser = idUser;
 	}
 
-	public int getUpVote() {
-		return upVote;
+	public Reactions getReactions() {
+		return reactions;
 	}
 
-	public void setUpVote(int upVote) {
-		this.upVote = upVote;
+	public void setReactions(Reactions reactions) {
+		this.reactions = reactions;
 	}
 
-	public int getDownVote() {
-		return downVote;
-	}
-
-	public void setDownVote(int downVote) {
-		this.downVote = downVote;
-	}
-
+	
 }

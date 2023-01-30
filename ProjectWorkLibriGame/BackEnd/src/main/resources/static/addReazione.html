@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LibriGame</title>
+</head>
+
+<body>
+	<input type="number" id="idUser" placeholder="Qui l'id dell'user">
+	<br>
+	<input type="number" id="idPost" placeholder="Qui l'id del post">
+	<br>
+	<select name="reactions" id="reactions">
+		<option value="LIKE">Like</option>
+		<option value="CUORE">Cuore</option>
+		<option value="VOMITINO">Vomitino</option>
+		<option value="TRISTE">Sigh</option>
+		<option value="WOW">Wow</option>
+		<option value="RISATA">Ahahah</option>		
+		<option value="GRRR">Rhawr</option>	
+	</select>
+	
+	<p>Reazioni:</p>
+	<p id="p"> </p>
+	
+	<button onclick="send()">Reacta</button>
+	<script src="reazione.js"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enums.Reactions;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,27 +18,23 @@ public class Reazione {
 	private int id;
 	@ManyToOne
 	private UserDummy user;
-	private int upvote;
-	private int downvote;
+	private Reactions reactions;
 
 	public Reazione() {
 
 	}
 
-	public Reazione(int id, UserDummy user, int upvote, int downvote) {
+	public Reazione(int id, UserDummy user, Reactions reactions) {
 		super();
 		this.id = id;
 		this.user = user;
-		this.upvote = upvote;
-		this.downvote = downvote;
+		this.reactions = reactions;
 	}
 
-	public Reazione( UserDummy user, int upvote, int downvote) {
+	public Reazione(UserDummy user, Reactions reactions) {
 		super();
-		
 		this.user = user;
-		this.upvote = upvote;
-		this.downvote = downvote;
+		this.reactions = reactions;
 	}
 
 	public int getId() {
@@ -47,7 +45,6 @@ public class Reazione {
 		this.id = id;
 	}
 
-
 	public UserDummy getUser() {
 		return user;
 	}
@@ -56,20 +53,12 @@ public class Reazione {
 		this.user = user;
 	}
 
-	public int getUpvote() {
-		return upvote;
+	public Reactions getReactions() {
+		return reactions;
 	}
 
-	public void setUpvote(int upvote) {
-		this.upvote = upvote;
-	}
-
-	public int getDownvote() {
-		return downvote;
-	}
-
-	public void setDownvote(int downvote) {
-		this.downvote = downvote;
+	public void setReactions(Reactions reactions) {
+		this.reactions = reactions;
 	}
 
 }

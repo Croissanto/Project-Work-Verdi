@@ -19,8 +19,10 @@ import com.example.demo.model.Commento;
 import com.example.demo.model.Post;
 import com.example.demo.model.Reazione;
 import com.example.demo.model.UserDummy;
+
 import com.example.demo.model.repositories.BlogRepository;
 import com.example.demo.model.repositories.PostRepository;
+
 import com.example.demo.model.repositories.UserDummyRepository;
 
 @RestController
@@ -46,7 +48,7 @@ public class PostRestController {
 			List<Post> postList = blog.getListaDeiPost();
 			List<Commento> list = new LinkedList<>();
 			List<Reazione> reactList = new LinkedList<>();
- 			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
+			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
 			UserDummy user = new UserDummy();
 			if (opt.isPresent()) {
 
@@ -77,7 +79,7 @@ public class PostRestController {
 		}
 		return null;
 	}
-	
+
 	@GetMapping("/getreactlist/{id}")
 	public List<Reazione> getReactList(@PathVariable("id") int id) {
 		Optional<Post> tmp = postRepo.findById(id);
@@ -88,10 +90,10 @@ public class PostRestController {
 		}
 		return null;
 	}
-	
-	
+
+
 	@GetMapping("/getAllOrderByDateAndTime")
-	public List<Post> getAll () {
+	public List<Post> getAll() {
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
 		List<Post> postList = new LinkedList<>();
 		for (Post post : tmp) {
@@ -99,4 +101,15 @@ public class PostRestController {
 		}
 		return postList;
 	}
+
+	@GetMapping("/getallposts")
+	public List<Post> getAllPosts() {
+		Iterable<Post> tmp = postRepo.findAll();
+		List<Post> postList = new LinkedList<>();
+		for (Post post : tmp) {
+			postList.add(post);
+		}
+		return postList;
+	}
+
 }
