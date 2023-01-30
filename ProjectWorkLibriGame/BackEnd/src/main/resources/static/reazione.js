@@ -1,25 +1,65 @@
 document.body.onload = () => {
-	
-	showReazioni();
-	
+
+	showAllReactions();
+
+}
+
+function send() {
+
+
+	let data = {
+		idPost: idPost.value,
+		idUser: idUser.value,
+		reactions: reactions.value,
+	}
+	console.log(data);
+	fetch('http://localhost:8080/createreazione', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	}).then((data) => { console.log(data) })
+
 }
 
 
-
-function showReazioni() {
-	fetch(`http://localhost:8080/getreactlist/`+id).then((r) => { return r.json() })
+function showAllReactions() {
+	fetch('http://localhost:8080/getallposts').then((r) => { return r.json() })
 		.then((r) => {
 
-			threadList.innerHTML = "";
-			for (let tmp of r) {
-				let elem = document.createElement("li");
-				elem.innerHTML = "<a href=/"+tmp.tema+".html>"+tmp.titolo+"</a>";
-				elem.setAttribute("onclick", "showPost(" + tmp.id + ")");
-				threadList.appendChild(elem);
 
 
+			for (let post of r) {
+
+				let map = [];
+
+				map["LIKE"] = 0;
+				map["CUORE"] = 0;
+				map["VOMITINO"] = 0;
+				map["TRISTE"] = 0;
+				map["WOW"] = 0;
+				map["RISATA"] = 0;
+				map["GRRR"] = 0;
+
+				for (let reazione of post.reazione) {
+
+					map[reazione.reactions]++;
+
+				}
+				p.innerHTML += map["LIKE"] + ' ' +
+				map["CUORE"] + ' ' +
+				map["VOMITINO"] +' ' +
+				map["TRISTE"] + ' ' +
+				map["WOW"] +' ' +
+				map["RISATA"] +' ' +
+				map["GRRR"] 
 			}
 
-		});
+
+
+
+
+		})
 
 }

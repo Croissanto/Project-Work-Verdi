@@ -19,8 +19,10 @@ import com.example.demo.model.Commento;
 import com.example.demo.model.Post;
 import com.example.demo.model.Reazione;
 import com.example.demo.model.UserDummy;
+
 import com.example.demo.model.repositories.BlogRepository;
 import com.example.demo.model.repositories.PostRepository;
+
 import com.example.demo.model.repositories.UserDummyRepository;
 
 @RestController
@@ -89,6 +91,7 @@ public class PostRestController {
 		return null;
 	}
 
+
 	@GetMapping("/getAllOrderByDateAndTime")
 	public List<Post> getAll() {
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
@@ -98,4 +101,15 @@ public class PostRestController {
 		}
 		return postList;
 	}
+
+	@GetMapping("/getallposts")
+	public List<Post> getAllPosts() {
+		Iterable<Post> tmp = postRepo.findAll();
+		List<Post> postList = new LinkedList<>();
+		for (Post post : tmp) {
+			postList.add(post);
+		}
+		return postList;
+	}
+
 }
