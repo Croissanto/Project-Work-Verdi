@@ -11,8 +11,10 @@ function showAll() {
 			threadList.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
+				//Da sistemare a href
 				elem.innerHTML = "<a href=/" + tmp.tema + ".html>" + tmp.titolo + "</a>";
 				elem.setAttribute("onclick", "showPost(" + tmp.id + ")");
+				// /post/2
 				threadList.appendChild(elem);
 
 
