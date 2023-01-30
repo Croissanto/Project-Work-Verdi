@@ -15,7 +15,7 @@ function showPost(id) {
 
 
 				let card = `<div class="card mb-4">
-        <a href="#!"><img class="card-img-top" src="" alt="..." /></a>
+        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <h2 class="card-title">${tmp.titolo}</h2>
@@ -32,7 +32,7 @@ function showPost(id) {
 	
 
 
-
+				//send(s,${tmp.id})
 
 
 				/*	let elem = document.createElement("li");
@@ -56,7 +56,7 @@ function showCommenti(id) {
 	fetch(`http://localhost:8080/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
-			let thisUl = document.getElementById("listaCommenti" + id);
+			//let thisUl = document.getElementById("listaCommenti" + id);
 			thisUl.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
