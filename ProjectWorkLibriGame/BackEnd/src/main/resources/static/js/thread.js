@@ -5,11 +5,11 @@ console.log(id.innerHTML);
 document.body.onload = () => {
 	showPost(blogId.innerHTML);
 	showAll();
-	
+
 }
 
 function showPost(id) {
-	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => {return r.json() })
+	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
 			postList.innerHTML = "";
@@ -45,7 +45,7 @@ function showPost(id) {
 					map[reazione.reactions]++;
 
 				}
-				let elem1 = document.getElementById("reactList-"+tmp.id);
+				let elem1 = document.getElementById("reactList-" + tmp.id);
 				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
 				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
 				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
@@ -54,9 +54,9 @@ function showPost(id) {
 				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${tmp.id},'RISATA')" id="risata-${tmp.id}" value="RISATA">
 				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${tmp.id},'GRRR')" id="grrr-${tmp.id}" value="GRRR">
 				&#128545 </span>`;
-				
-				
-				
+
+
+
 				/*console.log(elem1);
 				elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
 					map["CUORE"] + ' cuori ' + ' ' +
@@ -68,7 +68,7 @@ function showPost(id) {
 			}
 		});
 
-		}
+}
 
 
 function showCommenti(id) {
@@ -109,8 +109,8 @@ function showAll() {
 
 }
 
-function send(id,reaction) {
-console.log(id,reaction);
+function send(id, reaction) {
+	console.log(id, reaction);
 
 
 	let data = {
@@ -125,21 +125,21 @@ console.log(id,reaction);
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then(() => {updateList(id)})
-	
-	
+	}).then(() => { updateList(id) })
+
+
 
 }
 
 function updateList(id) {
-	
-	fetch('http://localhost:8083/getreactlist/'+id).then((r) => {return r.json()})
-	
-	.then((tmp) =>{
-		
-		let map = [];
-		for (let reazione of tmp) {
-			
+
+	fetch('http://localhost:8083/getreactlist/' + id).then((r) => { return r.json() })
+
+		.then((tmp) => {
+
+			let map = [];
+			for (let reazione of tmp) {
+
 
 				map["LIKE"] = 0;
 				map["CUORE"] = 0;
@@ -149,11 +149,11 @@ function updateList(id) {
 				map["RISATA"] = 0;
 				map["GRRR"] = 0;
 
-					map[reazione.reactions]++;
-}
-				
-				let elem1 = document.getElementById("reactList-"+id);
-				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
+				map[reazione.reactions]++;
+			}
+
+			let elem1 = document.getElementById("reactList-" + id);
+			elem1.innerHTML = map["LIKE"] + `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
 				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${id}, 'CUORE')" id="cuore-${id}" value="CUORE">
 				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${id}, 'VOMITINO')" id="vomitino-${id}" value="VOMITINO">
 				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${id}, 'TRISTE')" id="triste-${id}" value="TRISTE">
@@ -161,8 +161,8 @@ function updateList(id) {
 				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${id},'RISATA')" id="risata-${id}" value="RISATA">
 				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${id},'GRRR')" id="grrr-${id}" value="GRRR">
 				&#128545 </span>`;
-	});
-	
-	
-	
+		});
+
+
+
 }

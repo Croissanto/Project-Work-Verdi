@@ -14,7 +14,8 @@ function send(){
 		annoDiPubblicazione : annoDiPubblicazione.value,
 	    publisher : publisher.value,
 	    genre : genre.value,
-	    idAutore : idAutore.value
+	    idAutore : idAutore.value,
+	    link : link.value
 	
 	
 	

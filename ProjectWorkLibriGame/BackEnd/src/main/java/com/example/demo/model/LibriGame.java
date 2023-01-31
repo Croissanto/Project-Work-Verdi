@@ -37,6 +37,11 @@ public class LibriGame {
 	public LibriGame() {
 
 	}
+	public LibriGame(int id) {
+		this.id = id;
+
+	}
+
 
 	public LibriGame(int id, String title, Author autore, String publisher, int annoDiPubblicazione, Genre genre) {
 		this.id = id;

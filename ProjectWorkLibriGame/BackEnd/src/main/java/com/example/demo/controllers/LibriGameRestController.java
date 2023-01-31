@@ -41,7 +41,7 @@ public class LibriGameRestController {
 				author = opt.get();
 			}
 			LibriGame libroGame = new LibriGame(dtoLibro.getTitle(), author, dtoLibro.getPublisher(),
-					dtoLibro.getAnnoDiPubblicazione(), dtoLibro.getGenre());
+					dtoLibro.getAnnoDiPubblicazione(), dtoLibro.getGenre(),dtoLibro.getLink());
 			repoL.save(libroGame);
 			return true;
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class LibriGameRestController {
 		if (opt.isPresent()) {
 			return opt.get();
 		}
-		return new LibriGame(id, null);
+		return new LibriGame(id);
 
 	}
 

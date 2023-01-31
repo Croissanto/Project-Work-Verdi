@@ -34,7 +34,7 @@ div.titolo-libro {
 	padding: 0 16px 0 0;
 	margin: 0;
 	margin-left: 22%;
-	margin-top:1%;
+	margin-top: 1%;
 
 
 }
@@ -45,29 +45,36 @@ div.stars {
 	width: 270px;
 	margin-left: 23%;
 	margin-top: 8%
-
-
 }
-div.card{
+
+div.card {
 	margin-top: -20%;
-	
+
 }
-div.autore-libro{
-	
+
+div.autore-libro {
+
 	margin-top: -5%;
 	margin-left: 22%;
-	
-	
+
+
 }
-img.card-img-top{
-	
-	margin-top:-120px;
-	
-	
+
+img.card-img-top {
+
+	margin-top: -120px;
+
+
 }
-div.media-rating{
-	
+
+div.media-rating {
+
 	margin-left: 28%;
-	
-	
+
+
+}
+
+.gallery {
+
+	margin-left: 100%;
 }
