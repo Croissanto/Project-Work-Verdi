@@ -24,7 +24,6 @@ function showPost(id) {
 				map["GRRR"] = 0;
 
 				let card = `<div class="card mb-4">
-        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <h2 class="card-title">${tmp.titolo}</h2>
@@ -47,13 +46,13 @@ function showPost(id) {
 				}
 				let elem1 = document.getElementById("reactList-"+tmp.id);
 				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
-				Like </span> - ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
-				Cuore </span> - ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
-				Vomitino </span> - ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
-				Triste </span> - ` + map["WOW"] + `<span onclick="send(${tmp.id}, 'WOW')" id="wow-${tmp.id}" value="WOW">
-				Wow </span> - ` + map["RISATA"] + `<span onclick="send(${tmp.id},'RISATA')" id="risata-${tmp.id}" value="RISATA">
-				Risata </span> - ` + map["GRRR"] + `<span onclick="send(${tmp.id},'GRRR')" id="grrr-${tmp.id}" value="GRRR">
-				GRRR </span>`;
+				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
+				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
+				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
+				&#128546 </span>  ` + map["WOW"] + `<span onclick="send(${tmp.id}, 'WOW')" id="wow-${tmp.id}" value="WOW">
+				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${tmp.id},'RISATA')" id="risata-${tmp.id}" value="RISATA">
+				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${tmp.id},'GRRR')" id="grrr-${tmp.id}" value="GRRR">
+				&#128545 </span>`;
 				
 				
 				
