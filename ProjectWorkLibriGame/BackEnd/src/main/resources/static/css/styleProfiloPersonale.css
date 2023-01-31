@@ -144,3 +144,32 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+.col {
+    float: left;
+    padding: 10px;
+  }
+
+  .col-3 {
+    width: calc((100% - 12px) / 12 * 3);
+  }
+
+  .col-5 {
+    width: calc((100% - 12px) / 12 * 5);
+  }
+
+  .col-4 {
+    width: calc((100% - 12px) / 12 * 4);
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  p{ 
+    color: yellow;
+  } /*DA TOGLIERE*/
+
+  h2 {
+    color: yellow;
+  }
