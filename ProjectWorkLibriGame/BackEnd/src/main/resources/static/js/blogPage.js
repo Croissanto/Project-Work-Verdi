@@ -5,7 +5,7 @@ document.body.onload = () => {
 
 
 function showAll() {
-	fetch(`http://localhost:8080/allblog`).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/allblog`).then((r) => { return r.json() })
 		.then((r) => {
 
 			threadList.innerHTML = "";
@@ -25,7 +25,7 @@ function showAll() {
 }
 
 function showPost(id) {
-	fetch(`http://localhost:8080/getpostlist/` + id).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
 			postList.innerHTML = "";
@@ -49,7 +49,7 @@ function showPost(id) {
 
 function showLastPost() {
 
-	fetch('http://localhost:8080/getAllOrderByDateAndTime').then((r) => { return r.json() })
+	fetch('http://localhost:8083/getAllOrderByDateAndTime').then((r) => { return r.json() })
 		.then((r) => {
 			let i = 1;
 			for (let tmp of r) {
@@ -70,7 +70,7 @@ function showLastPost() {
 }
 
 function showCommenti(id) {
-	fetch(`http://localhost:8080/getcommlist/` + id).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
 			let thisUl = document.getElementById("listaCommenti" + id);

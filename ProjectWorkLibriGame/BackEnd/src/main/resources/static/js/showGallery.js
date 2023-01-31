@@ -4,7 +4,7 @@ document.body.onload = () => {
 
 
 function showAll() {
-	fetch(`http://localhost:8080/getallgallery`).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/getallgallery`).then((r) => { return r.json() })
 		.then((r) => {
 
 			gallery.innerHTML = "";
@@ -22,7 +22,7 @@ function showAll() {
 }
 function showLibriGame(id) {
 
-	fetch(`http://localhost:8080/getlibrigamebygalleryid/` + id).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/getlibrigamebygalleryid/` + id).then((r) => { return r.json() })
 		.then((r) => {
 			librigame.innerHTML = "";
 			for (let tmp of r) {
@@ -56,7 +56,7 @@ function send(s) {
 		libroId: 1,
 		star: s
 	}
-	fetch('http://localhost:8080/createrating', {
+	fetch('http://localhost:8083/createrating', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

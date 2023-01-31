@@ -13,7 +13,7 @@ function send() {
 		reactions: reactions.value,
 	}
 	console.log(data);
-	fetch('http://localhost:8080/createreazione', {
+	fetch('http://localhost:8083/createreazione', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ function send() {
 
 
 function showAllReactions() {
-	fetch('http://localhost:8080/getallposts').then((r) => { return r.json() })
+	fetch('http://localhost:8083/getallposts').then((r) => { return r.json() })
 		.then((r) => {
 
 

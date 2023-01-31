@@ -8,7 +8,7 @@ function send(){
 		idPost: idPost.value
 	}
 	
-	fetch('http://localhost:8080/createcommento', {
+	fetch('http://localhost:8083/createcommento', {
   		method: 'POST',
   		headers: {
     		'Content-Type': 'application/json',

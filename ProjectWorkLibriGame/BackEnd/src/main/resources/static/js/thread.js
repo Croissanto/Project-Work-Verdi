@@ -9,7 +9,7 @@ document.body.onload = () => {
 }
 
 function showPost(id) {
-	fetch(`http://localhost:8080/getpostlist/` + id).then((r) => {return r.json() })
+	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => {return r.json() })
 		.then((r) => {
 
 			postList.innerHTML = "";
@@ -72,7 +72,7 @@ function showPost(id) {
 
 
 function showCommenti(id) {
-	fetch(`http://localhost:8080/getcommlist/` + id).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
 			//let thisUl = document.getElementById("listaCommenti" + id);
@@ -90,7 +90,7 @@ function showCommenti(id) {
 
 
 function showAll() {
-	fetch(`http://localhost:8080/allblog`).then((r) => { return r.json() })
+	fetch(`http://localhost:8083/allblog`).then((r) => { return r.json() })
 		.then((r) => {
 
 			threadList.innerHTML = "";
@@ -119,7 +119,7 @@ console.log(id,reaction);
 		reactions: reaction,
 	}
 	console.log(data);
-	fetch('http://localhost:8080/createreazione', {
+	fetch('http://localhost:8083/createreazione', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ console.log(id,reaction);
 
 function updateList(id) {
 	
-	fetch('http://localhost:8080/getreactlist/'+id).then((r) => {return r.json()})
+	fetch('http://localhost:8083/getreactlist/'+id).then((r) => {return r.json()})
 	
 	.then((tmp) =>{
 		

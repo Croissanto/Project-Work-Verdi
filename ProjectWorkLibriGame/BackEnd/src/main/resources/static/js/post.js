@@ -10,7 +10,7 @@ function send(){
 		blogId: blogId.value
 	}
 	
-	fetch('http://localhost:8080/createpost', {
+	fetch('http://localhost:8083/createpost', {
   		method: 'POST',
   		headers: {
     		'Content-Type': 'application/json',
