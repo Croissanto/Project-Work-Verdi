@@ -113,7 +113,7 @@ console.log(id,reaction);
 
 	let data = {
 		idPost: id,
-		idUser: 2,
+		idUser: 1,
 		reactions: reaction,
 	}
 	console.log(data);

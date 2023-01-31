@@ -25,11 +25,9 @@ public class ReazioneRestController {
 	private ReazioneRepository reazioneRepo;
 	@Autowired
 	private UserDummyRepository userDummyRepo;
-
 	@Autowired
 	private PostRepository postRepo;
 
-	
 	@PostMapping("/createreazione")
 	public ResponseEntity<Boolean> createReazione(@RequestBody CreateReazioneDTO dto) {
 		try {
@@ -37,7 +35,6 @@ public class ReazioneRestController {
 			Optional<Post> tmp = postRepo.findById(dto.getIdPost());
 			Post post = new Post();
 			UserDummy user = new UserDummy();
-			
 
 			if (tmp.isPresent() && opt.isPresent()) {
 				post = tmp.get();
@@ -46,15 +43,16 @@ public class ReazioneRestController {
 				Reazione reazione = new Reazione(user, dto.getReactions());
 				reactList.add(reazione);
 				reazioneRepo.save(reazione);
-				System.out.println(reazione);
+
 				postRepo.save(post);
-				return new ResponseEntity<>(true,HttpStatus.OK);
-			}else return new ResponseEntity<>(true,HttpStatus.BAD_REQUEST);
-			
+				return new ResponseEntity<>(true, HttpStatus.OK);
+			} else
+				return new ResponseEntity<>(true, HttpStatus.BAD_REQUEST);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			return new ResponseEntity<>(true,HttpStatus.INTERNAL_SERVER_ERROR);
+
+			return new ResponseEntity<>(true, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
