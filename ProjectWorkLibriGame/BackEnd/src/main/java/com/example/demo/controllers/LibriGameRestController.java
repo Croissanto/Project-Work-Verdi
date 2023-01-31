@@ -19,7 +19,7 @@ import com.example.demo.model.LibriGame;
 import com.example.demo.model.repositories.AuthorRepository;
 import com.example.demo.model.repositories.GalleryRepository;
 import com.example.demo.model.repositories.LibriGameRepository;
-import com.example.demo.model.repositories.RatingRepository;
+
 
 @RestController
 public class LibriGameRestController {
