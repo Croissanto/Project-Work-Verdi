@@ -1,0 +1,26 @@
+nav {
+	background-color: #8456a2;
+}
+
+.nav-link {
+	color: yellow;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+	color: yellow;
+	background-color: purple;
+}
+
+body {
+	background-image: url('../img/backgroundWallpaper.jpeg');
+	background-position: relative;
+	background-repeat: no-repeat;
+	background-color: black;
+
+}
+
+footer.text-center.text-white {
+	background-color: #8456a2;
+	
+}
