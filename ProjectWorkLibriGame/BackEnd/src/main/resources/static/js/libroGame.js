@@ -21,3 +21,24 @@ function send(){
 	}) ;
 	
 }
+
+
+
+function orderByStar() {
+	
+	fetch('http://localhost:8083/getlibrigameorderbystar').then((r) =>{return r.json()}).then ((r) => {
+		
+		for(let libro of r) {
+			
+			
+			
+		}
+		
+		
+		
+	});
+	
+	
+	
+	
+}
