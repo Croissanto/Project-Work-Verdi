@@ -1,5 +1,6 @@
 document.body.onload = () => {
 	showAll();
+	libriDellaSettimana();
 }
 
 
@@ -16,8 +17,6 @@ function showAll() {
 				button.setAttribute("onclick", "showLibriGame(" + tmp.idGallery + ")");
 				elem.appendChild(button);
 				gallery.appendChild(elem);
-
-
 			}
 
 		});
@@ -26,7 +25,12 @@ function showLibriGame(id) {
 
 	fetch(`http://localhost:8083/getlibrigamebygalleryid/` + id).then((r) => { return r.json() })
 		.then((r) => {
+			let li = document.getElementsByTagName("ul");
 
+			for (i = 0; i < li.length; i++) {
+				li[i].innerHTML = "";
+			}
+			showAll();
 			cardList.innerHTML = "";
 			for (let tmp of r) {
 
@@ -64,12 +68,6 @@ function showLibriGame(id) {
 					</div>
 				</div>`;
 				cardList.innerHTML += card;
-
-
-
-
-
-
 			}
 		});
 
@@ -91,6 +89,56 @@ function send(s, id) {
 		body: JSON.stringify(data),
 	});
 
+}
+function libriDellaSettimana() {
+	fetch(`http://localhost:8083/getalllibrigame`).then((r) => { return r.json() })
+		.then((r) => {
+			let salcio = document.getElementById("salcio");
+			salcio.innerHTML = "";
+			let shuffled = r.sort(() => 0.5 - Math.random());
+			let carousel = shuffled.slice(0, 5);
+
+			for (i = 0; i < carousel.length; i++) {
+				if (i < 1) {
+
+					let caroActive = `
+					
+    <div class="carousel-item active d-flex justify-content-center">
+      <img src="${carousel[i].link}" class="d-block w-100 " alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${carousel[i].title}</h5>
+        <p>$</p>
+      </div>
+    </div>
+    
+  `;
+					salcio.innerHTML += caroActive;
+
+				}
+				else {
+
+					let caro = `
+					
+    <div class="carousel-item justify-content-center ">
+      <img src="${carousel[i].link}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>${carousel[i].title}</h5>
+        <p></p>
+      </div>
+    </div>
+    
+  `;
+
+					salcio.innerHTML += caro;
+
+				}
+			}
+
+
+
+
+
+		});
 }
 
 
