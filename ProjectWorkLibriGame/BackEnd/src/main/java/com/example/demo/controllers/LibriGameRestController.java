@@ -20,6 +20,7 @@ import com.example.demo.model.repositories.AuthorRepository;
 import com.example.demo.model.repositories.GalleryRepository;
 import com.example.demo.model.repositories.LibriGameRepository;
 
+
 @RestController
 public class LibriGameRestController {
 
@@ -29,6 +30,7 @@ public class LibriGameRestController {
 	private LibriGameRepository repoL;
 	@Autowired
 	private GalleryRepository repoG;
+	
 
 	@PostMapping("/createlibrogame")
 	public boolean createLibroGame(@RequestBody CreateLibriGameDTO dtoLibro) {
@@ -95,5 +97,7 @@ public class LibriGameRestController {
             List<LibriGame> list= gallery.getLibriGame();
 		    return list;
 	}
+	
+	
 
 }
