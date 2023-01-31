@@ -8,10 +8,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 	<link rel="stylesheet" href="/css/rating.css">
 	<link rel="stylesheet" href="/css/gallery.css">
 	<link rel="stylesheet" href="/css/galleryNavbar.css">
-	<title>Document</title>
+	<title>Gallery</title>
 </head>
 
 <body>
@@ -41,8 +42,38 @@
 				<h3>Sezione di filtraggio</h3>
 				<p>Inserisci qui i filtri per i libri</p>
 			</div>
-			<div class="col book-section">
+			<div class="col book-section ">
+				<div class="libri-settimana">
+					<h3>I libri della settimana</h3>
+				</div>
 				<p id="cardList"></p>
+				<div id="carouselExampleIndicators" class="carousel slide d-flex align-items-center ">
+					<div class="carousel-indicators" >
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+							class="active" aria-current="true" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+							aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+							aria-label="Slide 3"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+							aria-label="Slide 4"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+							aria-label="Slide 5"></button>
+					</div>
+					<div class="carousel-inner" id="salcio">
+
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
 			</div>
 			<div class="col series-section">
 				<h3>Collane</h3>
@@ -52,9 +83,9 @@
 		</div>
 
 		<!--FOOTER START-->
-		<footer class="text-center text-white">
+		<footer id="Footer" class="text-center text-white">
 			<div class="container p-4 pb-0">
-				<section class="mb-4">
+				<section class="mb-4" style="text-align: center;">
 					<a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!"
 						role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-facebook" viewBox="0 0 16 16">
@@ -93,13 +124,20 @@
 						JAITA74 - GRUPPO VERDE 2023 Copyright:
 						<a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
 					</div>
+			</div>
 		</footer>
 		<!--FOOTER END-->
+
+
+
+
+
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 			crossorigin="anonymous"></script>
-			<script src="/js/showGallery.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script src="/js/showGallery.js"></script>
 	</body>
 
 </html>
