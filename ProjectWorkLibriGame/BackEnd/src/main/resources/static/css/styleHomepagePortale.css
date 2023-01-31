@@ -16,6 +16,8 @@ body {
   background-image: url('../img/backgroundWallpaper.jpeg');
   background-position: relative;
   background-repeat: no-repeat;
+  background-color: black;
+  
 }
 
 #paragrafo{
