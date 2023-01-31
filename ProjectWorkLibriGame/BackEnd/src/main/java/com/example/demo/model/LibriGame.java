@@ -11,14 +11,9 @@ import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class LibriGame {
-	
 
 	@Id
-	@SequenceGenerator(
-			name = "libri_sequence", 
-			sequenceName ="libri_sequence", 
-			allocationSize =1
-			)
+	@SequenceGenerator(name = "libri_sequence", sequenceName = "libri_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libri_sequence")
 	private int id;
 	private String title;
@@ -27,9 +22,20 @@ public class LibriGame {
 	private String publisher;
 	private int annoDiPubblicazione;
 	private Genre genre;
-	
+	private String link;
+
+	public LibriGame(String title, Author autore, String publisher, int annoDiPubblicazione, Genre genre, String link) {
+		super();
+		this.title = title;
+		this.autore = autore;
+		this.publisher = publisher;
+		this.annoDiPubblicazione = annoDiPubblicazione;
+		this.genre = genre;
+		this.link = link;
+	}
+
 	public LibriGame() {
-		
+
 	}
 
 	public LibriGame(int id, String title, Author autore, String publisher, int annoDiPubblicazione, Genre genre) {
@@ -50,8 +56,8 @@ public class LibriGame {
 	}
 
 	public LibriGame(int id, Author autore) {
-		this.id= id;
-		this.autore= autore;
+		this.id = id;
+		this.autore = autore;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -108,6 +114,13 @@ public class LibriGame {
 		return "LibriGame [id=" + id + ", title=" + title + ", autore=" + autore + ", publisher=" + publisher
 				+ ", annoDiPubblicazione=" + annoDiPubblicazione + ", genre=" + genre + "]";
 	}
-	
-	
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
 }

@@ -9,6 +9,18 @@ public class CreateLibriGameDTO {
 	private String publisher;
 	private int idAutore;
 	private Genre genre;
+	private String link;
+
+	public CreateLibriGameDTO(String title, int annoDiPubblicazione, String publisher, int idAutore, Genre genre,
+			String link) {
+		super();
+		this.title = title;
+		this.annoDiPubblicazione = annoDiPubblicazione;
+		this.publisher = publisher;
+		this.idAutore = idAutore;
+		this.genre = genre;
+		this.link = link;
+	}
 
 	public CreateLibriGameDTO() {
 
@@ -67,6 +79,14 @@ public class CreateLibriGameDTO {
 	public String toString() {
 		return "CreateLibriGameDTO [title=" + title + ", annoDiPubblicazione=" + annoDiPubblicazione + ", publisher="
 				+ publisher + ", idAutore=" + idAutore + ", genre=" + genre + "]";
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }
