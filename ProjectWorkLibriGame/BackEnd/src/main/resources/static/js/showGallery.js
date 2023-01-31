@@ -34,6 +34,21 @@ function showLibriGame(id) {
 		});
 
 }
+
+
+function showLibroGame(id){
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
 function send(s) {
 
 	let data = {
@@ -50,6 +65,8 @@ function send(s) {
 	});
 
 }
+
+
 
 
 
