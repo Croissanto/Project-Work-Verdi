@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,32 +30,79 @@ public class ReazioneRestController {
 
 	
 	@PostMapping("/createreazione")
-	public ResponseEntity<Boolean> createReazione(@RequestBody CreateReazioneDTO dto) {
-		try {
-			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
-			Optional<Post> tmp = postRepo.findById(dto.getIdPost());
-			Post post = new Post();
-			UserDummy user = new UserDummy();
+	public boolean createReazione(@RequestBody CreateReazioneDTO dto) {
+		
+		Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
+		Optional<Post> opt2 = postRepo.findById(dto.getIdPost());
+		UserDummy user = new UserDummy();
+		Post post = new Post();
+		if(opt.isPresent() && opt2.isPresent()) {
 			
-
-			if (tmp.isPresent() && opt.isPresent()) {
-				post = tmp.get();
-				user = opt.get();
-				List<Reazione> reactList = post.getReazione();
-				Reazione reazione = new Reazione(user, dto.getReactions());
-				reactList.add(reazione);
-				reazioneRepo.save(reazione);
-				System.out.println(reazione);
-				postRepo.save(post);
-				return new ResponseEntity<>(true,HttpStatus.OK);
-			}else return new ResponseEntity<>(true,HttpStatus.BAD_REQUEST);
+			post = opt2.get();
+			user = opt.get();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-			return new ResponseEntity<>(true,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
+		
+		/*boolean exists = reazioneRepo.existsReazioneByUser(user);
+		if(!exists) {
+			
+			Reazione reaction = new Reazione(user,dto.getReactions());
+			reazioneRepo.save(reaction);
+			
+		}
+		
+		else {*/
+			
+			List<Reazione> reactList = post.getReazione();
+			System.out.println(reactList);
+			if(reactList.size() == 0) {
+				Reazione reaction = new Reazione(user,dto.getReactions());
+				reaction = reazioneRepo.save(reaction);
+				reactList.add(reaction);
+				postRepo.save(post);
+			
+				
+			}
+			
+			for(Reazione reazione: reactList) {
+				
+			if(reazione.getUser().getId() == user.getId()) {
+					System.out.println("if");
+					reazione.setReactions(dto.getReactions());
+					reazione = reazioneRepo.save(reazione);
+					
+				}
+				
+			
+			
+			}
+			
+			
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return false;
 	}
-
 }
