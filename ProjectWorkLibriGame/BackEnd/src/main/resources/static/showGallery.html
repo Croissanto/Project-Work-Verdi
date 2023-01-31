@@ -15,41 +15,67 @@
 </head>
 
 <body>
-	<div class="gallery">Gallery</div>
-	<ul id="gallery" style="margin-left:70%;">
-	</ul>
-	<ul id="librigame" style="margin-left: 70%;"></ul>
 
-	<div class="container mt-3" style="margin-left: 17%;">
-		<h2>La spada di Shannara</h2>
-		<p>Image at the top (card-img-top):</p>
-		<div class="card" style="width:100px">
-			<img class="card-img-top" src="https://www.lafeltrinelli.it/images/9781471136726_0_536_0_75.jpg"
-				alt="Card image" style="width:100%">
-			<div class="card-body">
-				<h4 class="card-title">Commento</h4>
-				<p class="card-text">Some example text some example text. Alessandro Martinelli is an architect and
-					engineer</p>
+	<body>
+		<div class="container">
+			<div class="col filter-section">
+				<h3>Sezione di filtraggio</h3>
+				<p>Inserisci qui i filtri per i libri</p>
+			</div>
+			<div class="col book-section">
+				<h3 style="text-align: center;">Libri</h3>
+				<p>Questa è la sezione dei libri</p>
+				<div class="titolo-libro">
+					<h2 class="h2">La spada di Shannara</h2>
+				</div>
+				<div class="autore-libro">
+					<p class="nome-cognome-autore">Qui il nome il cognome dell'autore</p>
+				</div>
+				<div class="container mt-3">
+					<div class="card">
+						<br><br> <br><br>
+						<div class="stars">
+							<input class="star star-5" id="star-5" type="radio" name="star" onclick="send(5)" />
+							<label class="star star-5" for="star-5"></label>
+							<input class="star star-4" id="star-4" type="radio" name="star" onclick="send(4)" />
+							<label class="star star-4" for="star-4"></label>
+							<input class="star star-3" id="star-3" type="radio" name="star" onclick="send(3)" />
+							<label class="star star-3" for="star-3"></label>
+							<input class="star star-2" id="star-2" type="radio" name="star" onclick="send(2)" />
+							<label class="star star-2" for="star-2"></label>
+							<input class="star star-1" id="star-1" type="radio" name="star" onclick="send(1)" />
+							<label class="star star-1" for="star-1"></label>
+						</div>
+						<div class="media-rating">Qui media delle recensioni del libro</div>
+						<img class="card-img-top" src="https://www.lafeltrinelli.it/images/9781471136726_0_536_0_75.jpg"
+							alt="Card image" style="width:100px">
+						<div class="card-body">
+							<h4 class="card-title">Descrizione</h4>
+							<div class="card-text">Qui ci va la descrizione del libro da capire come sistemarla non ho piu voglia.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col series-section">
+				<h3>Collane</h3>
+				<p>Questa è la sezione delle collane</p>
+				<ul id="gallery"></ul>
+				<ul id="librigame"></ul>
 			</div>
 		</div>
-		<div class="stars">
-				<input class="star star-5" id="star-5" type="radio" name="star" onclick="send(5)"/>
-				<label class="star star-5" for="star-5"></label>
-				<input class="star star-4" id="star-4" type="radio" name="star" onclick="send(4)"/>
-				<label class="star star-4" for="star-4"></label>
-				<input class="star star-3" id="star-3" type="radio" name="star" onclick="send(3)" />
-				<label class="star star-3" for="star-3"></label>
-				<input class="star star-2" id="star-2" type="radio" name="star"onclick="send(2)" />
-				<label class="star star-2" for="star-2"></label>
-				<input class="star star-1" id="star-1" type="radio" name="star" onclick="send(1)"/>
-				<label class="star star-1" for="star-1"></label>
-		</div>
-
-	</div>
-
-	<script src="showGallery.js"></script>
 
 
-</body>
+
+
+
+		<script src="showGallery.js"></script>
+
+
+
+
+
+
+	</body>
 
 </html>
