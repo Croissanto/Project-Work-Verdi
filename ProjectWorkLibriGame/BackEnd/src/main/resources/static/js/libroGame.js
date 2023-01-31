@@ -1,3 +1,11 @@
+document.body.onload = () => {
+	
+	orderByStar();
+	
+	
+}
+
+
 function send(){
 	
 	
@@ -30,7 +38,9 @@ function orderByStar() {
 		
 		for(let libro of r) {
 			
-			
+			let elem = document.createElement("li");
+			elem.innerHTML = libro.title + ' ' + libro.genre;
+			ul.appendChild(elem);
 			
 		}
 		
