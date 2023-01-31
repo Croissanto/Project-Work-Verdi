@@ -5,10 +5,11 @@ console.log(id.innerHTML);
 document.body.onload = () => {
 	showPost(blogId.innerHTML);
 	showAll();
+	
 }
 
 function showPost(id) {
-	fetch(`http://localhost:8080/getpostlist/` + id).then((r) => { return r.json() })
+	fetch(`http://localhost:8080/getpostlist/` + id).then((r) => {return r.json() })
 		.then((r) => {
 
 			postList.innerHTML = "";
@@ -111,6 +112,7 @@ function showAll() {
 function send(id,reaction) {
 console.log(id,reaction);
 
+
 	let data = {
 		idPost: id,
 		idUser: 1,
@@ -123,6 +125,44 @@ console.log(id,reaction);
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then((data) => { console.log(data) })
+	}).then(() => {updateList(id)})
+	
+	
 
+}
+
+function updateList(id) {
+	
+	fetch('http://localhost:8080/getreactlist/'+id).then((r) => {return r.json()})
+	
+	.then((tmp) =>{
+		
+		let map = [];
+		for (let reazione of tmp) {
+			
+
+				map["LIKE"] = 0;
+				map["CUORE"] = 0;
+				map["VOMITINO"] = 0;
+				map["TRISTE"] = 0;
+				map["WOW"] = 0;
+				map["RISATA"] = 0;
+				map["GRRR"] = 0;
+
+					map[reazione.reactions]++;
+}
+				
+				let elem1 = document.getElementById("reactList-"+id);
+				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
+				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${id}, 'CUORE')" id="cuore-${id}" value="CUORE">
+				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${id}, 'VOMITINO')" id="vomitino-${id}" value="VOMITINO">
+				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${id}, 'TRISTE')" id="triste-${id}" value="TRISTE">
+				&#128546 </span>  ` + map["WOW"] + `<span onclick="send(${id}, 'WOW')" id="wow-${id}" value="WOW">
+				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${id},'RISATA')" id="risata-${id}" value="RISATA">
+				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${id},'GRRR')" id="grrr-${id}" value="GRRR">
+				&#128545 </span>`;
+	});
+	
+	
+	
 }
