@@ -82,7 +82,7 @@ function send(s, id) {
 	console.log(s);
 
 	let data = {
-		userId: 3,
+		userId: 1,
 		libroId: id,
 		star: s
 	}

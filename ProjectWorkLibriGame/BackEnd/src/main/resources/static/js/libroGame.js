@@ -1,3 +1,5 @@
+
+
 document.body.onload = () => {
 	
 	orderByStar();
@@ -40,12 +42,11 @@ function orderByStar() {
 			
 			let elem = document.createElement("li");
 			elem.innerHTML = libro.title + ' ' + libro.genre;
-			ratings.appendChild(elem);
-			
+			ratings.appendChild(elem);	
+			console.log(libro.title)
 		}
 		
-		
-		
+			
 	});
 	
 	
