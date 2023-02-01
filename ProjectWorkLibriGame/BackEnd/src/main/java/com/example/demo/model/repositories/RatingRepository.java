@@ -11,5 +11,7 @@ import com.example.demo.model.UserDummy;
 public interface RatingRepository extends CrudRepository<Rating, Integer> {
 	boolean existsRatingByUserAndLibri(UserDummy user,LibriGame libri);
 	Optional<Rating> findByUserAndLibri(UserDummy user,LibriGame libri);
+	
+	Iterable<Rating> findByOrderByStarDesc();
 
 }
