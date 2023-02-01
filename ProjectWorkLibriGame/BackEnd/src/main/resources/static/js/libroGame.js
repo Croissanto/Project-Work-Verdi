@@ -7,7 +7,6 @@ function send(){
 	    publisher : publisher.value,
 	    genre : genre.value,
 	    idAutore : idAutore.value,
-	    link : link.value
 	
 	
 	

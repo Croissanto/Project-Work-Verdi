@@ -16,6 +16,7 @@ import com.example.demo.dto.CreateLibriGameDTO;
 import com.example.demo.model.Author;
 import com.example.demo.model.Gallery;
 import com.example.demo.model.LibriGame;
+import com.example.demo.model.enums.Genre;
 import com.example.demo.model.repositories.AuthorRepository;
 import com.example.demo.model.repositories.GalleryRepository;
 import com.example.demo.model.repositories.LibriGameRepository;
@@ -39,7 +40,7 @@ public class LibriGameRestController {
 				author = opt.get();
 			}
 			LibriGame libroGame = new LibriGame(dtoLibro.getTitle(), author, dtoLibro.getPublisher(),
-					dtoLibro.getAnnoDiPubblicazione(), dtoLibro.getGenre(),dtoLibro.getLink());
+					dtoLibro.getAnnoDiPubblicazione(), dtoLibro.getGenre(), dtoLibro.getLink());
 			repoL.save(libroGame);
 			return true;
 		} catch (Exception e) {
@@ -91,9 +92,23 @@ public class LibriGameRestController {
 
 			gallery = opt.get();
 		}
-		
-            List<LibriGame> list= gallery.getLibriGame();
-		    return list;
+
+		List<LibriGame> list = gallery.getLibriGame();
+		return list;
+	}
+
+	@GetMapping("/getlibrigamebygenre/{genre}")
+	public List<LibriGame> getLibriGamebyGenre(@PathVariable("genre") Genre genre) {
+		System.out.println(genre);
+		Iterable<LibriGame> it = repoL.findByGenre(genre);
+		List<LibriGame> list = new LinkedList<>();
+		for (LibriGame libriGame : it) {
+			list.add(libriGame);
+			System.out.println(libriGame);
+		}
+
+		return list;
+
 	}
 
 }
