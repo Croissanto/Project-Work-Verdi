@@ -14,4 +14,22 @@ public class DummyAccountManagerVerdi implements IAccountManagerVerdi{
 		return false;
 	}
 
+	@Override
+	public boolean isAdmin() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isUser() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isLogged() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
