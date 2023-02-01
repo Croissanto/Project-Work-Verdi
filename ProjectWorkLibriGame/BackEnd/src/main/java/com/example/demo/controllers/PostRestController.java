@@ -112,4 +112,18 @@ public class PostRestController {
 		return postList;
 	}
 
+	
+	@GetMapping("/gettop2recentposts")
+	public List<Post> getTop2() {
+		
+		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
+		List<Post> postList = new LinkedList<>();
+		for (Post post : tmp) {
+			postList.add(post);
+		}
+		return postList;
+		
+		
+	}
+	
 }
