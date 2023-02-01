@@ -91,7 +91,6 @@ public class PostRestController {
 		return null;
 	}
 
-
 	@GetMapping("/getAllOrderByDateAndTime")
 	public List<Post> getAll() {
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
@@ -112,18 +111,32 @@ public class PostRestController {
 		return postList;
 	}
 
-	
 	@GetMapping("/gettop2recentposts")
 	public List<Post> getTop2() {
-		
+
 		Iterable<Post> tmp = postRepo.findTop2ByOrderByDateDescTimeDesc();
 		List<Post> postList = new LinkedList<>();
 		for (Post post : tmp) {
 			postList.add(post);
 		}
 		return postList;
-		
-		
+
 	}
-	
+
+	@GetMapping("/getpostsbyuser/{id}")
+	public List<Post> getPostsByUser(@PathVariable(name = "id") int id) {
+
+		Optional<UserDummy> opt = userDummyRepo.findById(id);
+
+		if (opt.isPresent()) {
+
+			UserDummy user = opt.get();
+
+			return postRepo.findByUser(user);
+		}
+
+		return new LinkedList<>();
+
+	}
+
 }
