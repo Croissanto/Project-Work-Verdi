@@ -219,7 +219,32 @@ function addComment(id) {
 }
 
 function addPost(id){
+	let elem = document.getElementById("postTitolo").value;
+	let elem2 = document.getElementById("aggiungiPost").value;
+	let current = new Date();
+	let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
 	
+	
+	let data = {
+		idUser: 1,
+		titolo: elem,
+		contenuto: elem2,
+		date: cDate,
+		time: cTime,
+		blogId: id
+	}
+	
+	fetch('http://localhost:8083/createpost', {
+  		method: 'POST',
+  		headers: {
+    		'Content-Type': 'application/json',
+  		},
+  		body: JSON.stringify(data),
+
+	}).then(() => {
+		showPost(id)
+
+	});
+
 }
-
-
