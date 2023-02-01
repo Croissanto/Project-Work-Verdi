@@ -27,12 +27,37 @@ function showPost(id) {
 				let card = `<div class="card mb-4">
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
+            <br>
+            <h6 class="card-title">Pubblicato da ${tmp.user.username}</h6>
             <h2 class="card-title">${tmp.titolo}</h2>
             <p id="myText-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             <br>
             <p id="reactList-${tmp.id}"></p>
             <br>
             <a class="btn btn-primary" href="#!" id="showCommenti-${tmp.id}">Mostra i commenti</a>
+            <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
+  Commenta il post di ${tmp.user.username}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="commenta-${tmp.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aggiungi un commento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea maxlength="2000" class="form-control" id="contenuto-${tmp.id}" rows="4" placeholder="Scrivi qualcosa siummica"></textarea>
+                  <label class="form-label" for="contenuto-${tmp.id}"></label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addComment(${tmp.id})">Commenta</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
     </div>`;
 				postList.innerHTML += card;
@@ -166,3 +191,35 @@ function updateList(id) {
 
 
 }
+
+function addComment(id) {
+	console.log(id);
+	let elem = document.getElementById("contenuto-" + id).value;
+	console.log(elem);
+
+	let current = new Date();
+	let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+	//let dateTime = cDate + ' ' + cTime;
+	let data = {
+		contenuto : elem,
+		date: cDate,
+		time: cTime,
+		idUser: 1,
+		idPost: id
+	}
+	
+	fetch('http://localhost:8083/createcommento', {
+  		method: 'POST',
+  		headers: {
+    		'Content-Type': 'application/json',
+  		},
+  		body: JSON.stringify(data),
+	}) ;
+}
+
+function addPost(id){
+	
+}
+
+
