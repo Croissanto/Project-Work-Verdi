@@ -41,14 +41,36 @@
 			<div class="col filter-section">
 				<h3>Sezione di filtraggio</h3>
 				<p>Inserisci qui i filtri per i libri</p>
+				<div id="select">
+					<label for="genere">Scegli il genere:</label>
+					<p id="dio"></p>
+					<select name="genere" id="genre">
+						<option value="ACTION">Action</option>
+						<option value="HORROR">Horror</option>
+						<option value="FANTASY">Fantasy</option>
+						<option value="CRIME">Crime</option>
+						<option value="THRILLER">Thriller</option>
+						<option value="COMEDY">Comedy</option>
+						<option value="ROMANCE">Romance</option>
+						<option value="MYTHS">Myths</option>
+						<option value="HISTORY">History</option>
+						<option value="SCI_FI">Sci-fi</option>
+						<option value="SPORT">Sport</option>
+
+					</select>
+					<button id="micheal" onclick="showGenre()">martella qui</button>
+				</div>
 			</div>
+
 			<div class="col book-section ">
 				<div class="libri-settimana">
 					<h3>I libri della settimana</h3>
 				</div>
 				<p id="cardList"></p>
+				<p id="genreList">
+				</p>
 				<div id="carouselExampleIndicators" class="carousel slide d-flex align-items-center ">
-					<div class="carousel-indicators" >
+					<div class="carousel-indicators">
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
 							class="active" aria-current="true" aria-label="Slide 1"></button>
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"

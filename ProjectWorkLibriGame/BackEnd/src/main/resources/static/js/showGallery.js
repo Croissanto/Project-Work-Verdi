@@ -1,13 +1,17 @@
 document.body.onload = () => {
 	showAll();
 	libriDellaSettimana();
+	timer();
 }
+var salcio = document.getElementById("salcio");
+var micheal = document.getElementById("carouselExampleIndicators");
+var galleryCard = document.getElementById("genreList");
+console.log(salcio);
 
 
 function showAll() {
 	fetch(`http://localhost:8083/getallgallery`).then((r) => { return r.json() })
 		.then((r) => {
-
 			gallery.innerHTML = "";
 			for (let tmp of r) {
 				let elem = document.createElement("li");
@@ -32,6 +36,7 @@ function showLibriGame(id) {
 			}
 			showAll();
 			cardList.innerHTML = "";
+			salcio.innerHTML = "";
 			for (let tmp of r) {
 
 				let card =
@@ -68,6 +73,7 @@ function showLibriGame(id) {
 					</div>
 				</div>`;
 				cardList.innerHTML += card;
+				galleryCard.innerHTML = "";
 			}
 		});
 
@@ -91,6 +97,7 @@ function send(s, id) {
 
 }
 function libriDellaSettimana() {
+	
 	fetch(`http://localhost:8083/getalllibrigame`).then((r) => { return r.json() })
 		.then((r) => {
 			let salcio = document.getElementById("salcio");
@@ -107,7 +114,7 @@ function libriDellaSettimana() {
       <img src="${carousel[i].link}" class="d-block w-100 " alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>${carousel[i].title}</h5>
-        <p>$</p>
+        <p></p>
       </div>
     </div>
     
@@ -128,18 +135,59 @@ function libriDellaSettimana() {
     </div>
     
   `;
-
 					salcio.innerHTML += caro;
 
 				}
 			}
 
+		});
+}
 
 
 
+
+function showGenre() {
+	var select = document.getElementById("genre");
+	var selectedValue = select.options[select.selectedIndex].value;
+
+	fetch(`http://localhost:8083/getlibrigamebygenre/` + selectedValue).then((r) => { return r.json() })
+		.then((r) => {
+			micheal.innerHTML = "";
+
+			genreList.innerHTML = "";
+			for (let tmp of r) {
+				console.log(tmp);
+				let card =
+					`
+				<div class="titolo">
+				     <h2 class = "h2">${tmp.title}</h2>
+			    </div>
+			      <div class="autore-libro">
+			      <p class = "nome-cognome-autore">${tmp.autore.name} ${tmp.autore.surname}
+			      </div>
+			      <div class="container mt-3">
+			      <div class = "card">
+			      <br><br><br><br>
+			      <img class="card-img-top" src="${tmp.link}"
+							alt="Card image" style="width:100px">
+							<div class="card-body">
+							<h4 class="card-title">Descrizione</h4>
+							<div class="card-text">Qui ci va la descrizione del libro da capire come sistemarla non ho piu voglia.
+							</div>
+						</div>
+			   	    </div>
+					</div>
+				</div>`;
+
+				genreList.innerHTML += card;
+				cardList.innerHTML = "";
+			}
 
 		});
 }
+
+
+
 
 
 
