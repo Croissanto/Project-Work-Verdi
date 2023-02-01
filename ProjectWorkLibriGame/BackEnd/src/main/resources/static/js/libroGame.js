@@ -40,7 +40,7 @@ function orderByStar() {
 			
 			let elem = document.createElement("li");
 			elem.innerHTML = libro.title + ' ' + libro.genre;
-			ul.appendChild(elem);
+			ratings.appendChild(elem);
 			
 		}
 		
