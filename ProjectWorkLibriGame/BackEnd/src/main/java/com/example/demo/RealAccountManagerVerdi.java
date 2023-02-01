@@ -7,10 +7,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.dto.LoginDTO;
 import com.example.demo.model.User;
+import com.example.demo.model.enums.AccountType;
 import com.example.demo.model.repositories.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
-import model.account.AccountType;
 
 public class RealAccountManagerVerdi implements IAccountManagerVerdi {
 
@@ -41,7 +41,7 @@ public class RealAccountManagerVerdi implements IAccountManagerVerdi {
 		if (opt.isPresent()) {
 			session.setAttribute(LOGGED_USER, opt.get());
 			return true;
-		} else if (response.getBody() > 0) {
+		} else if (response.getBody() >= 0) {
 			User newUser = new User(0, response.getBody(), AccountType.USER, "");
 			newUser = userRepo.save(newUser);
 			session.setAttribute(LOGGED_USER, newUser);

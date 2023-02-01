@@ -1,11 +1,12 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enums.AccountType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import model.account.AccountType;
 
 @Entity
 public class User {

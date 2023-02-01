@@ -1,4 +1,4 @@
-package model.account;
+package com.example.demo.model.enums;
 
 public enum AccountType {
 	ADMIN,
