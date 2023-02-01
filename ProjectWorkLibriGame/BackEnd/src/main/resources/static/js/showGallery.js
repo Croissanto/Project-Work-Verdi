@@ -1,7 +1,6 @@
 document.body.onload = () => {
 	showAll();
 	libriDellaSettimana();
-	timer();
 }
 var salcio = document.getElementById("salcio");
 var micheal = document.getElementById("carouselExampleIndicators");
