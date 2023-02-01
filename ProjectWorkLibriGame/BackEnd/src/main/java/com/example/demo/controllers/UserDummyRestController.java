@@ -34,16 +34,16 @@ public class UserDummyRestController {
 
 	@GetMapping("/getallusers")
 	public List<UserDummy> getUsers() {
-
+		List<UserDummy> userlist = new LinkedList<>();
 		Iterable<UserDummy> list = userDummyRepo.findAll();
 		for (UserDummy user : list) {
 
-			List<UserDummy> userlist = new LinkedList<>();
+			
 			userlist.add(user);
-			return userlist;
+			
 		}
 
-		return new LinkedList<>();
+		return userlist;
 	}
 
 }
