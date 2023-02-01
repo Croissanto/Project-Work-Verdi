@@ -28,11 +28,6 @@ function showLibriGame(id) {
 
 	fetch(`http://localhost:8083/getlibrigamebygalleryid/` + id).then((r) => { return r.json() })
 		.then((r) => {
-			let li = document.getElementsByTagName("ul");
-
-			for (i = 0; i < li.length; i++) {
-				li[i].innerHTML = "";
-			}
 			showAll();
 			cardList.innerHTML = "";
 			salcio.innerHTML = "";
@@ -96,7 +91,7 @@ function send(s, id) {
 
 }
 function libriDellaSettimana() {
-	
+
 	fetch(`http://localhost:8083/getalllibrigame`).then((r) => { return r.json() })
 		.then((r) => {
 			let salcio = document.getElementById("salcio");
