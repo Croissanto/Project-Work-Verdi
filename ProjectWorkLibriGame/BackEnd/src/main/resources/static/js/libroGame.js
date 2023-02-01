@@ -1,9 +1,6 @@
-
-
 document.body.onload = () => {
 	
 	orderByStar();
-	
 	
 }
 
@@ -36,14 +33,14 @@ function send(){
 
 function orderByStar() {
 	
-	fetch('http://localhost:8083/getlibrigameorderbystar').then((r) =>{return r.json()}).then ((r) => {
+	fetch('http://localhost:8083/getlibrigameorderbystar').then((r) =>{return r.json()}).then((r) => {
 		
 		for(let libro of r) {
 			
 			let elem = document.createElement("li");
-			elem.innerHTML = libro.title + ' ' + libro.genre;
+			elem.innerHTML = libro.id + ' '+libro.title+' ' + libro.genre;
 			ratings.appendChild(elem);	
-			console.log(libro.title)
+			
 		}
 		
 			
