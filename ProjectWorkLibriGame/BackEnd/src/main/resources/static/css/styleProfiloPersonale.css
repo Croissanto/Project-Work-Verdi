@@ -93,9 +93,30 @@ button.primary {
 	padding: 10px 25px;
 }
 
-button.primary.ghost {
+/*button.primary.ghost {
 	background-color: transparent;
 	color: #02899C;
+}*/
+
+button{
+  background-color: #03BFCB;
+	border: 1px solid #03BFCB;
+	border-radius: 3px;
+	color: #231E39;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;}
+
+.modal-content {
+  background-color: #231E39;
+
+}
+
+.modal-header {
+  background-color: #8456a2;
+}
+
+.modal-footer {
+  background-color:#8456a2;
 }
 
 .skills {
