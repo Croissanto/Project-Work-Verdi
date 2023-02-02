@@ -59,9 +59,11 @@ public class RealAccountManagerVerdi implements IAccountManagerVerdi {
 
 	@Override
 	public boolean logout() {
-		Object account = session.getAttribute(LOGGED_USER);
-		if (account != null) {
-			session.removeAttribute(LOGGED_USER);
+		Object user = session.getAttribute(IAccountManagerVerdi.LOGGED_USER);
+		Object account = session.getAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT);
+		if(user!= null && account != null) {
+			session.setAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT, null);
+			session.setAttribute(IAccountManagerVerdi.LOGGED_USER, null);
 			return true;
 		}
 		return false;
