@@ -28,20 +28,15 @@ body {
     color: yellow;
 }
 
-.footer{
-	position: absolute;
+#lastFooter{
+	position:relative;
     bottom: 0;
     left: 0;
     right: 0;
-   height: 150px;
     background-color: #8456a2;
 }
 
 
 section{
-	
 	text-align: center;
-	
-	
-	
 }
