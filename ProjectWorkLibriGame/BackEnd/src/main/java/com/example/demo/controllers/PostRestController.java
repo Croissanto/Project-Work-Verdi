@@ -18,12 +18,10 @@ import com.example.demo.model.Blog;
 import com.example.demo.model.Commento;
 import com.example.demo.model.Post;
 import com.example.demo.model.Reazione;
-import com.example.demo.model.UserDummy;
-
+import com.example.demo.model.User;
 import com.example.demo.model.repositories.BlogRepository;
 import com.example.demo.model.repositories.PostRepository;
-
-import com.example.demo.model.repositories.UserDummyRepository;
+import com.example.demo.model.repositories.UserRepository;
 
 @RestController
 public class PostRestController {
@@ -32,7 +30,7 @@ public class PostRestController {
 	private BlogRepository blogRepo;
 
 	@Autowired
-	private UserDummyRepository userDummyRepo;
+	private UserRepository userRepo;
 
 	@Autowired
 	private PostRepository postRepo;
@@ -48,8 +46,8 @@ public class PostRestController {
 			List<Post> postList = blog.getListaDeiPost();
 			List<Commento> list = new LinkedList<>();
 			List<Reazione> reactList = new LinkedList<>();
-			Optional<UserDummy> opt = userDummyRepo.findById(dto.getIdUser());
-			UserDummy user = new UserDummy();
+			Optional<User> opt = userRepo.findById(dto.getIdUser());
+			User user = new User();
 			if (opt.isPresent()) {
 
 				user = opt.get();
@@ -126,11 +124,11 @@ public class PostRestController {
 	@GetMapping("/getpostsbyuser/{id}")
 	public List<Post> getPostsByUser(@PathVariable(name = "id") int id) {
 
-		Optional<UserDummy> opt = userDummyRepo.findById(id);
+		Optional<User> opt = userRepo.findById(id);
 
 		if (opt.isPresent()) {
 
-			UserDummy user = opt.get();
+			User user = opt.get();
 
 			return postRepo.findByUser(user);
 		}

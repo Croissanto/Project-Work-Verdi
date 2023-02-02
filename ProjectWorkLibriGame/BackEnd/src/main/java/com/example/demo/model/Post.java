@@ -21,7 +21,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")
 	private int id;
 	@ManyToOne
-	private UserDummy user;
+	private User user;
 	private String titolo;
 	@Column(length = 2000)
 	private String contenuto;
@@ -36,7 +36,7 @@ public class Post {
 
 	}
 
-	public Post(UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
+	public Post(User user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
 			List<Commento> commento) {
 		super();
 		this.user = user;
@@ -48,7 +48,7 @@ public class Post {
 		this.commento = commento;
 	}
 
-	public Post(int id, UserDummy user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
+	public Post(int id, User user, String titolo, String contenuto, Date date, Time time, List<Reazione> reazione,
 			List<Commento> commento) {
 		super();
 		this.id = id;
@@ -60,10 +60,6 @@ public class Post {
 		this.reazione = reazione;
 		this.commento = commento;
 	}
-
-	
-
-	
 
 	public int getId() {
 		return id;
@@ -73,11 +69,11 @@ public class Post {
 		this.id = id;
 	}
 
-	public UserDummy getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(UserDummy user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

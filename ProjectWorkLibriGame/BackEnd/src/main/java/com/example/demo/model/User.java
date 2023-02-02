@@ -10,7 +10,9 @@ import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class User {
+
 	
+
 	@Id
 	@SequenceGenerator(
 			name = "utente_sequence", 

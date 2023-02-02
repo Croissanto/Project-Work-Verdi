@@ -15,7 +15,7 @@ public class Rating {
 	@ManyToOne
 	private LibriGame libri;
 	@ManyToOne
-	private UserDummy user;
+	private User user;
 	
 	public Rating() {
 		super();
@@ -24,7 +24,7 @@ public class Rating {
 	
 	
 
-	public Rating(int id, int star, LibriGame libri, UserDummy user) {
+	public Rating(int id, int star, LibriGame libri, User user) {
 		super();
 		this.id = id;
 		this.star = star;
@@ -34,7 +34,7 @@ public class Rating {
 
 
 
-	public Rating(int star, LibriGame libri, UserDummy user) {
+	public Rating(int star, LibriGame libri, User user) {
 		super();
 		this.star = star;
 		this.libri = libri;
