@@ -25,13 +25,14 @@ function showAll() {
 		});
 }
 function showLibriGame(id) {
-
+	let href = document.getElementById("href");
 	fetch(`http://localhost:8083/getlibrigamebygalleryid/` + id).then((r) => { return r.json() })
 		.then((r) => {
 			poli.innerHTML = "";
 			showAll();
 			cardList.innerHTML = "";
 			salcio.innerHTML = "";
+			href.setAttribute("href", "showGallery.html");
 			for (let tmp of r) {
 
 				let card =
@@ -75,6 +76,7 @@ function showLibriGame(id) {
                `;
 				cardList.innerHTML += card;
 				galleryCard.innerHTML = "";
+				href.innerHTML = "Torna ai libi della settimana";
 			}
 		});
 
@@ -103,8 +105,8 @@ function libriDellaSettimana() {
 	fetch(`http://localhost:8083/getalllibrigame`).then((r) => { return r.json() })
 		.then((r) => {
 			let salcio = document.getElementById("salcio"),
-			    shuffled = r.sort(() => 0.5 - Math.random()),
-			    carousel = shuffled.slice(0, 5);
+				shuffled = r.sort(() => 0.5 - Math.random()),
+				carousel = shuffled.slice(0, 5);
 			salcio.innerHTML = "";
 
 			for (i = 0; i < carousel.length; i++) {
@@ -147,14 +149,17 @@ function libriDellaSettimana() {
 
 
 function showGenre() {
-	let select = document.getElementById("genre"), 
-		selectedValue = select.options[select.selectedIndex].value;
-	
+	let select = document.getElementById("genre");
+	let selectedValue = select.options[select.selectedIndex].value;
+
+
 	fetch(`http://localhost:8083/getlibrigamebygenre/` + selectedValue).then((r) => { return r.json() })
 		.then((r) => {
 			micheal.innerHTML = "";
-            poli.innerHTML = "";
+			poli.innerHTML = "";
 			genreList.innerHTML = "";
+			let href = document.getElementById("href");
+			href.setAttribute("href", "showGallery.html");
 			for (let tmp of r) {
 				console.log(tmp);
 				let card =
@@ -180,6 +185,7 @@ function showGenre() {
 
 				genreList.innerHTML += card;
 				cardList.innerHTML = "";
+				href.innerHTML = "Torna ai libi della settimana";
 			}
 
 		});
