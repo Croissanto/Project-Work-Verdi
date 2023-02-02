@@ -1,7 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.dto.AccountDTO;
-import com.example.demo.model.User;
+
 
 public interface IAccountManagerVerdi {
 	
