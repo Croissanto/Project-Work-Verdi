@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.dto.AccountDTO;
+import com.example.demo.model.User;
+
 public class DummyAccountManagerVerdi implements IAccountManagerVerdi{
 
 	@Override
@@ -32,4 +35,11 @@ public class DummyAccountManagerVerdi implements IAccountManagerVerdi{
 		return false;
 	}
 
+	@Override
+	public boolean create(String username, String password, String name, String surname, String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 }
