@@ -1,3 +1,16 @@
+let idU = "";
+let idA = "";
+let type = "";
+let propic = "";
+let username = "";
+let name = "";
+let surname = "";
+let email = "";
+
+
+
+
+
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
 
@@ -5,7 +18,32 @@ console.log(id.innerHTML);
 document.body.onload = () => {
 	showPost(blogId.innerHTML);
 	showAll();
+	user();
+	account();
+}
 
+function user() {
+	fetch('http://localhost:8083/userInSession').then((r) => { return r.json() }).then((r) => {
+		console.log(r);
+		idU = r.id;
+		idA = r.idAccount;
+		type = r.type;
+		propic = r.proPic;
+		console.log(type + " " + idU + " " + idA);
+	});
+}
+
+function account() {
+	fetch('http://localhost:8083/accountInSession').then((r) => { return r.json() }).then((r) => {
+		console.log(r);
+		username = r.username;
+		name = r.name;
+		surname = r.surname;
+		email = r.email;
+		
+		console.log(username + " "+ name + " "+ surname + " "+ email);
+
+	});
 }
 
 function showPost(id) {
@@ -28,7 +66,7 @@ function showPost(id) {
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
-            <h6 class="card-title">Pubblicato da ${tmp.user.username}</h6>
+            <h6 class="card-title">Pubblicato da ${username}</h6>
             <h2 class="card-title">${tmp.titolo}</h2>
             <p id="myText-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             <br>
@@ -36,7 +74,7 @@ function showPost(id) {
             <br>
             <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
             <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
-  Commenta il post di ${tmp.user.username}
+  Commenta il post di ${username}
 </button>
 
 <!-- Modal -->
@@ -63,10 +101,10 @@ function showPost(id) {
         </div>
     </div>`;
 				postList.innerHTML += card;
-//				let elem = document.getElementById("showCommenti-" + tmp.id);
-//				elem.onclick = (e) => {
-//					showCommenti(e.target.id.split("-")[1]);
-//				}
+				//				let elem = document.getElementById("showCommenti-" + tmp.id);
+				//				elem.onclick = (e) => {
+				//					showCommenti(e.target.id.split("-")[1]);
+				//				}
 				for (let reazione of tmp.reazione) {
 
 					map[reazione.reactions]++;
@@ -100,19 +138,19 @@ function showPost(id) {
 
 function showCommenti(id) {
 	console.log(id);
-	
-	
+
+
 	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
-			let pisnelo = document.getElementById("pisnelo-"+id);
-			pisnelo.innerHTML ="";
+			let pisnelo = document.getElementById("pisnelo-" + id);
+			pisnelo.innerHTML = "";
 			for (let tmp of r) {
-				
-			let commCard = `<div class="card">
+
+				let commCard = `<div class="card">
 								 <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
-            <h6 class="card-title">${tmp.user.username}</h6>
+            <h6 class="card-title">${username}</h6>
             <p id="myComm-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             </div>
             </div>
@@ -151,7 +189,7 @@ function send(id, reaction) {
 
 	let data = {
 		idPost: id,
-		idUser: 1,
+		idUser: idU,
 		reactions: reaction,
 	}
 	console.log(data);
@@ -213,45 +251,45 @@ function addComment(id) {
 	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
 	//let dateTime = cDate + ' ' + cTime;
 	let data = {
-		contenuto : elem,
+		contenuto: elem,
 		date: cDate,
 		time: cTime,
-		idUser: 1,
+		idUser: idU,
 		idPost: id
 	}
-	
+
 	fetch('http://localhost:8083/createcommento', {
-  		method: 'POST',
-  		headers: {
-    		'Content-Type': 'application/json',
-  		},
-  		body: JSON.stringify(data),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
 	}).then(() => { showCommenti(id) });
 }
 
-function addPost(id){
+function addPost(id) {
 	let elem = document.getElementById("postTitolo").value;
 	let elem2 = document.getElementById("aggiungiPost").value;
 	let current = new Date();
 	let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
 	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-	
-	
+
+
 	let data = {
-		idUser: 1,
+		idUser: idU,
 		titolo: elem,
 		contenuto: elem2,
 		date: cDate,
 		time: cTime,
 		blogId: id
 	}
-	
+
 	fetch('http://localhost:8083/createpost', {
-  		method: 'POST',
-  		headers: {
-    		'Content-Type': 'application/json',
-  		},
-  		body: JSON.stringify(data),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
 
 	}).then(() => {
 		showPost(id)
