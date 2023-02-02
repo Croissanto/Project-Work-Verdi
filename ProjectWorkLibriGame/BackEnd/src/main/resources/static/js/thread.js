@@ -24,7 +24,7 @@ function showPost(id) {
 				map["RISATA"] = 0;
 				map["GRRR"] = 0;
 
-				let card = `<div class="card mb-4">
+				let card = `<div class="card mb-4" id="card-${tmp.id}">
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
@@ -34,7 +34,7 @@ function showPost(id) {
             <br>
             <p id="reactList-${tmp.id}"></p>
             <br>
-            <a class="btn btn-primary" href="#!" id="showCommenti-${tmp.id}">Mostra i commenti</a>
+            <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
             <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
   Commenta il post di ${tmp.user.username}
 </button>
@@ -58,13 +58,15 @@ function showPost(id) {
     </div>
   </div>
 </div>
+<br> <br>
+<p id="pisnelo-${tmp.id}"></p>
         </div>
     </div>`;
 				postList.innerHTML += card;
-				let elem = document.getElementById("showCommenti-" + tmp.id);
-				elem.onclick = (e) => {
-					showCommenti(e.target.id.split("-")[1]);
-				}
+//				let elem = document.getElementById("showCommenti-" + tmp.id);
+//				elem.onclick = (e) => {
+//					showCommenti(e.target.id.split("-")[1]);
+//				}
 				for (let reazione of tmp.reazione) {
 
 					map[reazione.reactions]++;
@@ -97,17 +99,26 @@ function showPost(id) {
 
 
 function showCommenti(id) {
+	console.log(id);
+	
+	
 	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
-			//let thisUl = document.getElementById("listaCommenti" + id);
-			thisUl.innerHTML = "";
+			let pisnelo = document.getElementById("pisnelo-"+id);
+			pisnelo.innerHTML ="";
 			for (let tmp of r) {
-				let elem = document.createElement("li");
-				elem.innerHTML = tmp.contenuto + " " + tmp.date + " " + tmp.time + " <br>";
+				
+			let commCard = `<div class="card">
+								 <div class="card-body">
+            <div class="small text-muted">${tmp.date} ${tmp.time}</div>
+            <h6 class="card-title">${tmp.user.username}</h6>
+            <p id="myComm-${tmp.id}"class="card-text">${tmp.contenuto}</p>
+            </div>
+            </div>
+            <br>`;
 
-				thisUl.appendChild(elem);
-
+				pisnelo.innerHTML += commCard;
 			}
 
 		});
@@ -150,7 +161,7 @@ function send(id, reaction) {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then(() => { updateList(id) })
+	}).then(() => { updateList(id) });
 
 
 
@@ -215,7 +226,7 @@ function addComment(id) {
     		'Content-Type': 'application/json',
   		},
   		body: JSON.stringify(data),
-	}) ;
+	}).then(() => { showCommenti(id) });
 }
 
 function addPost(id){
