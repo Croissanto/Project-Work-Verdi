@@ -13,7 +13,6 @@ document.body.onload = () => {
 	account();
 	user();
 
-
 }
 
 function user() {
@@ -26,16 +25,16 @@ function user() {
 	}).then(() => {
 		showUserPosts(idU)
 		orderByStar(idU);
+		
+		
 	});
 }
 
 function account() {
 	fetch('http://localhost:8083/accountInSession').then((r) => { return r.json() }).then((r) => {
 		console.log(r);
-		username = r.username;
-		name = r.name;
-		surname = r.surname;
-		email = r.email;
+		
+		showCard(r);
 	});
 }
 
@@ -47,7 +46,7 @@ function showUserPosts(idU) {
 
 			let elem = document.createElement("li");
 			elem.innerHTML = post.titolo + ' ' + post.contenuto;
-			lista.appendChild(elem);
+			//lista.appendChild(elem);
 
 		}
 	});
@@ -62,9 +61,88 @@ function orderByStar(idU) {
 
 			let elem = document.createElement("li");
 			elem.innerHTML = libro.title;
-			ratings.appendChild(elem);
+			//ratings.appendChild(elem);
 
 		}
 
 	});
 }
+
+function showCard(r) {
+	
+	fetch('http://localhost:8083/userInSession').then((user) => { return user.json() }).then((user) => {
+	
+	let profileCard = `<div class="col col-3">
+        <div class="card-container">
+            <img class="round" src="${user.proPic}" alt="user" />
+            <h3>${r.name}  ${r.surname}</h3>
+            <h6>${r.email}</h6>
+            <p>${r.username}</p>
+            <div class="buttons">
+                <button class="primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Crea Post
+                  </button>
+            </div>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: yellow;">Nuovo post</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label" style="color: yellow;">Tema</label>
+                          <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="color: yellow;">Titolo</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                          </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label" style="color: yellow;">Testo</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Chiudi</button>
+                      <button type="button" class="btn btn-primary">Pubblica</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="skills">
+                <h6>Skills</h6>
+                <ul>
+                    <li>UI / UX</li>
+                    <li>Front End Development</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Node</li>
+                </ul>
+            </div>
+        </div>
+    </div>`
+	
+	
+	card.innerHTML += profileCard;
+	
+	
+	
+})
+
+}
+
+
+
+
+
+
+
+
