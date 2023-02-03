@@ -42,7 +42,7 @@ public class ReazioneRestController {
 			
 		}
 			List<Reazione> reactList = post.getReazione();
-			System.out.println(reactList);
+			//System.out.println(reactList);
 			if(reactList.size() == 0) {
 				Reazione reaction = new Reazione(user,dto.getReactions());
 				reaction = reazioneRepo.save(reaction);
@@ -51,11 +51,13 @@ public class ReazioneRestController {
 			}
 			for(Reazione reazione: reactList) {
 			if(reazione.getUser().getId() == user.getId()) {
-					System.out.println("if");
+					System.out.println(reazione.getUser().getId());
+					System.out.println(user.getId());
 					reazione.setReactions(dto.getReactions());
 					reazione = reazioneRepo.save(reazione);	
-				}
+				} 
 			}	
+			System.out.println("non sono entrato");
 		return false;
 	}
 }

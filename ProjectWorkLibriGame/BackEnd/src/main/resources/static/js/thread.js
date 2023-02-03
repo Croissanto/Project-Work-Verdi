@@ -7,10 +7,6 @@ let name = "";
 let surname = "";
 let email = "";
 
-
-
-
-
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
 
@@ -22,26 +18,33 @@ document.body.onload = () => {
 	account();
 }
 
+async function findAccount(p) {
+	fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
+		console.log(r);
+		return r.username;
+	});
+}
+
 function user() {
 	fetch('http://localhost:8083/userInSession').then((r) => { return r.json() }).then((r) => {
-		console.log(r);
+		//console.log(r);
 		idU = r.id;
 		idA = r.idAccount;
 		type = r.type;
 		propic = r.proPic;
-		console.log(type + " " + idU + " " + idA);
+		//console.log(type + " " + idU + " " + idA);
 	});
 }
 
 function account() {
 	fetch('http://localhost:8083/accountInSession').then((r) => { return r.json() }).then((r) => {
-		console.log(r);
+		//console.log(r);
 		username = r.username;
 		name = r.name;
 		surname = r.surname;
 		email = r.email;
-		
-		console.log(username + " "+ name + " "+ surname + " "+ email);
+
+		//console.log(username + " "+ name + " "+ surname + " "+ email);
 
 	});
 }
@@ -49,24 +52,24 @@ function account() {
 function showPost(id) {
 	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
-
 			postList.innerHTML = "";
 			for (let tmp of r) {
-				let map = [];
+				let creator = findAccount(tmp.user.id);
+					let map = [];
 
-				map["LIKE"] = 0;
-				map["CUORE"] = 0;
-				map["VOMITINO"] = 0;
-				map["TRISTE"] = 0;
-				map["WOW"] = 0;
-				map["RISATA"] = 0;
-				map["GRRR"] = 0;
+					map["LIKE"] = 0;
+					map["CUORE"] = 0;
+					map["VOMITINO"] = 0;
+					map["TRISTE"] = 0;
+					map["WOW"] = 0;
+					map["RISATA"] = 0;
+					map["GRRR"] = 0;
 
-				let card = `<div class="card mb-4" id="card-${tmp.id}">
+					let card = `<div class="card mb-4" id="card-${tmp.id}">
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
-            <h6 class="card-title">Pubblicato da ${username}</h6>
+            <h6 class="card-title">Pubblicato da ${tmp.user.id}</h6>
             <h2 class="card-title">${tmp.titolo}</h2>
             <p id="myText-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             <br>
@@ -74,7 +77,7 @@ function showPost(id) {
             <br>
             <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
             <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
-  Commenta il post di ${username}
+  Commenta il post di ${tmp.user.id}
 </button>
 
 <!-- Modal -->
@@ -100,18 +103,18 @@ function showPost(id) {
 <p id="pisnelo-${tmp.id}"></p>
         </div>
     </div>`;
-				postList.innerHTML += card;
-				//				let elem = document.getElementById("showCommenti-" + tmp.id);
-				//				elem.onclick = (e) => {
-				//					showCommenti(e.target.id.split("-")[1]);
-				//				}
-				for (let reazione of tmp.reazione) {
+					postList.innerHTML += card;
+					//				let elem = document.getElementById("showCommenti-" + tmp.id);
+					//				elem.onclick = (e) => {
+					//					showCommenti(e.target.id.split("-")[1]);
+					//				}
+					for (let reazione of tmp.reazione) {
 
-					map[reazione.reactions]++;
+						map[reazione.reactions]++;
 
-				}
-				let elem1 = document.getElementById("reactList-" + tmp.id);
-				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
+					}
+					let elem1 = document.getElementById("reactList-" + tmp.id);
+					elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
 				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
 				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
 				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
@@ -122,16 +125,16 @@ function showPost(id) {
 
 
 
-				/*console.log(elem1);
-				elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
-					map["CUORE"] + ' cuori ' + ' ' +
-					map["VOMITINO"] + ' vomitini ' + ' ' +
-					map["TRISTE"] + ' tristi ' + ' ' +
-					map["WOW"] + ' woow ' + ' ' +
-					map["RISATA"] + ' risate ' + ' ' +
-					map["GRRR"] + ' grrrr '*/
-			}
-		});
+					/*console.log(elem1);
+					elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
+						map["CUORE"] + ' cuori ' + ' ' +
+						map["VOMITINO"] + ' vomitini ' + ' ' +
+						map["TRISTE"] + ' tristi ' + ' ' +
+						map["WOW"] + ' woow ' + ' ' +
+						map["RISATA"] + ' risate ' + ' ' +
+						map["GRRR"] + ' grrrr '*/
+				}
+			});
 
 }
 
