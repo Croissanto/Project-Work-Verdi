@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,17 +81,24 @@ public class RatingRestController {
 
 	}
 
-	@GetMapping("/getlibrigameorderbystar")
-	public List<LibriGame> getLibriGameOrderByStar() {
+	@GetMapping("/getlibrigameorderbystar/{id}")
+	public List<LibriGame> getLibriGameOrderByStar(@PathVariable("id")int id) {
 
-		Iterable<Rating> opt = ratingRepository.findByOrderByStarDesc();
-		List<LibriGame> list = new LinkedList<>();
-		for (Rating rating : opt) {
+		 Optional<User> opt= userRepository.findById(id);
+		 if(opt.isPresent()) {
+			 
+			 User user = opt.get();
+			 Iterable<Rating> it = ratingRepository.findByUserOrderByStarDesc(user);
+				List<LibriGame> list = new LinkedList<>();
+				for (Rating rating : it) {
 
-			list.add(rating.getLibri());
+					list.add(rating.getLibri());
 
-		}
-		return list;
+				}
+				return list;
+		 }
+		
+		return new LinkedList<>();
 	}
 
 	@GetMapping("/getmostratedlibrogame")
