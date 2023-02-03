@@ -6,6 +6,7 @@ let username = "";
 let name = "";
 let surname = "";
 let email = "";
+let creator= "";
 
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
@@ -18,10 +19,10 @@ document.body.onload = () => {
 	account();
 }
 
-async function findAccount(p) {
+function findAccount(p,tmp) {
 	fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
-		console.log(r);
-		return r.username;
+		//console.log(r);
+		setupCreator(r.username,tmp);
 	});
 }
 
@@ -48,14 +49,8 @@ function account() {
 
 	});
 }
-
-function showPost(id) {
-	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
-		.then((r) => {
-			postList.innerHTML = "";
-			for (let tmp of r) {
-				let creator = findAccount(tmp.user.id);
-					let map = [];
+function setupCreator(creator,tmp){
+		let map = [];
 
 					map["LIKE"] = 0;
 					map["CUORE"] = 0;
@@ -69,7 +64,7 @@ function showPost(id) {
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
-            <h6 class="card-title">Pubblicato da ${tmp.user.id}</h6>
+            <h6 class="card-title">Pubblicato da ${creator}</h6>
             <h2 class="card-title">${tmp.titolo}</h2>
             <p id="myText-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             <br>
@@ -77,7 +72,7 @@ function showPost(id) {
             <br>
             <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
             <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
-  Commenta il post di ${tmp.user.id}
+  Commenta il post di ${creator}
 </button>
 
 <!-- Modal -->
@@ -133,6 +128,16 @@ function showPost(id) {
 						map["WOW"] + ' woow ' + ' ' +
 						map["RISATA"] + ' risate ' + ' ' +
 						map["GRRR"] + ' grrrr '*/
+				
+}
+
+function showPost(id) {
+	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
+		.then((r) => {
+			postList.innerHTML = "";
+			//Il metodo dovrà restituire i post in ordine di date e time
+			for (let tmp of r) {
+				findAccount(tmp.user.id,tmp);
 				}
 			});
 

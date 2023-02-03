@@ -23,7 +23,7 @@ function user() {
 		idA = r.idAccount;
 		type = r.type;
 		propic = r.proPic;
-	}).then((idU) => {
+	}).then(() => {
 		showUserPosts(idU);
 	});
 }
@@ -38,10 +38,10 @@ function account() {
 	});
 }
 
-function showUserPosts(id) {
+function showUserPosts(idU) {
 
-	fetch('http://localhost:8083/getpostsbyuser/' + id).then((r) => { return r.json() }).then((r) => {
-
+	fetch('http://localhost:8083/getpostsbyuser/' + idU).then((r) => { return r.json() }).then((r) => {
+	console.log(r);
 		for (let post of r) {
 
 			let elem = document.createElement("li");
@@ -54,7 +54,7 @@ function showUserPosts(id) {
 }
 
 function orderByStar() {
-
+//serve passare l'id dell'utente per capire quali libri ha votato questo user
 	fetch('http://localhost:8083/getlibrigameorderbystar').then((r) => { return r.json() }).then((r) => {
 
 		for (let libro of r) {
@@ -65,10 +65,5 @@ function orderByStar() {
 
 		}
 
-
 	});
-
-
-
-
 }

@@ -14,6 +14,6 @@ public interface PostRepository extends CrudRepository<Post, Integer> {
 
 	List<Integer> countReactionsById(int id);
 	
-	List<Post> findByUser(User user);
+	List<Post> findByUserId(int user);
 
 }

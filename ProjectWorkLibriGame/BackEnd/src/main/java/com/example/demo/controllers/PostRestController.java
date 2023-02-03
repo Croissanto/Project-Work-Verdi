@@ -130,7 +130,7 @@ public class PostRestController {
 
 			User user = opt.get();
 
-			return postRepo.findByUser(user);
+			return postRepo.findByUserId(id);
 		}
 
 		return new LinkedList<>();
