@@ -11,6 +11,8 @@ import com.example.demo.model.User;
 public interface PostRepository extends CrudRepository<Post, Integer> {
 
 	Iterable<Post> findTop2ByOrderByDateDescTimeDesc();
+	
+	List<Post> findByOrderByDateDescTimeDesc();
 
 	List<Integer> countReactionsById(int id);
 	
