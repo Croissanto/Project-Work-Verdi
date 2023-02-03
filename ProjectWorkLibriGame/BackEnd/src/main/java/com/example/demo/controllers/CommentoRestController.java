@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.CreateCommentoDTO;
 import com.example.demo.model.Commento;
 import com.example.demo.model.Post;
-import com.example.demo.model.UserDummy;
+import com.example.demo.model.User;
 import com.example.demo.model.repositories.CommentoRepository;
 import com.example.demo.model.repositories.PostRepository;
-import com.example.demo.model.repositories.UserDummyRepository;
+import com.example.demo.model.repositories.UserRepository;
 
 @RestController
 public class CommentoRestController {
@@ -29,7 +29,7 @@ public class CommentoRestController {
 	@Autowired
 	private CommentoRepository repoC;
 	@Autowired
-	private UserDummyRepository repoU;
+	private UserRepository repoU;
 
 	@PostMapping("/createcommento")
 	public boolean createCommento(@RequestBody CreateCommentoDTO dto) {
@@ -40,8 +40,8 @@ public class CommentoRestController {
 				post = tmp.get();
 			}
 			List<Commento> commList = post.getCommento();
-			Optional<UserDummy> opt = repoU.findById(dto.getIdUser());
-			UserDummy user = new UserDummy();
+			Optional<User> opt = repoU.findById(dto.getIdUser());
+			User user = new User();
 			if (opt.isPresent()) {
 
 				user = opt.get();

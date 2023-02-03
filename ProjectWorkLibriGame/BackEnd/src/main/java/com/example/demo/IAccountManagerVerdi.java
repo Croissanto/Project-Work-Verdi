@@ -1,7 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.dto.AccountDTO;
-import com.example.demo.model.User;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.example.demo.dto.LocalAccountDTO;
 
 public interface IAccountManagerVerdi {
 	
@@ -19,4 +20,6 @@ public interface IAccountManagerVerdi {
 	boolean isLogged();
 	
 	boolean create(String username, String password, String name, String surname, String email);
+	
+	LocalAccountDTO findAccountById( int id);
 }

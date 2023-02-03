@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class LoginController {
 	@Autowired
 	private IAccountManagerVerdi accountManager;
 	@Autowired
-	HttpSession session;
+	private HttpSession session;
 	
 	@PostMapping("/login")
 	public User tryToLogin (@RequestBody LoginDTO dto) {
@@ -55,13 +56,24 @@ public class LoginController {
 	
 	@GetMapping("/userInSession")
 	public User getUserInSession() {
+		System.out.println(session.getAttribute(IAccountManagerVerdi.LOGGED_USER));
 		return (User) session.getAttribute(IAccountManagerVerdi.LOGGED_USER); 
 	}
 	
 	@GetMapping("/accountInSession")
 	public LocalAccountDTO getAccountInSession() {
 		AccountDTO acc = (AccountDTO) session.getAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT);
+		System.out.println((AccountDTO )session.getAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT));
 		return new LocalAccountDTO(acc.getUsername(),acc.getName(),acc.getSurname(),acc.getEmail()); 
 	}
 	
+	@GetMapping("/logout")
+	public boolean logout() {
+		return accountManager.logout();
+	}
+	
+	@GetMapping("/findAccount/{id}")
+	public LocalAccountDTO findAccountById(@PathVariable int id) {
+		return accountManager.findAccountById(id);
+	}
 }

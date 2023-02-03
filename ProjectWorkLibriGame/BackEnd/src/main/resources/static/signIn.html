@@ -18,13 +18,13 @@
       <div class="form">
         <h3>Accedi al portale</h3>
         <div class="inputbox">
-          <input type="text" required="required" />
+          <input type="text" required="required" id="username" />
           <span>Nome utente</span>
           <i></i>
         </div>
 
         <div class="inputbox">
-          <input type="password" required="required" />
+          <input type="password" required="required" id="psw" />
           <span>Password</span>
           <i></i>
         </div>
@@ -33,9 +33,9 @@
           <a href="#">Password dimenticata</a>
           <a href="#">Accedi</a>
         </div>
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Login" onclick="login()"/>
       </div>
     </div>
-  
+  	<script src="/js/login.js"></script>
   </body>
 </html>

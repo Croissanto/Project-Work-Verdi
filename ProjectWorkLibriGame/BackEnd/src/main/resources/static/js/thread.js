@@ -1,3 +1,13 @@
+let idU = "";
+let idA = "";
+let type = "";
+let propic = "";
+let username = "";
+let name = "";
+let surname = "";
+let email = "";
+let creator= "";
+
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
 
@@ -5,30 +15,56 @@ console.log(id.innerHTML);
 document.body.onload = () => {
 	showPost(blogId.innerHTML);
 	showAll();
-
+	user();
+	account();
 }
 
-function showPost(id) {
-	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
-		.then((r) => {
+function findAccount(p,tmp) {
+	fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
+		//console.log(r);
+		setupCreator(r.username,tmp);
+	});
+}
 
-			postList.innerHTML = "";
-			for (let tmp of r) {
-				let map = [];
+function user() {
+	fetch('http://localhost:8083/userInSession').then((r) => { return r.json() }).then((r) => {
+		//console.log(r);
+		idU = r.id;
+		idA = r.idAccount;
+		type = r.type;
+		propic = r.proPic;
+		//console.log(type + " " + idU + " " + idA);
+	});
+}
 
-				map["LIKE"] = 0;
-				map["CUORE"] = 0;
-				map["VOMITINO"] = 0;
-				map["TRISTE"] = 0;
-				map["WOW"] = 0;
-				map["RISATA"] = 0;
-				map["GRRR"] = 0;
+function account() {
+	fetch('http://localhost:8083/accountInSession').then((r) => { return r.json() }).then((r) => {
+		//console.log(r);
+		username = r.username;
+		name = r.name;
+		surname = r.surname;
+		email = r.email;
 
-				let card = `<div class="card mb-4" id="card-${tmp.id}">
+		//console.log(username + " "+ name + " "+ surname + " "+ email);
+
+	});
+}
+function setupCreator(creator,tmp){
+		let map = [];
+
+					map["LIKE"] = 0;
+					map["CUORE"] = 0;
+					map["VOMITINO"] = 0;
+					map["TRISTE"] = 0;
+					map["WOW"] = 0;
+					map["RISATA"] = 0;
+					map["GRRR"] = 0;
+
+					let card = `<div class="card mb-4" id="card-${tmp.id}">
         <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
-            <h6 class="card-title">Pubblicato da ${tmp.user.username}</h6>
+            <h6 class="card-title">Pubblicato da ${creator}</h6>
             <h2 class="card-title">${tmp.titolo}</h2>
             <p id="myText-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             <br>
@@ -36,7 +72,7 @@ function showPost(id) {
             <br>
             <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
             <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
-  Commenta il post di ${tmp.user.username}
+  Commenta il post di ${creator}
 </button>
 
 <!-- Modal -->
@@ -62,18 +98,18 @@ function showPost(id) {
 <p id="pisnelo-${tmp.id}"></p>
         </div>
     </div>`;
-				postList.innerHTML += card;
-//				let elem = document.getElementById("showCommenti-" + tmp.id);
-//				elem.onclick = (e) => {
-//					showCommenti(e.target.id.split("-")[1]);
-//				}
-				for (let reazione of tmp.reazione) {
+					postList.innerHTML += card;
+					//				let elem = document.getElementById("showCommenti-" + tmp.id);
+					//				elem.onclick = (e) => {
+					//					showCommenti(e.target.id.split("-")[1]);
+					//				}
+					for (let reazione of tmp.reazione) {
 
-					map[reazione.reactions]++;
+						map[reazione.reactions]++;
 
-				}
-				let elem1 = document.getElementById("reactList-" + tmp.id);
-				elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
+					}
+					let elem1 = document.getElementById("reactList-" + tmp.id);
+					elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
 				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
 				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
 				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
@@ -84,35 +120,45 @@ function showPost(id) {
 
 
 
-				/*console.log(elem1);
-				elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
-					map["CUORE"] + ' cuori ' + ' ' +
-					map["VOMITINO"] + ' vomitini ' + ' ' +
-					map["TRISTE"] + ' tristi ' + ' ' +
-					map["WOW"] + ' woow ' + ' ' +
-					map["RISATA"] + ' risate ' + ' ' +
-					map["GRRR"] + ' grrrr '*/
-			}
-		});
+					/*console.log(elem1);
+					elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
+						map["CUORE"] + ' cuori ' + ' ' +
+						map["VOMITINO"] + ' vomitini ' + ' ' +
+						map["TRISTE"] + ' tristi ' + ' ' +
+						map["WOW"] + ' woow ' + ' ' +
+						map["RISATA"] + ' risate ' + ' ' +
+						map["GRRR"] + ' grrrr '*/
+				
+}
+
+function showPost(id) {
+	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
+		.then((r) => {
+			postList.innerHTML = "";
+			//Il metodo dovrà restituire i post in ordine di date e time
+			for (let tmp of r) {
+				findAccount(tmp.user.id,tmp);
+				}
+			});
 
 }
 
 
 function showCommenti(id) {
 	console.log(id);
-	
-	
+
+
 	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 		.then((r) => {
 
-			let pisnelo = document.getElementById("pisnelo-"+id);
-			pisnelo.innerHTML ="";
+			let pisnelo = document.getElementById("pisnelo-" + id);
+			pisnelo.innerHTML = "";
 			for (let tmp of r) {
-				
-			let commCard = `<div class="card">
+
+				let commCard = `<div class="card">
 								 <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
-            <h6 class="card-title">${tmp.user.username}</h6>
+            <h6 class="card-title">${username}</h6>
             <p id="myComm-${tmp.id}"class="card-text">${tmp.contenuto}</p>
             </div>
             </div>
@@ -151,7 +197,7 @@ function send(id, reaction) {
 
 	let data = {
 		idPost: id,
-		idUser: 1,
+		idUser: idU,
 		reactions: reaction,
 	}
 	console.log(data);
@@ -213,45 +259,45 @@ function addComment(id) {
 	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
 	//let dateTime = cDate + ' ' + cTime;
 	let data = {
-		contenuto : elem,
+		contenuto: elem,
 		date: cDate,
 		time: cTime,
-		idUser: 1,
+		idUser: idU,
 		idPost: id
 	}
-	
+
 	fetch('http://localhost:8083/createcommento', {
-  		method: 'POST',
-  		headers: {
-    		'Content-Type': 'application/json',
-  		},
-  		body: JSON.stringify(data),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
 	}).then(() => { showCommenti(id) });
 }
 
-function addPost(id){
+function addPost(id) {
 	let elem = document.getElementById("postTitolo").value;
 	let elem2 = document.getElementById("aggiungiPost").value;
 	let current = new Date();
 	let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
 	let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-	
-	
+
+
 	let data = {
-		idUser: 1,
+		idUser: idU,
 		titolo: elem,
 		contenuto: elem2,
 		date: cDate,
 		time: cTime,
 		blogId: id
 	}
-	
+
 	fetch('http://localhost:8083/createpost', {
-  		method: 'POST',
-  		headers: {
-    		'Content-Type': 'application/json',
-  		},
-  		body: JSON.stringify(data),
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
 
 	}).then(() => {
 		showPost(id)

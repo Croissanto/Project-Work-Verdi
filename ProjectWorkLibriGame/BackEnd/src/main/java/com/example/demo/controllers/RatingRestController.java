@@ -14,10 +14,10 @@ import com.example.demo.dto.RatingDTO;
 import com.example.demo.model.IMostRated;
 import com.example.demo.model.LibriGame;
 import com.example.demo.model.Rating;
-import com.example.demo.model.UserDummy;
+import com.example.demo.model.User;
 import com.example.demo.model.repositories.LibriGameRepository;
 import com.example.demo.model.repositories.RatingRepository;
-import com.example.demo.model.repositories.UserDummyRepository;
+import com.example.demo.model.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -25,7 +25,7 @@ import jakarta.transaction.Transactional;
 public class RatingRestController {
 
 	@Autowired
-	private UserDummyRepository userRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private LibriGameRepository libriRepository;
@@ -36,11 +36,11 @@ public class RatingRestController {
 	@PostMapping("/createrating")
 	public boolean createRating(@RequestBody RatingDTO dto) {
 		try {
-			Optional<UserDummy> opt = userRepository.findById(dto.getUserId());
+			Optional<User> opt = userRepository.findById(dto.getUserId());
 
 			Optional<LibriGame> opt2 = libriRepository.findById(dto.getLibroId());
 
-			UserDummy user = new UserDummy();
+			User user = new User();
 
 			LibriGame libro = new LibriGame();
 

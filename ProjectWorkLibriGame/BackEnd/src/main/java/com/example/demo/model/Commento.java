@@ -28,13 +28,13 @@ public class Commento {
 	private Date date;
 	private Time time;
 	@ManyToOne
-	private UserDummy user;
+	private User user;
 	
 	public Commento() {
 		
 	}
 
-	public Commento(int id, String contenuto, Date date, Time time, UserDummy user) {
+	public Commento(int id, String contenuto, Date date, Time time, User user) {
 		this.id = id;
 		this.contenuto = contenuto;
 		this.date = date;
@@ -42,7 +42,7 @@ public class Commento {
 		this.user = user;
 	}
 
-	public Commento(String contenuto, Date date, Time time, UserDummy user) {
+	public Commento(String contenuto, Date date, Time time, User user) {
 		this.contenuto = contenuto;
 		this.date = date;
 		this.time = time;
@@ -81,11 +81,11 @@ public class Commento {
 		this.time = time;
 	}
 
-	public UserDummy getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUserCommento(UserDummy user) {
+	public void setUserCommento(User user) {
 		this.user = user;
 	}
 

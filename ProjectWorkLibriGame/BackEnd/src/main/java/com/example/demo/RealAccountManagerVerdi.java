@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.dto.AccountDTO;
+import com.example.demo.dto.LocalAccountDTO;
 import com.example.demo.dto.LoginDTO;
 import com.example.demo.model.User;
 import com.example.demo.model.enums.AccountType;
@@ -59,9 +60,11 @@ public class RealAccountManagerVerdi implements IAccountManagerVerdi {
 
 	@Override
 	public boolean logout() {
-		Object account = session.getAttribute(LOGGED_USER);
-		if (account != null) {
-			session.removeAttribute(LOGGED_USER);
+		Object user = session.getAttribute(IAccountManagerVerdi.LOGGED_USER);
+		Object account = session.getAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT);
+		if(user!= null && account != null) {
+			session.setAttribute(IAccountManagerVerdi.LOGGED_ACCOUNT, null);
+			session.setAttribute(IAccountManagerVerdi.LOGGED_USER, null);
 			return true;
 		}
 		return false;
@@ -112,4 +115,19 @@ public class RealAccountManagerVerdi implements IAccountManagerVerdi {
 	}
 //metodo che restituisce l'user loggato
 	// 2 4 USER null
+
+	@Override
+	public LocalAccountDTO findAccountById(int id) {
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "http://localhost:8080/accounts/account/"+id;
+		ResponseEntity<AccountDTO> response = restTemplate.getForEntity(url, AccountDTO.class);
+		if (response.getBody() != null) {
+			LocalAccountDTO acc = new LocalAccountDTO(response.getBody().getUsername()
+					,response.getBody().getName(),
+					response.getBody().getSurname(),
+					response.getBody().getEmail());
+			return acc;
+		}
+		return null;
+	}
 }

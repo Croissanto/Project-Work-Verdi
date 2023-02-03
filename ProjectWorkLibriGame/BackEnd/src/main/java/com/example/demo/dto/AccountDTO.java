@@ -3,7 +3,7 @@ package com.example.demo.dto;
 public class AccountDTO{
 	
 	private String username;
-	private String password;
+	private String encryptedPassword;
 	private String name;
 	private String surname;
 	private String email;
@@ -12,9 +12,9 @@ public class AccountDTO{
 		
 	}
 
-	public AccountDTO(String username, String password, String name, String surname, String email) {
+	public AccountDTO(String username, String encryptedPassword, String name, String surname, String email) {
 		this.username = username;
-		this.password = password;
+		this.encryptedPassword = encryptedPassword;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
@@ -29,11 +29,11 @@ public class AccountDTO{
 	}
 
 	public String getPassword() {
-		return password;
+		return encryptedPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
 	}
 
 	public String getName() {

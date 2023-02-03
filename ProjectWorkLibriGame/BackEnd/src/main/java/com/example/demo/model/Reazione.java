@@ -17,21 +17,21 @@ public class Reazione {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reazione_sequence")
 	private int id;
 	@ManyToOne
-	private UserDummy user;
+	private User user;
 	private Reactions reactions;
 
 	public Reazione() {
 
 	}
 
-	public Reazione(int id, UserDummy user, Reactions reactions) {
+	public Reazione(int id, User user, Reactions reactions) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.reactions = reactions;
 	}
 
-	public Reazione(UserDummy user, Reactions reactions) {
+	public Reazione(User user, Reactions reactions) {
 		super();
 		this.user = user;
 		this.reactions = reactions;
@@ -45,11 +45,11 @@ public class Reazione {
 		this.id = id;
 	}
 
-	public UserDummy getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(UserDummy user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
