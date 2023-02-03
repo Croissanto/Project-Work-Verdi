@@ -31,33 +31,52 @@ public class ReazioneRestController {
 	@PostMapping("/createreazione")
 	public boolean createReazione(@RequestBody CreateReazioneDTO dto) {
 		
-		Optional<User> opt = userRepo.findById(dto.getIdUser());
-		Optional<Post> opt2 = postRepo.findById(dto.getIdPost());
-		User user = new User();
-		Post post = new Post();
-		if(opt.isPresent() && opt2.isPresent()) {
+		Optional<User> tmpU = userRepo.findById(dto.getIdUser());
+		System.out.println("Id user = "+dto.getIdUser());
+		Optional<Post> tmpP = postRepo.findById(dto.getIdPost());
+		System.out.println("Id post = "+dto.getIdPost());
+		if(tmpU.isPresent() && tmpP.isPresent()) {
+			System.out.println("Sono entrambi presenti");
+			Post thisPost = tmpP.get();
+			User thisUser = tmpU.get();
+			System.out.println("Post: "+ thisPost + " e l'user: "+thisUser);
+			List<Reazione> thisReactionList = thisPost.getReazione();
+			if(thisReactionList.size() == 0) {
+				System.out.println("La lista delle reazioni è vuota");
+				Reazione thisReazione = new Reazione(thisUser, dto.getReactions());
+				thisReactionList.add(thisReazione);
+				reazioneRepo.save(thisReazione);
+				return true;
+			} else {
+				boolean userNotPresent = true;
+				System.out.println(userNotPresent);
+				for(Reazione singleReazione : thisReactionList) {
+					if(singleReazione.getUser() == thisUser) {
+						thisReactionList.remove(singleReazione);
+						singleReazione = new Reazione(thisUser,dto.getReactions());
+						thisReactionList.add(singleReazione);
+						userNotPresent = false;
+						System.out.println("Se sono qui l'utente ha già votato");
+						reazioneRepo.save(singleReazione);
+						return true;
+					}
+				}
+				System.out.println("Il valore del booleano è "+userNotPresent);
+				if(userNotPresent == true) {
+					Reazione thisReazione = new Reazione(thisUser, dto.getReactions());
+					thisReactionList.add(thisReazione);
+					reazioneRepo.save(thisReazione);
+					return true;
+				}
+			}
 			
-			post = opt2.get();
-			user = opt.get();
+			
 			
 		}
-			List<Reazione> reactList = post.getReazione();
-			//System.out.println(reactList);
-			if(reactList.size() == 0) {
-				Reazione reaction = new Reazione(user,dto.getReactions());
-				reaction = reazioneRepo.save(reaction);
-				reactList.add(reaction);
-				postRepo.save(post);
-			}
-			for(Reazione reazione: reactList) {
-			if(reazione.getUser().getId() == user.getId()) {
-					System.out.println(reazione.getUser().getId());
-					System.out.println(user.getId());
-					reazione.setReactions(dto.getReactions());
-					reazione = reazioneRepo.save(reazione);	
-				} 
-			}	
-			System.out.println("non sono entrato");
+		
+		
+		
+		
 		return false;
 	}
 }
