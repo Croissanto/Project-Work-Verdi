@@ -1,41 +1,65 @@
 nav{
-    background-color: #8456a2;
+    background: rgb(246,186,100);
+background: linear-gradient(90deg, #f3a436 0%, rgba(244,239,212,1) 83%);
 }
 
-.nav-link{
-    color: yellow;
+#logo{
+    font-size: 50px;
+    
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show>.nav-link {
-    color: yellow;
-    background-color: purple;
+#navSections{
+    font-weight: bolder;
 }
 
-body {
-  background-image: url('../img/backgroundWallpaper.jpeg');
-  background-position: relative;
-  background-repeat: no-repeat;
-  background-color: black;
-  
+body{
+    background-image :  url("https://static.vecteezy.com/system/resources/previews/006/273/441/original/background-wave-abstract-orange-and-yellow-free-photo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-size: 2000px   1000px;*/
 }
 
-#paragrafo{
-    color: yellow;
+footer{
+    background: rgb(20,18,18);
+    
 }
 
-#benvenuti{
-    color: yellow;
+#copyright{
+    -webkit-text-fill-color: coral;
 }
 
-#lastFooter{
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #8456a2;
+#social1{
+    font-size: 40px;
+    margin-right: 50px;
+    color: coral;
+
+    
 }
 
+#social2{
+    font-size: 40px;
+    margin-right: 50px;
+    color: coral;
+    
+}
 
-section{
-	text-align: center;
+#social3{
+    font-size: 40px;
+    margin-right: 50px;
+    color: coral;
+
+    
+}
+
+#social4{
+    font-size: 40px;
+    margin-right: 50px;
+    color: coral;
+
+    
+}
+
+#social5{
+    font-size: 40px;
+    color: coral;
 }
