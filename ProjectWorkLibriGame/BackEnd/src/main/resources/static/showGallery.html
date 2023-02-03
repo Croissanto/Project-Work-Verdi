@@ -13,7 +13,6 @@
     
 	<link rel="stylesheet" href="/css/rating.css">
 	<link rel="stylesheet" href="/css/gallery.css">
-	<link rel="stylesheet" href="/css/galleryNavbar.css">
 	<title>Gallery</title>
 </head>
 
@@ -38,11 +37,11 @@
      
       
 <!-- flex grow filla in automatico altezza e lunghezza disponibile (in questo caso specifico solo l'altezza) -->
-	<div class="container text-center flex-grow-1" style="background-color: white;">
+	<div class="container text-center flex-grow-1">
 		<div class="row">
 			<!-- COLONNA 1 -->
 <!--			il div usa 3 delle 12 colonne disponibili della pagina , sm sta per small-->
-			<div class="col-sm-3">
+			<div class="col-sm-3 mt-5">
 				<p class="h3 mt-5">Sezione di filtraggio</p>
 				<p>Inserisci qui i filtri per i libri</p>
 					<div class="row">
@@ -74,7 +73,7 @@
 				</div>
 			</div>
 			<!-- COLONNA 2 -->
-			<div class="col-sm-6">
+			<div class="col-sm-6 mt-5">
 				<p class="h3 mt-5" id="poli" >I libri della settimana</p>
 				<p id="cardList"></p>
 				<p id="genreList"></p>
@@ -116,7 +115,7 @@
 
 			</div>
 			<!-- COLONNA 3 -->
-			<div class="col-sm-3">
+			<div class="col-sm-3 mt-5">
 				<p class="h3 mt-5">Sezione collane</p>
 				<ul class="list-group" id="gallery">
 				</ul>

@@ -76,7 +76,7 @@ function showLibriGame(id) {
 					`
 				
 			      
-			      <div class="row pt-3">
+			      <div class="row pt-2">
 			      <div class="col-sm-4 offset-sm-2">
                      <img class="card-img-top" src="${tmp.link}"
 							alt="Card image" style="width: 100%;">
@@ -201,7 +201,7 @@ function showGenre() {
 				console.log(tmp);
 				let card =
 					`
-			<div class="row pt-3">
+			<div class="row pt-4">
 			      <div class="col-sm-4 offset-sm-2">
                      <img class="card-img-top" src="${tmp.link}"
 							alt="Card image" style="width: 100%;">
