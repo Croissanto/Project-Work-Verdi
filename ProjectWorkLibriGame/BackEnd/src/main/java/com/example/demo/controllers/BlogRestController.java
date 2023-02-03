@@ -15,12 +15,16 @@ import com.example.demo.dto.CreateBlogDTO;
 import com.example.demo.model.Blog;
 import com.example.demo.model.Post;
 import com.example.demo.model.repositories.BlogRepository;
+import com.example.demo.model.repositories.PostRepository;
 
 @RestController
 public class BlogRestController {
 	
 	@Autowired
 	private BlogRepository blogRepo;
+	
+	@Autowired
+	private PostRepository postRepo;
 	
 	@PostMapping("/createBlog")
 	public boolean createBlog(@RequestBody CreateBlogDTO dto) {
@@ -54,13 +58,18 @@ public class BlogRestController {
 		return blogList;
 	}
 
-	@GetMapping("/getpostlist/{id}")
-	public List<Post> getPostList(@PathVariable("id") int id) {
+
+	
+	@GetMapping("/getpostlistordered/{id}")
+	public List<Post> getPostListOrdered(@PathVariable("id") int id) {
 		Optional<Blog> tmp = blogRepo.findById(id);
 		Blog blog = new Blog();
 		if(tmp.isPresent()) {
 			blog = tmp.get();
-			return blog.getListaDeiPost();
+			List<Post> postList = blog.getListaDeiPost();
+			postList = postRepo.findByOrderByDateDescTimeDesc();
+			return postList;
+			
 		}
 		return null;
 	}
