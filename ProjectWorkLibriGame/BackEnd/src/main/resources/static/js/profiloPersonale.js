@@ -12,7 +12,7 @@ const lista = document.getElementById('ul');
 document.body.onload = () => {
 	account();
 	user();
-	orderByStar();
+
 
 }
 
@@ -24,7 +24,8 @@ function user() {
 		type = r.type;
 		propic = r.proPic;
 	}).then(() => {
-		showUserPosts(idU);
+		showUserPosts(idU)
+		orderByStar(idU);
 	});
 }
 
@@ -41,7 +42,7 @@ function account() {
 function showUserPosts(idU) {
 
 	fetch('http://localhost:8083/getpostsbyuser/' + idU).then((r) => { return r.json() }).then((r) => {
-	console.log(r);
+		console.log(r);
 		for (let post of r) {
 
 			let elem = document.createElement("li");
@@ -53,14 +54,14 @@ function showUserPosts(idU) {
 
 }
 
-function orderByStar() {
-//serve passare l'id dell'utente per capire quali libri ha votato questo user
-	fetch('http://localhost:8083/getlibrigameorderbystar').then((r) => { return r.json() }).then((r) => {
-
+function orderByStar(idU) {
+	
+	fetch('http://localhost:8083/getlibrigameorderbystar/' + idU).then((r) => { return r.json() }).then((r) => {
+		console.log(r);
 		for (let libro of r) {
 
 			let elem = document.createElement("li");
-			elem.innerHTML = libro.id + ' ' + libro.title + ' ' + libro.genre;
+			elem.innerHTML = libro.title;
 			ratings.appendChild(elem);
 
 		}

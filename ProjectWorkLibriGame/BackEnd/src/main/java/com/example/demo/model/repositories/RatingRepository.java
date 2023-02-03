@@ -17,7 +17,7 @@ public interface RatingRepository extends CrudRepository<Rating, Integer> {
 	Optional<Rating> findByUserAndLibri(User user,LibriGame libri);
 	
 
-	Iterable<Rating> findByOrderByStarDesc();
+	Iterable<Rating> findByUserOrderByStarDesc(User user);
      @Procedure("most_rated")
      List<IMostRated> avg();
      
