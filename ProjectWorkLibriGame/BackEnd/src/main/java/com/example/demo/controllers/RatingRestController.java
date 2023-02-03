@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RatingDTO;
+import com.example.demo.model.IMostRated;
 import com.example.demo.model.LibriGame;
 import com.example.demo.model.Rating;
 import com.example.demo.model.UserDummy;
 import com.example.demo.model.repositories.LibriGameRepository;
 import com.example.demo.model.repositories.RatingRepository;
 import com.example.demo.model.repositories.UserDummyRepository;
+
+import jakarta.transaction.Transactional;
 
 @RestController
 public class RatingRestController {
@@ -82,13 +85,21 @@ public class RatingRestController {
 
 		Iterable<Rating> opt = ratingRepository.findByOrderByStarDesc();
 		List<LibriGame> list = new LinkedList<>();
-		for(Rating rating :opt) {
-			
+		for (Rating rating : opt) {
+
 			list.add(rating.getLibri());
-			
+
 		}
 		return list;
-		
 	}
-		
+
+	@GetMapping("/getmostratedlibrogame")
+	@Transactional
+	public List<IMostRated>getMostRatedLibroGame(){
+		List<IMostRated>list =ratingRepository.avg();
+	     System.out.println("ci sono entrato");
+		return list;	
+	}
+
+
 }
