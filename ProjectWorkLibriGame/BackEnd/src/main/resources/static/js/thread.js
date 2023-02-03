@@ -19,9 +19,9 @@ document.body.onload = () => {
 	account();
 }
 
-function findAccount(p,tmp) {
-	fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
-		//console.log(r);
+ async function findAccount(p,tmp) {
+	await fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
+		console.log(r);
 		setupCreator(r.username,tmp);
 	});
 }
@@ -131,9 +131,10 @@ function setupCreator(creator,tmp){
 				
 }
 
-function showPost(id) {
-	fetch(`http://localhost:8083/getpostlist/` + id).then((r) => { return r.json() })
+  async function showPost(id) {
+	 await fetch(`http://localhost:8083/getpostlistordered/` + id).then((r) => { return r.json() })
 		.then((r) => {
+			console.log(r);
 			postList.innerHTML = "";
 			//Il metodo dovrà restituire i post in ordine di date e time
 			for (let tmp of r) {
@@ -207,7 +208,7 @@ function send(id, reaction) {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then(() => { showPost(blogId.innerHTML) });
+	}).then(() => { updateList(id)});
 
 
 
@@ -218,12 +219,9 @@ function updateList(id) {
 	fetch('http://localhost:8083/getreactlist/' + id).then((r) => { return r.json() })
 
 		.then((tmp) => {
-
+		console.log(tmp);
 			let map = [];
-			for (let reazione of tmp) {
-
-
-				map["LIKE"] = 0;
+			map["LIKE"] = 0;
 				map["CUORE"] = 0;
 				map["VOMITINO"] = 0;
 				map["TRISTE"] = 0;
@@ -231,9 +229,14 @@ function updateList(id) {
 				map["RISATA"] = 0;
 				map["GRRR"] = 0;
 
+			for (let reazione of tmp) {
+
+
+				
+
 				map[reazione.reactions]++;
 			}
-
+			
 			let elem1 = document.getElementById("reactList-" + id);
 			elem1.innerHTML = map["LIKE"] + `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
 				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${id}, 'CUORE')" id="cuore-${id}" value="CUORE">
