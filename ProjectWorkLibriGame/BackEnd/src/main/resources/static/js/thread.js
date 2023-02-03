@@ -207,7 +207,7 @@ function send(id, reaction) {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then(() => { updateList(id) });
+	}).then(() => { showPost(blogId.innerHTML) });
 
 
 
