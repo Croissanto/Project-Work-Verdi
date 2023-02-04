@@ -7,11 +7,15 @@ let name = "";
 let surname = "";
 let email = "";
 
-const lista = document.getElementById('ul');
 
+
+
+const lista = document.getElementById('ul');
+const button = document.getElementById('btn');
 document.body.onload = () => {
 	account();
 	user();
+
 
 }
 
@@ -24,7 +28,8 @@ function user() {
 		propic = r.proPic;
 	}).then(() => {
 		showUserPost();
-		orderByStar(idU);
+		showLibri();
+
 
 
 	});
@@ -73,19 +78,79 @@ function showUserPost() {
 }
 
 
-function orderByStar(idU) {
 
+
+function showLibri() {
+
+	fetch('http://localhost:8083/getratingbyuser/' + idU).then((r) => { return r.json() }).then((r) => {
+
+		librivotati.innerHTML = "";
+		for (let libro of r) {
+		
+			let stars = libro.star;
+
+			let card =
+				`	
+			      <div class="row pt-2">
+			      <div class="col-sm-4 offset-sm-2">
+                     <img class="card-img-top" src="${libro.libri.link}"
+							alt="Card image" style="width: 100%;">
+                  </div>
+			      <div class="col-sm-6 pe-5 d-flex justify-content-start align-items-center flex-column">
+			      <div class="titolo">
+				<p class = "h4 mb-0">${libro.libri.title}</p>
+			    	</div>
+			    	<div class ="star">
+			    	<p class = "h4 mb-0">${stars} stelle</p>
+			    	</div>
+			    <div class="autore-libro">
+			      <p class = "nome-cognome-autore text-muted fw-bold">${libro.libri.autore.name} ${libro.libri.autore.surname}
+			      </div>`
+
+
+			librivotati.innerHTML += card;
+		}
+	});
+
+
+
+
+}
+
+
+function orderByStar() {
+	
 	fetch('http://localhost:8083/getlibrigameorderbystar/' + idU).then((r) => { return r.json() }).then((r) => {
-		console.log(r);
+
+		librivotati.innerHTML = "";
+		
 		for (let libro of r) {
 
-			let elem = document.createElement("li");
-			elem.innerHTML = libro.title;
-			librivotati.appendChild(elem);
+			let card =
+				`
+			      <div class="row pt-2">
+			      <div class="col-sm-4 offset-sm-2">
+                     <img class="card-img-top" src="${libro.link}"
+							alt="Card image" style="width: 100%;">
+                  </div>
+			      <div class="col-sm-6 pe-5 d-flex justify-content-start align-items-center flex-column">
+			      <div class="titolo">
+				<p class = "h4 mb-0">${libro.title}</p>
+			    	</div>
+			    	<div class ="star">
+			    	<p class = "h4 mb-0">${stars} stelle</p>
+			    	</div>
+			    <div class="autore-libro">
+			      <p class = "nome-cognome-autore text-muted fw-bold">${libro.autore.name} ${libro.autore.surname}
+			      </div>`
 
+
+			librivotati.innerHTML += card;
 		}
-
 	});
+
+
+
 }
 
 function showCard() {
@@ -154,6 +219,21 @@ function showCard() {
 
 }
 
+
+function actionToggle() {
+
+	var action = document.querySelector(".action");
+	action.classList.toggle("active");
+
+	if (action.classList.contains("active")) {
+
+		orderByStar();
+	} else {
+
+		showLibri();
+	}
+
+}
 
 
 

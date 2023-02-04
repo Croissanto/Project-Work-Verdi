@@ -33,20 +33,30 @@
 
 	<div class="container">
 		<div class="row">
+
 			<div class="col-sm-3">
 				<p id="card"></p>
 			</div>
-			<div class="col-sm-5">
 
+			<div class="col-sm-5">
 
 				<div>
 					<p id="para">Post pubblicati</p>
 				</div>
+
 				<p id="listadimerda"></p>
 			</div>
+
 			<div class="col-sm-4">
-			<p id="libri">Libri Votati:</p>
-				<ul id="librivotati"></ul>
+				<p id="libri">Libri Votati:</p>
+				<h5>ORDINA PER STELLE</h5>
+				<div class="action" onclick="actionToggle()">
+				<label class="switch">
+					<input type="checkbox" id="myCheckbox">
+					<span class="slider round"></span>
+				</label>
+				</div>
+				<p id="librivotati"></p>
 
 
 			</div>
