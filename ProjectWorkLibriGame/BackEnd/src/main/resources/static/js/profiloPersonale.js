@@ -23,38 +23,58 @@ function user() {
 		type = r.type;
 		propic = r.proPic;
 	}).then(() => {
-		showUserPosts(idU)
+		showUserPost();
 		orderByStar(idU);
-		
-		
+
+
 	});
 }
 
 function account() {
 	fetch('http://localhost:8083/accountInSession').then((r) => { return r.json() }).then((r) => {
 		console.log(r);
-		
-		showCard(r);
+		username = r.username;
+		name = r.name;
+		surname = r.surname;
+		email = r.email;
+		showCard();
 	});
 }
 
-function showUserPosts(idU) {
+function findAccount(id, postList) {
+	fetch('http://localhost:8083/findAccount/' + id).then((r) => { return r.json() }).then((r) => {
+		console.log(r);
+		console.log(postList);
+		showUserPost(r.username, postList);
+	});
+}
+
+function showUserPost() {
 
 	fetch('http://localhost:8083/getpostsbyuser/' + idU).then((r) => { return r.json() }).then((r) => {
-		console.log(r);
-		for (let post of r) {
 
-			let elem = document.createElement("li");
-			elem.innerHTML = post.titolo + ' ' + post.contenuto;
-			//lista.appendChild(elem);
+
+		for (let posts of r) {
+
+
+			let posta = `<div class="card" id="card-${posts.id}">
+				<div class="card-body">
+            <div class="small text-muted">${posts.date} ${posts.time}</div>
+            <br>
+            <h6 class="card-title">Pubblicato da ${username}</h6>
+            <h2 class="card-title">${posts.titolo}</h2>
+            <p id="myText-${posts.id}"class="card-text">${posts.contenuto}</p>`
+			listadimerda.innerHTML += posta;
 
 		}
-	});
+	}
+	);
 
 }
 
+
 function orderByStar(idU) {
-	
+
 	fetch('http://localhost:8083/getlibrigameorderbystar/' + idU).then((r) => { return r.json() }).then((r) => {
 		console.log(r);
 		for (let libro of r) {
@@ -68,16 +88,16 @@ function orderByStar(idU) {
 	});
 }
 
-function showCard(r) {
-	
+function showCard() {
+
 	fetch('http://localhost:8083/userInSession').then((user) => { return user.json() }).then((user) => {
-	
-	let profileCard = `<div class="col col-3">
+
+		let profileCard = `
         <div class="card-container">
             <img class="round" src="${user.proPic}" alt="user" />
-            <h3>${r.name}  ${r.surname}</h3>
-            <h6>${r.email}</h6>
-            <p>${r.username}</p>
+            <h3>${name}  ${surname}</h3>
+            <h6>${email}</h6>
+            <p>${username}</p>
             <div class="buttons">
                 <button class="primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Crea Post
@@ -129,13 +149,8 @@ function showCard(r) {
             </div>
         </div>
     </div>`
-	
-	
-	card.innerHTML += profileCard;
-	
-	
-	
-})
+		card.innerHTML += profileCard;
+	})
 
 }
 
