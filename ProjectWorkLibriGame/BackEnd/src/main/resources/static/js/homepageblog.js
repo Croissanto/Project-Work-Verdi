@@ -8,7 +8,7 @@ let surname = "";
 let email = "";
 
 document.body.onload = () => {
-
+	avarageRating();
 	showTop2();
 	user();
 	account();
@@ -57,4 +57,92 @@ function showTop2() {
 		}
 	});
 
+
+
 }
+function avarageRating() {
+	fetch(`http://localhost:8083/getmostratedlibrogame`).then((r) => { return r.json() })
+		.then((r) => {
+			let max = Math.max(...r.map(r => r.avg));
+			let min = Math.min(...r.map(r => r.avg));
+			let middle;
+			for (i = 0; i < r.length; i++) {
+				if (r[i].avg != max && r[i].avg != min) {
+					middle = r[i].avg;
+					console.log(middle);
+
+				}
+			}
+			for (tmp of r) {
+				for (let i = 1; i <= 5; i++) {
+					const star = document.querySelector(`#max${i}`);
+					console.log(star);
+					if (i <= max) {
+						star.classList.add('checked');
+					} else {
+						star.classList.remove('checked');
+					}
+
+				}
+
+				for (let i = 1; i <= 5; i++) {
+					const star = document.querySelector(`#av${i}`);
+					console.log(star);
+					if (i <= middle) {
+						star.classList.add('checked');
+					} else {
+						star.classList.remove('checked');
+					}
+
+				}
+
+				for (let i = 1; i <= 5; i++) {
+					const star = document.querySelector(`#checked${i}`);
+					console.log(star);
+					if (i <= min) {
+						star.classList.add('checked');
+					} else {
+						star.classList.remove('checked');
+					}
+
+				}
+
+				if (tmp.avg == max) {
+					let card = `
+						         <img class="card-img-top" src="${tmp.link}"
+									alt="Card image" style="width: 100%;">
+									<p class ="h4">Media voti (${tmp.avg})</p>
+		                         `;
+					maxAvarage.innerHTML += card;
+
+
+				} else if (tmp.avg == min) {
+
+					let card = `
+					         <img class="card-img-top" src="${tmp.link}"
+									alt="Card image" style="width: 60%;">
+									<p class ="h4">${tmp.avg}</p>
+									<p class ="h4">Media voti (${tmp.avg})</p>
+					               `;
+					minAvarage.innerHTML += card;
+
+				}
+				else {
+					let card = `
+					         <img class="card-img-top" src="${tmp.link}"
+									alt="Card image" style="width: 80%;">
+									<p class ="h4">${tmp.avg}</p>
+							 `;
+					avarage.innerHTML += card;
+				}
+
+
+			}
+
+		});
+}
+
+
+
+
+
