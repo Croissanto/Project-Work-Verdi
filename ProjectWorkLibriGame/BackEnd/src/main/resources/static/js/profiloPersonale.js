@@ -81,7 +81,7 @@ function orderByStar(idU) {
 
 			let elem = document.createElement("li");
 			elem.innerHTML = libro.title;
-			//ratings.appendChild(elem);
+			librivotati.appendChild(elem);
 
 		}
 

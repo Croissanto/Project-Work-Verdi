@@ -68,3 +68,9 @@ footer{
     font-size: 25px;
     color: coral;
 }
+
+
+span {
+
+	cursor: pointer
+}
