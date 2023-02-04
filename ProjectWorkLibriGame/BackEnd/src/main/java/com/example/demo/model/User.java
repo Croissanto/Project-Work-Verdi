@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import com.example.demo.model.enums.AccountType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class User {
 	private int id;
 	private int idAccount;
 	private AccountType type;
+	@Column(length = 2000)
 	private String proPic;
 	
 	public User() {
