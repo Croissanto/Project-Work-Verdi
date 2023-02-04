@@ -86,10 +86,7 @@ function showLibri() {
 
 		librivotati.innerHTML = "";
 		for (let libro of r) {
-		
-			let stars = libro.star;
-
-			let card =
+				let card =
 				`	
 			      <div class="row pt-2">
 			      <div class="col-sm-4 offset-sm-2">
@@ -101,7 +98,7 @@ function showLibri() {
 				<p class = "h4 mb-0">${libro.libri.title}</p>
 			    	</div>
 			    	<div class ="star">
-			    	<p class = "h4 mb-0">${stars} stelle</p>
+			    	<p class = "h4 mb-0">${libro.star} stelle</p>
 			    	</div>
 			    <div class="autore-libro">
 			      <p class = "nome-cognome-autore text-muted fw-bold">${libro.libri.autore.name} ${libro.libri.autore.surname}
@@ -119,29 +116,29 @@ function showLibri() {
 
 
 function orderByStar() {
-	
-	fetch('http://localhost:8083/getlibrigameorderbystar/' + idU).then((r) => { return r.json() }).then((r) => {
+
+	fetch('http://localhost:8083/getratingbyuserorderedbystar/' + idU).then((r) => { return r.json() }).then((r) => {
 
 		librivotati.innerHTML = "";
-		
+
 		for (let libro of r) {
 
 			let card =
 				`
 			      <div class="row pt-2">
 			      <div class="col-sm-4 offset-sm-2">
-                     <img class="card-img-top" src="${libro.link}"
+                     <img class="card-img-top" src="${libro.libri.link}"
 							alt="Card image" style="width: 100%;">
                   </div>
 			      <div class="col-sm-6 pe-5 d-flex justify-content-start align-items-center flex-column">
 			      <div class="titolo">
-				<p class = "h4 mb-0">${libro.title}</p>
+				<p class = "h4 mb-0">${libro.libri.title}</p>
 			    	</div>
 			    	<div class ="star">
-			    	<p class = "h4 mb-0">${stars} stelle</p>
+			    	<p class = "h4 mb-0">${libro.star} stelle</p>
 			    	</div>
 			    <div class="autore-libro">
-			      <p class = "nome-cognome-autore text-muted fw-bold">${libro.autore.name} ${libro.autore.surname}
+			      <p class = "nome-cognome-autore text-muted fw-bold">${libro.libri.autore.name} ${libro.libri.autore.surname}
 			      </div>`
 
 

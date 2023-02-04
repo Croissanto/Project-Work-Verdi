@@ -127,4 +127,24 @@ public class RatingRestController {
 
 	}
 
+	@GetMapping("/getratingbyuserorderedbystar/{idU}")
+	public List<Rating> getRatingOrdered(@PathVariable("idU") int idU) {
+
+		Optional<User> userOpt = userRepository.findById(idU);
+
+		if (userOpt.isPresent()) {
+
+			User user = userOpt.get();
+
+			Iterable<Rating> list = ratingRepository.findByUserOrderByStarDesc(user);
+			List<Rating> ratings = new LinkedList<>();
+			for (Rating rating : list) {
+				ratings.add(rating);
+			}
+
+			return ratings;
+		}
+		return new LinkedList<>();
+	}
+
 }
