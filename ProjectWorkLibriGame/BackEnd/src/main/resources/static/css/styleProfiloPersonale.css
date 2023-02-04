@@ -69,6 +69,7 @@ button.primary {
 	text-align: left;
 	padding: 15px;
 	margin-top: 30px;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 .skills ul {
@@ -84,6 +85,7 @@ button.primary {
 	font-size: 12px;
 	margin: 0 7px 7px 0;
 	padding: 7px;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 #para{
@@ -91,7 +93,7 @@ button.primary {
 	margin-top: 22%;
 	text-align: center;
 	font-family: 'Courier New', Courier, monospace;
-	
+	font-weight: bold;
 }
 
 #libri{
@@ -100,7 +102,7 @@ button.primary {
 	margin-top: 27%;
 	text-align: center;
 	font-family: 'Courier New', Courier, monospace;
-	
+	font-weight: bold;
 	
 }
 
