@@ -16,13 +16,11 @@ public class Rating {
 	private LibriGame libri;
 	@ManyToOne
 	private User user;
-	
+
 	public Rating() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Rating(int id, int star, LibriGame libri, User user) {
 		super();
@@ -31,8 +29,6 @@ public class Rating {
 		this.libri = libri;
 		this.user = user;
 	}
-
-
 
 	public Rating(int star, LibriGame libri, User user) {
 		super();

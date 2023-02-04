@@ -13,13 +13,15 @@ import com.example.demo.model.User;
 
 public interface RatingRepository extends CrudRepository<Rating, Integer> {
 
-	boolean existsRatingByUserAndLibri(User user,LibriGame libri);
-	Optional<Rating> findByUserAndLibri(User user,LibriGame libri);
-	
+	boolean existsRatingByUserAndLibri(User user, LibriGame libri);
+
+	Optional<Rating> findByUserAndLibri(User user, LibriGame libri);
+
+	List<Rating> findByUser(User user);
 
 	Iterable<Rating> findByUserOrderByStarDesc(User user);
-     @Procedure("most_rated")
-     List<IMostRated> avg();
-     
-	
+
+	@Procedure("most_rated")
+	List<IMostRated> avg();
+
 }

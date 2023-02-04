@@ -82,32 +82,69 @@ public class RatingRestController {
 	}
 
 	@GetMapping("/getlibrigameorderbystar/{id}")
-	public List<LibriGame> getLibriGameOrderByStar(@PathVariable("id")int id) {
+	public List<LibriGame> getLibriGameOrderByStar(@PathVariable("id") int id) {
 
-		 Optional<User> opt= userRepository.findById(id);
-		 if(opt.isPresent()) {
-			 
-			 User user = opt.get();
-			 Iterable<Rating> it = ratingRepository.findByUserOrderByStarDesc(user);
-				List<LibriGame> list = new LinkedList<>();
-				for (Rating rating : it) {
+		Optional<User> opt = userRepository.findById(id);
+		if (opt.isPresent()) {
 
-					list.add(rating.getLibri());
+			User user = opt.get();
+			Iterable<Rating> it = ratingRepository.findByUserOrderByStarDesc(user);
+			List<LibriGame> list = new LinkedList<>();
+			for (Rating rating : it) {
 
-				}
-				return list;
-		 }
-		
+				list.add(rating.getLibri());
+
+			}
+			return list;
+		}
+
 		return new LinkedList<>();
 	}
 
 	@GetMapping("/getmostratedlibrogame")
 	@Transactional
-	public List<IMostRated>getMostRatedLibroGame(){
-		List<IMostRated>list =ratingRepository.avg();
-	     System.out.println("ci sono entrato");
-		return list;	
+	public List<IMostRated> getMostRatedLibroGame() {
+		List<IMostRated> list = ratingRepository.avg();
+		System.out.println("ci sono entrato");
+		return list;
 	}
 
+	@GetMapping("/getratingbyuser/{idU}")
+	public List<Rating> getRating(@PathVariable("idU") int idU) {
+
+		Optional<User> userOpt = userRepository.findById(idU);
+
+		if (userOpt.isPresent()) {
+
+			User user = userOpt.get();
+
+			List<Rating> list = ratingRepository.findByUser(user);
+
+			return list;
+		}
+
+		return new LinkedList<>();
+
+	}
+
+	@GetMapping("/getratingbyuserorderedbystar/{idU}")
+	public List<Rating> getRatingOrdered(@PathVariable("idU") int idU) {
+
+		Optional<User> userOpt = userRepository.findById(idU);
+
+		if (userOpt.isPresent()) {
+
+			User user = userOpt.get();
+
+			Iterable<Rating> list = ratingRepository.findByUserOrderByStarDesc(user);
+			List<Rating> ratings = new LinkedList<>();
+			for (Rating rating : list) {
+				ratings.add(rating);
+			}
+
+			return ratings;
+		}
+		return new LinkedList<>();
+	}
 
 }
