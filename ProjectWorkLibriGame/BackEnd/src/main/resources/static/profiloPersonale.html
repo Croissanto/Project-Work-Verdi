@@ -9,6 +9,8 @@
 		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/styleProfiloPersonale.css">
 	<link rel="stylesheet" href="css/navbarEfooter.css">
+		<link rel="stylesheet" href="/css/modale.css">
+
 	<script src="https://kit.fontawesome.com/6d28393a02.js" crossorigin="anonymous"></script>
 </head>
 
@@ -22,14 +24,46 @@
 		</div>
 		<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a id="navSections" class="nav-link" href="homepagePortale.html">Home |</a>
-				<a id="navSections" class="nav-link" href="/thread/1">Threads |</a>
-				<a id="navSections" class="nav-link" href="/showGallery.html">Galleria libri |</a>
-				<a id="navSections" class="nav-link active" aria-current="page" href="/profiloPersonale.html">Profilo
+				<a id="home" class="nav-link" href="homepagePortale.html">Home |</a>
+				<a id="threads" class="nav-link" href="/thread/1">Threads |</a>
+				<a id="gallerialibri" class="nav-link" href="/showGallery.html">Galleria libri |</a>
+				<a id="profilo" class="nav-link active" aria-current="page" href="/profiloPersonale.html">Profilo
 					|</a>
-				<a id="navSections" class="nav-link" href="/signIn.html">Accedi</a>
+				<a id="accedi" class="nav-link" role="button">Accedi |</a>
+				<a id="logout" role="button" class="nav-link" onclick="logout()">Logout</a>
 			</div>
 	</nav>
+	
+	<!--modale-->
+	<div id="myModal" class="modal">
+    <div class="modal-contente">
+      <span class="close">&times;</span>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'SignUp')" id="defaultOpen">Registrati</button>
+        <button class="tablinks" onclick="openTab(event, 'LogIn')">Accedi</button>
+      </div>
+      <div id="SignUp" class="tabcontent">
+        <!-- Form di registrazione -->
+        <form>
+		  <input type="text" id="registeruser" placeholder="Username">
+		  <input type="password" id="registerpassword" placeholder="Password">
+          <input type="text" id="registernome" placeholder="Nome">
+          <input type="text" id="registercognome"  placeholder="Cognome">
+		  <input type="email" id="registeremail"    placeholder="Email">
+          
+          <input type="submit" value="Registrati" onclick="send()">
+        </form>
+      </div>
+      <div id="LogIn" class="tabcontent">
+        <!-- Form di accesso -->
+        <form>
+          <input type="text" id="usernameLogin" placeholder="Username">
+          <input type="password" id="password" placeholder="Password">
+          <input type="submit" id="accedisito"  value="Accedi" onclick="loginAlSito()">
+        </form>
+      </div>
+    </div>
+  </div>
 
 	<div class="container">
 		<div class="row">
@@ -80,9 +114,12 @@
 
 	</footer>
 
+	  <script src="/js/modale.js"></script>
 
-
-
+	<script src="/js/logout.js"></script>
+	<script src="/js/login.js"></script>
+	<script src="/js/createAccount.js"></script>
+	<script src="/js/loginNavbar.js"></script>
 	<script src="/js/profiloPersonale.js"></script>
 
 
