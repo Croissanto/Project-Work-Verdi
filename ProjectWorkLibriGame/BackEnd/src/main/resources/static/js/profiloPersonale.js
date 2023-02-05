@@ -160,11 +160,7 @@ function showCard() {
             <h3>${name}  ${surname}</h3>
             <h6>${email}</h6>
             <p>${username}</p>
-            <div class="buttons">
-                <button class="primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Crea Post
-                  </button>
-            </div>
+          
             
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

@@ -61,7 +61,7 @@ function setupCreator(creator,tmp){
 					map["GRRR"] = 0;
 
 					let card = `<div class="card mb-4" id="card-${tmp.id}">
-        <div class="card-body">
+        <div class="card-body" id="postcard">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
             <h6 class="card-title">Pubblicato da ${creator}</h6>
