@@ -1,4 +1,6 @@
-var user = null;
+var userLogged = null;
+
+
 
 
 fetch("http://localhost:8083/userInSession")
@@ -9,12 +11,12 @@ fetch("http://localhost:8083/userInSession")
     return response.json();
   })
   .then((data) => {
-    user = data;
+    userLogged = data;
 
    
     updateNavbar();
   })
-  .catch(function (error) {
+  .catch((error) => {
     console.error(error);
 
    
@@ -24,16 +26,21 @@ fetch("http://localhost:8083/userInSession")
     updateNavbar();
   });
   
-  
+
 function updateNavbar() {
   
+  var accedi = document.getElementById("accedi");
   var profileSection = document.getElementById("profilo");
-
-  if (!user) {
-  
+  var logout = document.getElementById("logout");
+  if (!userLogged) {
+  	
+  	logout.style.display="none";
+  	accedi.style.display = "block";
     profileSection.style.display = "none";
   } else {
     
+    accedi.style.display = "none";
+    logout.style.display="block";
     profileSection.style.display = "block";
   }
 }  
