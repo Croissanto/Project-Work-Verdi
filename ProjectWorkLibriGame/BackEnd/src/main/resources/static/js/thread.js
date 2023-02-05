@@ -6,7 +6,7 @@ let username = "";
 let name = "";
 let surname = "";
 let email = "";
-let creator= "";
+let creator = "";
 
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
@@ -19,10 +19,10 @@ document.body.onload = () => {
 	account();
 }
 
- async function findAccount(p,tmp) {
+async function findAccount(p, tmp) {
 	await fetch('http://localhost:8083/findAccount/' + p).then((r) => { return r.json() }).then((r) => {
 		console.log(r);
-		setupCreator(r.username,tmp);
+		setupCreator(r.username, tmp);
 	});
 }
 
@@ -49,18 +49,18 @@ function account() {
 
 	});
 }
-function setupCreator(creator,tmp){
-		let map = [];
+function setupCreator(creator, tmp) {
+	let map = [];
 
-					map["LIKE"] = 0;
-					map["CUORE"] = 0;
-					map["VOMITINO"] = 0;
-					map["TRISTE"] = 0;
-					map["WOW"] = 0;
-					map["RISATA"] = 0;
-					map["GRRR"] = 0;
+	map["LIKE"] = 0;
+	map["CUORE"] = 0;
+	map["VOMITINO"] = 0;
+	map["TRISTE"] = 0;
+	map["WOW"] = 0;
+	map["RISATA"] = 0;
+	map["GRRR"] = 0;
 
-					let card = `<div class="card mb-4" id="card-${tmp.id}">
+	let card = `<div class="card mb-4" id="card-${tmp.id}">
         <div class="card-body" id="postcard">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <br>
@@ -70,7 +70,7 @@ function setupCreator(creator,tmp){
             <br>
             <p id="reactList-${tmp.id}"></p>
             <br>
-            <button class="button-28" role="button" onclick="showCommenti(${tmp.id})">Mostra i commenti</button>
+            <button class="button-28" role="button" onclick="showCommenti(${tmp.id})">Mostra/Nascondi i commenti</button>
             <button class="button-28"  role="button" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
   Commenta il post di ${creator}
 </button>
@@ -95,68 +95,71 @@ function setupCreator(creator,tmp){
   </div>
 </div>
 <br> <br>
-<p id="pisnelo-${tmp.id}"></p>
+<p id="pisnelo-${tmp.id}" style="display:none;"></p>
         </div>
     </div>`;
-					postList.innerHTML += card;
-					//				let elem = document.getElementById("showCommenti-" + tmp.id);
-					//				elem.onclick = (e) => {
-					//					showCommenti(e.target.id.split("-")[1]);
-					//				}
-					for (let reazione of tmp.reazione) {
+	postList.innerHTML += card;
+	//				let elem = document.getElementById("showCommenti-" + tmp.id);
+	//				elem.onclick = (e) => {
+	//					showCommenti(e.target.id.split("-")[1]);
+	//				}
+	for (let reazione of tmp.reazione) {
 
-						map[reazione.reactions]++;
+		map[reazione.reactions]++;
 
-					}
-					let elem1 = document.getElementById("reactList-" + tmp.id);
-					elem1.innerHTML = map["LIKE"] + `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
-				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
-				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
-				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
-				&#128546 </span>  ` + map["WOW"] + `<span onclick="send(${tmp.id}, 'WOW')" id="wow-${tmp.id}" value="WOW">
-				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${tmp.id},'RISATA')" id="risata-${tmp.id}" value="RISATA">
-				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${tmp.id},'GRRR')" id="grrr-${tmp.id}" value="GRRR">
-				&#128545 </span>`;
+	}
+	let elem1 = document.getElementById("reactList-" + tmp.id);
+	elem1.innerHTML =`<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
+				&#128077 </span>  ` + map["LIKE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
+				&#129505 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
+				&#129314 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
+				&#128546 </span>  ` + map["TRISTE"] + `<span onclick="send(${tmp.id}, 'WOW')" id="wow-${tmp.id}" value="WOW">
+				&#128558 </span>  ` + map["WOW"] + `<span onclick="send(${tmp.id},'RISATA')" id="risata-${tmp.id}" value="RISATA">
+				&#128514 </span>  ` + map["RISATA"] + `<span onclick="send(${tmp.id},'GRRR')" id="grrr-${tmp.id}" value="GRRR">
+				&#128545 </span>`+ map["GRRR"];
 
 
 
-					/*console.log(elem1);
-					elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
-						map["CUORE"] + ' cuori ' + ' ' +
-						map["VOMITINO"] + ' vomitini ' + ' ' +
-						map["TRISTE"] + ' tristi ' + ' ' +
-						map["WOW"] + ' woow ' + ' ' +
-						map["RISATA"] + ' risate ' + ' ' +
-						map["GRRR"] + ' grrrr '*/
-				
+	/*console.log(elem1);
+	elem1.innerHTML += map["LIKE"] + ' like ' + ' ' +
+		map["CUORE"] + ' cuori ' + ' ' +
+		map["VOMITINO"] + ' vomitini ' + ' ' +
+		map["TRISTE"] + ' tristi ' + ' ' +
+		map["WOW"] + ' woow ' + ' ' +
+		map["RISATA"] + ' risate ' + ' ' +
+		map["GRRR"] + ' grrrr '*/
+
 }
 
-  async function showPost(id) {
-	 await fetch(`http://localhost:8083/getpostlistordered/` + id).then((r) => { return r.json() })
+async function showPost(id) {
+	await fetch(`http://localhost:8083/getpostlistordered/` + id).then((r) => { return r.json() })
 		.then((r) => {
 			console.log(r);
 			postList.innerHTML = "";
 			//Il metodo dovrà restituire i post in ordine di date e time
 			for (let tmp of r) {
-				findAccount(tmp.user.id,tmp);
-				}
-			});
+				findAccount(tmp.user.id, tmp);
+			}
+		});
 
 }
 
 
 function showCommenti(id) {
 	console.log(id);
+	let pisnelo = document.getElementById("pisnelo-" + id);
+	if (pisnelo.style.display === "block") {
+		pisnelo.style.display = "none";
+	} else {
 
+		fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
+			.then((r) => {
 
-	fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
-		.then((r) => {
+				//let pisnelo = document.getElementById("pisnelo-" + id);
+				pisnelo.innerHTML = "";
+				for (let tmp of r) {
 
-			let pisnelo = document.getElementById("pisnelo-" + id);
-			pisnelo.innerHTML = "";
-			for (let tmp of r) {
-
-				let commCard = `<div class="card">
+					let commCard = `<div class="card">
 								 <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <h6 class="card-title">${username}</h6>
@@ -165,12 +168,12 @@ function showCommenti(id) {
             </div>
             <br>`;
 
-				pisnelo.innerHTML += commCard;
-			}
-
-		});
+					pisnelo.innerHTML += commCard;
+				}
+				pisnelo.style.display = "block";
+			});
+	}
 }
-
 
 function showAll() {
 	fetch(`http://localhost:8083/allblog`).then((r) => { return r.json() })
@@ -208,7 +211,7 @@ function send(id, reaction) {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(data),
-	}).then(() => { updateList(id)});
+	}).then(() => { updateList(id) });
 
 
 
@@ -219,33 +222,33 @@ function updateList(id) {
 	fetch('http://localhost:8083/getreactlist/' + id).then((r) => { return r.json() })
 
 		.then((tmp) => {
-		console.log(tmp);
+			console.log(tmp);
 			let map = [];
 			map["LIKE"] = 0;
-				map["CUORE"] = 0;
-				map["VOMITINO"] = 0;
-				map["TRISTE"] = 0;
-				map["WOW"] = 0;
-				map["RISATA"] = 0;
-				map["GRRR"] = 0;
+			map["CUORE"] = 0;
+			map["VOMITINO"] = 0;
+			map["TRISTE"] = 0;
+			map["WOW"] = 0;
+			map["RISATA"] = 0;
+			map["GRRR"] = 0;
 
 			for (let reazione of tmp) {
 
 
-				
+
 
 				map[reazione.reactions]++;
 			}
-			
+
 			let elem1 = document.getElementById("reactList-" + id);
-			elem1.innerHTML = map["LIKE"] + `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
-				&#128077 </span>  ` + map["CUORE"] + `<span onclick="send(${id}, 'CUORE')" id="cuore-${id}" value="CUORE">
-				&#129505 </span>  ` + map["VOMITINO"] + `<span onclick="send(${id}, 'VOMITINO')" id="vomitino-${id}" value="VOMITINO">
-				&#129314 </span>  ` + map["TRISTE"] + `<span onclick="send(${id}, 'TRISTE')" id="triste-${id}" value="TRISTE">
-				&#128546 </span>  ` + map["WOW"] + `<span onclick="send(${id}, 'WOW')" id="wow-${id}" value="WOW">
-				&#128558 </span>  ` + map["RISATA"] + `<span onclick="send(${id},'RISATA')" id="risata-${id}" value="RISATA">
-				&#128514 </span>  ` + map["GRRR"] + `<span onclick="send(${id},'GRRR')" id="grrr-${id}" value="GRRR">
-				&#128545 </span>`;
+			elem1.innerHTML = `<span onclick="send(${id},'LIKE')" id="like-${id}" value="LIKE">
+				&#128077 </span>  ` + map["LIKE"] + `<span onclick="send(${id}, 'CUORE')" id="cuore-${id}" value="CUORE">
+				&#129505 </span>  ` + map["CUORE"] + `<span onclick="send(${id}, 'VOMITINO')" id="vomitino-${id}" value="VOMITINO">
+				&#129314 </span>  ` + map["VOMITINO"] + `<span onclick="send(${id}, 'TRISTE')" id="triste-${id}" value="TRISTE">
+				&#128546 </span>  ` + map["TRISTE"] + `<span onclick="send(${id}, 'WOW')" id="wow-${id}" value="WOW">
+				&#128558 </span>  ` + map["WOW"] + `<span onclick="send(${id},'RISATA')" id="risata-${id}" value="RISATA">
+				&#128514 </span>  ` + map["RISATA"] + `<span onclick="send(${id},'GRRR')" id="grrr-${id}" value="GRRR">
+				&#128545 </span>` + map["GRRR"];
 		});
 
 

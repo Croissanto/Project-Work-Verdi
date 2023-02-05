@@ -68,16 +68,18 @@
 								</div>
 								<div class="modal-body">
 									<label><b>Titolo del post</b></label>
+									<br>
 									<input class="w3-input w3-border w3-margin-bottom" type="text"
-										placeholder="Inserisci un titolo" name="titolo" id="postTitolo" required>
+										placeholder="Di che cosa vuoi parlare?" name="titolo" id="postTitolo" required>
+										<br>
 									<label><b>Corpo del post</b></label>
 									<textarea maxlength="2000" class="form-control" id="aggiungiPost" rows="4"
-										placeholder="Scrivi qualcosa siummica"></textarea>
+										placeholder="Attento, hai solo 2000 caratteri!"></textarea>
 									<label class="form-label" for="aggiungiPost"></label>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
-										data-bs-dismiss="modal">Close</button>
+										data-bs-dismiss="modal">Torna ai post</button>
 									<button type="button" class="btn btn-primary"
 										th:onclick="addPost([[${idBlog}]])">Posta qualcosa</button>
 								</div>
