@@ -12,12 +12,7 @@ nav {
 	font-weight: bolder;
 }
 
-body {
-	background-image: url("https://static.vecteezy.com/system/resources/previews/006/273/441/original/background-wave-abstract-orange-and-yellow-free-photo.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	/*background-size: 2000px   1000px;*/
-}
+
 
 footer {
 	background: rgb(20, 18, 18);

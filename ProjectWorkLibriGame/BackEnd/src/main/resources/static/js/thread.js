@@ -70,8 +70,8 @@ function setupCreator(creator,tmp){
             <br>
             <p id="reactList-${tmp.id}"></p>
             <br>
-            <a class="btn btn-primary" href="#!" id="commenti-${tmp.id}" onclick="showCommenti(${tmp.id})">Mostra i commenti</a>
-            <button type="button" class="btn btn-primary" style="margin-left:26%;" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
+            <button class="button-28" role="button" onclick="showCommenti(${tmp.id})">Mostra i commenti</button>
+            <button class="button-28"  role="button" data-bs-toggle="modal" data-bs-target="#commenta-${tmp.id}">
   Commenta il post di ${creator}
 </button>
 
