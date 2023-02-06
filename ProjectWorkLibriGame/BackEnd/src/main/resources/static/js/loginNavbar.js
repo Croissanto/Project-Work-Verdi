@@ -1,5 +1,5 @@
 var userLogged = null;
-
+var accountLogged = null;
 
 
 
@@ -26,6 +26,30 @@ fetch("http://localhost:8083/userInSession")
     updateNavbar();
   });
   
+  
+fetch("http://localhost:8083/accountInSession")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Errore durante la richiesta API");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    accountLogged = data;
+
+   
+    updateNavbar();
+  })
+  .catch((error) => {
+    console.error(error);
+
+   
+    accountLogged = null;
+
+   
+    updateNavbar();
+  });  
+
 
 function updateNavbar() {
   
@@ -41,7 +65,13 @@ function updateNavbar() {
     
     accedi.style.display = "none";
     logout.style.display="block";
+    
+    if(accountLogged) {
+		
     profileSection.style.display = "block";
+    
+    profileSection.innerHTML ='| '+ accountLogged.username;
+    }
   }
 }  
 
