@@ -74,7 +74,16 @@ function updateNavbar() {
     profileSection.style.display = "block";
     
     profileSection.innerHTML ='| '+ accountLogged.username;
+    
+	    
     }
+    if(userLogged.type === "ADMIN") {
+		
+	threadButton.style.display = "block";
+		
+	}else{
+		threadButton.style.display = "none";
+	}
   }
 }  
 
