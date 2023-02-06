@@ -16,8 +16,7 @@
 	<title>Libri Game - Home</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100 " >
-
+<body class="d-flex flex-column min-vh-100 ">
 	<nav class="navbar navbar-expand-md" id="nav">
 		<div class="justify-content-start mt-1 ms-5">
 			<a class="navbar-brand" href="homepagePortale.html">
@@ -29,10 +28,10 @@
 			<div class="navbar-nav">
 				<a id="home" class="nav-link active" aria-current="page" href="homepagePortale.html">Home |</a>
 				<a id="threads" class="nav-link" href="/thread/1">Threads |</a>
-				<a id="gallerialibri" class="nav-link" href="/showGallery.html">Galleria libri |</a>
-				<a id="profilo" class="nav-link" href="/profiloPersonale.html">Profilo |</a>
-				<a id="accedi" class="nav-link" role="button">Accedi |</a>
-				<a id="logout" role="button" class="nav-link" onclick="logout()">Logout</a>
+				<a id="gallerialibri" class="nav-link" href="/showGallery.html">Galleria libri</a>
+				<a id="profilo" class="nav-link" href="/profiloPersonale.html">Profilo </a> <a id="accedi"
+					class="nav-link" role="button">| Accedi </a> <a id="logout" role="button" class="nav-link"
+					onclick="logout()">| Logout</a>
 			</div>
 	</nav>
 
@@ -66,18 +65,20 @@
 			</div>
 		</div>
 	</div>
-
-
+	<div class="text-center">
+		<img src="/img/titolo.png" style="width: 20%;">
+	</div>
 	<img src="https://avante.biz/wp-content/uploads/Bookshelf-Wallpapers/Bookshelf-Wallpapers-004.jpg"
-	
-		style="width: 1920px;height: 600px; margin-top: 5%;">
+		style="width: 1920px;height: 600px; margin-top: 7%;" class="under">
 
-	<div class="container text-center">
+	<div class="container text-center over">
 		<div class="row align-items-start">
-
-			<div class="col-sm-8 offset-2">
+			<div>
+				<h2 id="vot">La classifica dei 3 libri piú votati!</h2>
+			</div>
+			<div class="col-sm-8 offset-2 mb-5">
 				<div class="row">
-					<div class="col-sm-7" style="background-color: lightgray;">
+					<div class="col-sm-7 " style="background-color: lightgray;">
 
 						<p class="h4 text-start bolded">1°</p>
 						<div id="maxAvarage"></div>
@@ -127,11 +128,9 @@
 			</div>
 		</div>
 	</div>
-
-	<footer
-		class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top footer fixed-bottom footer-expand-md">
-		<p id="copyright" class="col-md-4 mb-0 text-muted" style="margin-left: 1%;">&copy; 2023 JAITA - 74, Gruppo
-			Verde.</p>
+	<footer id="footer"
+		class="d-flex justify-content-between align-items-center pt-2 border-top footer fixed-bottom footer-expand-md">
+		<p id="copyright" class="col-md-4 mb-0 text-muted" style="margin-left: 1%;"></p>
 
 		<a href="/"
 			class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -144,6 +143,8 @@
 
 
 	</footer>
+
+
 
 	<script src="/js/login.js"></script>
 	<script src="/js/createAccount.js"></script>

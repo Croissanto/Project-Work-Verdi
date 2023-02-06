@@ -1,75 +1,102 @@
-nav{
-    background: turquoise;
-background: linear-gradient(90deg, rgb(0, 128, 192) 0%, rgb(255, 255, 255) 83%);
+nav {
+	background: lightsalmon;
+
 }
 
-#logo{
-    font-size: 40px;
+#home {
+	font-size: 170%;
+	font-weight: bolder;
+
 }
 
-#nomePortale{
-    font-size: 50px;
-    font-family: 'Courier New', Courier, monospace;
+#threads {
+	font-size: 170%;
+	font-weight: bolder;
 }
 
-.nav-link{
-    font-weight: bolder;
-    font-family: 'Courier New', Courier, monospace;
+#gallerialibri {
+	font-size: 170%;
+	font-weight: bolder;
+}
+
+#profilo {
+	font-size: 170%;
+	font-weight: bolder;
+
+}
+
+#accedi {
+	font-size: 170%;
+	font-weight: bolder;
+}
+
+#logout {
+	font-size: 170%;
+	font-weight: bolder;
+}
+
+#logo {
+	font-size: 40px;
+}
+
+#nomePortale {
+	font-size: 50px;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.nav-link {
+	font-weight: bolder;
+	font-family: 'Courier New', Courier, monospace;
+
 }
 
 
+/*background-size: 2000px   1000px;*/
 
 
+footer {
+	background: lightsalmon;
 
-
-
-    /*background-size: 2000px   1000px;*/
-
-
-footer{
-    background: rgb(20,18,18);
-    
 }
 
-#copyright{
-    -webkit-text-fill-color: coral;
-    font-family: 'Courier New', Courier, monospace;
+#copyright {
+	-webkit-text-fill-color: rgb(0, 0, 0);
+	font-family: 'Courier New', Courier, monospace;
 }
 
-#social1{
-    font-size: 25px;
-    margin-right: 50px;
-    color: coral;
+#social1 {
+	font-size: 25px;
+	margin-right: 50px;
+	color: rgb(0, 0, 0);
 
-    
+
 }
 
-#social2{
-    font-size: 25px;
-    margin-right: 50px;
-    color: coral;
-    
+#social2 {
+	font-size: 25px;
+	margin-right: 50px;
+	color: rgb(0, 0, 0);
+
 }
 
-#social3{
-    font-size: 25px;
-    margin-right: 50px;
-    color: coral;
+#social3 {
+	font-size: 25px;
+	margin-right: 50px;
+	color: rgb(0, 0, 0);
 
-    
 }
 
-#social4{
-    font-size: 25px;
-    margin-right: 50px;
-    color: coral;
+#social4 {
+	font-size: 25px;
+	margin-right: 50px;
+	color: rgb(0, 0, 0);
 
-    
+
 }
 
-#social5{
-    font-size: 25px;
-    color: coral;
+#social5 {
+	font-size: 25px;
+	color: rgb(0, 0, 0);
 }
 
 
@@ -77,4 +104,3 @@ span {
 
 	cursor: pointer
 }
-

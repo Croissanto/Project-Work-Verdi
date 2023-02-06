@@ -123,7 +123,7 @@ function avarageRating() {
 					let card = ` 
 						         <img class="card-img-top" src="${tmp.link}"
 									alt="Card image" style="width: 60%;">
-									<p class ="h4">Media voti (${tmp.avg})</p>
+									
 									<p>${tmp.title}</p>
 									<p>${tmp.name} ${tmp.surname}</p>
 		                         `;
