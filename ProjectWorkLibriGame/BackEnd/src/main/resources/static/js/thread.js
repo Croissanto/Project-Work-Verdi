@@ -7,6 +7,8 @@ let name = "";
 let surname = "";
 let email = "";
 let creator = "";
+var pisnelo = "";
+var commCard= "";
 
 let id = document.getElementById("blogId");
 console.log(id.innerHTML);
@@ -147,19 +149,35 @@ async function showPost(id) {
 
 function showCommenti(id) {
 	console.log(id);
-	let pisnelo = document.getElementById("pisnelo-" + id);
+	pisnelo = document.getElementById("pisnelo-" + id);
 	if (pisnelo.style.display === "block") {
 		pisnelo.style.display = "none";
 	} else {
-
 		fetch(`http://localhost:8083/getcommlist/` + id).then((r) => { return r.json() })
 			.then((r) => {
+			pisnelo.style.display = "block";
 
-				//let pisnelo = document.getElementById("pisnelo-" + id);
+				//pisnelo = document.getElementById("pisnelo-" + id);
 				pisnelo.innerHTML = "";
 				for (let tmp of r) {
+					findComm(tmp.user.idAccount,tmp);
+				}
+			});
+	}
+}
 
-					let commCard = `<div class="card">
+function findComm(idAcc,tmp) {
+	fetch('http://localhost:8083/findAccount/' + idAcc).then((r) => { return r.json() }).then((r) => {
+		console.log(r);
+		printComm(r.username, tmp);
+		});
+}
+
+
+function printComm(username,tmp) {
+	
+
+				commCard = `<div class="card">
 								 <div class="card-body">
             <div class="small text-muted">${tmp.date} ${tmp.time}</div>
             <h6 class="card-title">${username}</h6>
@@ -167,12 +185,13 @@ function showCommenti(id) {
             </div>
             </div>
             <br>`;
-
+            console.log(commCard);
+				
 					pisnelo.innerHTML += commCard;
-				}
-				pisnelo.style.display = "block";
-			});
-	}
+				
+			
+			
+		
 }
 
 function showAll() {
