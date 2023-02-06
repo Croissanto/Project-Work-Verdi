@@ -89,13 +89,13 @@ function showLibriGame(id) {
 			      <p class = "nome-cognome-autore text-muted fw-bold">${tmp.autore.name} ${tmp.autore.surname}
 			      </div>
 			       <div class="row justify-content-center">
-                    <p class="h4">Descrizione</p>
+                    
 
-                    <p class="h5" style = "max-width:70%;">Qui ci va la descrizione del libro da capire come sistemarla non ho piu voglia.</p>
+                    
 
 
                 </div>
-			      <div class="mb-0">Vota sto cazzo de libro</div>
+			      <div class="mb-0"></div>
                     <div class = "stars" id = "rating">
                         <input class="star star-5" id="5-${tmp.id}" type="radio" name="star" onclick="send(5,${tmp.id})" />
                                <label class="star star-5" for="5-${tmp.id}"></label>
@@ -215,7 +215,7 @@ function showGenre() {
 			      </div>
 			       <div class="row justify-content-center border-top border-bottom">
                  
-                    <p class="h5" style = "max-width:70%;">Qui ci va la descrizione del libro da capire come sistemarla non ho piu voglia.</p>
+                    
 
 
                 </div>`;

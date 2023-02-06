@@ -194,15 +194,14 @@ function showCard() {
                 </div>
               </div>
             <div class="skills">
-                <h6>Skills</h6>
+                <h6>Libri Preferiti</h6>
                 <ul>
-                    <li>UI / UX</li>
-                    <li>Front End Development</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>React</li>
-                    <li>Node</li>
+                    <li>Il Signore degli Anelli</li>
+                    <li>Harry Potter</li>
+                    <li>Lupo Solitario</li>
+                    <li>Honk Kong Custle</li>
+                    <li>Fra tenebra e Abisso</li>
+                   
                 </ul>
             </div>
         </div>
