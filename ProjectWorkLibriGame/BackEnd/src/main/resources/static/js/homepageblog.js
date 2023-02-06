@@ -12,6 +12,7 @@ document.body.onload = () => {
 	showTop2();
 	user();
 	account();
+
 }
 
 function logout() {
@@ -20,12 +21,12 @@ function logout() {
 	fetch('http://localhost:8083/logout').then((r) => {
 		console.log(r);
 	}).then(() => {
-		
+
 		document.location.reload()
-		
+
 	})
-	
-	
+
+
 }
 
 function user() {
@@ -70,27 +71,26 @@ function showTop2() {
 			i++;
 		}
 	});
-
-
-
 }
+
 function avarageRating() {
 	fetch(`http://localhost:8083/getmostratedlibrogame`).then((r) => { return r.json() })
 		.then((r) => {
 			let max = Math.max(...r.map(r => r.avg));
 			let min = Math.min(...r.map(r => r.avg));
 			let middle;
+			let p = document.getElementById("titoav");
+			let pmin = document.getElementById("titomin");
 			for (i = 0; i < r.length; i++) {
 				if (r[i].avg != max && r[i].avg != min) {
 					middle = r[i].avg;
-					console.log(middle);
 
 				}
 			}
 			for (tmp of r) {
 				for (let i = 1; i <= 5; i++) {
 					const star = document.querySelector(`#max${i}`);
-					console.log(star);
+
 					if (i <= max) {
 						star.classList.add('checked');
 					} else {
@@ -101,7 +101,6 @@ function avarageRating() {
 
 				for (let i = 1; i <= 5; i++) {
 					const star = document.querySelector(`#av${i}`);
-					console.log(star);
 					if (i <= middle) {
 						star.classList.add('checked');
 					} else {
@@ -112,44 +111,52 @@ function avarageRating() {
 
 				for (let i = 1; i <= 5; i++) {
 					const star = document.querySelector(`#checked${i}`);
-					console.log(star);
+
 					if (i <= min) {
 						star.classList.add('checked');
 					} else {
 						star.classList.remove('checked');
 					}
-
 				}
 
 				if (tmp.avg == max) {
-					let card = `
+					let card = ` 
 						         <img class="card-img-top" src="${tmp.link}"
-									alt="Card image" style="width: 100%;">
+									alt="Card image" style="width: 60%;">
 									<p class ="h4">Media voti (${tmp.avg})</p>
+									<p>${tmp.title}</p>
+									<p>${tmp.name} ${tmp.surname}</p>
 		                         `;
 					maxAvarage.innerHTML += card;
+					pan.innerHTML = "(" + tmp.avg + ")";
 
 
 				} else if (tmp.avg == min) {
 
 					let card = `
 					         <img class="card-img-top" src="${tmp.link}"
-									alt="Card image" style="width: 60%;">
-									<p class ="h4">${tmp.avg}</p>
-									<p class ="h4">Media voti (${tmp.avg})</p>
+									alt="Card image">
 					               `;
 					minAvarage.innerHTML += card;
+					spapan.innerHTML = "(" + tmp.avg + ")";
 
 				}
 				else {
 					let card = `
 					         <img class="card-img-top" src="${tmp.link}"
-									alt="Card image" style="width: 80%;">
-									<p class ="h4">${tmp.avg}</p>
-							 `;
+									alt="Card image">
+						
+																 `;
 					avarage.innerHTML += card;
+					span.innerHTML = "(" + tmp.avg + ")";
 				}
 
+				p.innerHTML = tmp.title;
+				pmin.innerHTML = tmp.title;
+				autormin.innerHTML = tmp.name + " " + tmp.surname;
+				autoreav.innerHTML = tmp.name + " " + tmp.surname;
+				
+				
 
 			}
 
@@ -158,31 +165,29 @@ function avarageRating() {
 
 document.getElementById("accedi").addEventListener("click", function() {
 	document.getElementById("myModal").style.display = "block";
-	});
-	
-	// Chiude il modale
-	document.getElementsByClassName("close")[0].addEventListener("click", function() {
+});
+
+// Chiude il modale
+document.getElementsByClassName("close")[0].addEventListener("click", function() {
 	document.getElementById("myModal").style.display = "none";
-	});
-	
-	// Apre la scheda desiderata (registrazione o accesso)
-	function openTab(evt, tabName) {
+});
+
+// Apre la scheda desiderata (registrazione o accesso)
+function openTab(evt, tabName) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
-	tabcontent[i].style.display = "none";
+		tabcontent[i].style.display = "none";
 	}
 	tablinks = document.getElementsByClassName("tablinks");
 	for (i = 0; i < tablinks.length; i++) {
-	tablinks[i].className = tablinks[i].className.replace(" active", "");
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
 	document.getElementById(tabName).style.display = "block";
 	evt.currentTarget.className += " active";
-	}
-	
-	// Imposta la scheda di registrazione come predefinita
-	document.getElementById("defaultOpen").click();
+}
 
-
+// Imposta la scheda di registrazione come predefinita
+document.getElementById("defaultOpen").click();
 
 
