@@ -32,6 +32,7 @@ public class BlogRestController {
 			List<Post> idPost = new LinkedList<>();
 			Blog crBlog = new Blog(dto.getTitolo(), idPost);
 			blogRepo.save(crBlog);
+			System.out.println("Sto tornando true");
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -67,7 +68,6 @@ public class BlogRestController {
 		if(tmp.isPresent()) {
 			blog = tmp.get();
 			List<Post> postList = blog.getListaDeiPost();
-			postList = postRepo.findByOrderByDateDescTimeDesc();
 			return postList;
 			
 		}
