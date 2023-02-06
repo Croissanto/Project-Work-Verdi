@@ -1,5 +1,5 @@
 
-function send() {
+function registrati() {
 
 	let data = {
 		username: registeruser.value,
