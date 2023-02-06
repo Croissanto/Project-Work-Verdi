@@ -133,8 +133,8 @@ function setupCreator(creator, tmp) {
 
 }
 
-async function showPost(id) {
-	await fetch(`http://localhost:8083/getpostlistordered/` + id).then((r) => { return r.json() })
+async function showPost(idBlog) {
+	await fetch(`http://localhost:8083/getpostlistordered/` + idBlog).then((r) => { return r.json() })
 		.then((r) => {
 			console.log(r);
 			postList.innerHTML = "";
@@ -329,4 +329,21 @@ function addPost(id) {
 
 	});
 
+}
+
+function addThread(){
+	let data = {
+		titolo: titoloThread.value,
+		idListaPost: []
+	}
+	console.log(data);
+	fetch('http://localhost:8083/createBlog', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data)
+		}).then(() => {
+			showAll();
+		});
 }

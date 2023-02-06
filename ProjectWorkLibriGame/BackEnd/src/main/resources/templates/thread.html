@@ -92,6 +92,10 @@
 						data-bs-target="#addPost">
 						Aggiungi un post
 					</button>
+					<button type="button" class="button-8" role="button" data-bs-toggle="modal"
+						data-bs-target="#addThread" style="display:none;" id="threadButton">
+						Aggiungi un thread
+					</button>
 					<div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog">
@@ -117,6 +121,7 @@
 										data-bs-dismiss="modal">Torna ai post</button>
 									<button type="button" class="btn btn-primary"
 										th:onclick="addPost([[${idBlog}]])">Posta</button>
+										
 								</div>
 							</div>
 						</div>
@@ -125,8 +130,33 @@
 			</div>
 		</div>
 	</div>
+			<div class="modal fade" id="addThread" tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Aggiungi un thread</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<label><b>Titolo del thread</b></label>
+									<br>
+									<input class="w3-input w3-border w3-margin-bottom" type="text"
+										placeholder="Inserisci un titolo" name="thread" id="titoloThread" required>
+										<br>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Torna ai post</button>
+									<button type="button" class="btn btn-primary" onclick="addThread()">Aggiungi</button>
+										
+								</div>
+							</div>
+						</div>
+					</div>
 
-
+	<br><br>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top footer fixed-bottom footer-expand-md">
 		<p id="copyright" class="col-md-4 mb-0 text-muted" style="margin-left: 1%;">&copy; 2023 JAITA - 74, Gruppo Verde.</p>
 	
