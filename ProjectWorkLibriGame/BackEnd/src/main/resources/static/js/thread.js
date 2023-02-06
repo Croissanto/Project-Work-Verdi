@@ -109,7 +109,7 @@ function setupCreator(creator, tmp) {
 
 	}
 	let elem1 = document.getElementById("reactList-" + tmp.id);
-	elem1.innerHTML =`<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
+	elem1.innerHTML = `<span onclick="send(${tmp.id},'LIKE')" id="like-${tmp.id}" value="LIKE">
 				&#128077 </span>  ` + map["LIKE"] + `<span onclick="send(${tmp.id}, 'CUORE')" id="cuore-${tmp.id}" value="CUORE">
 				&#129505 </span>  ` + map["CUORE"] + `<span onclick="send(${tmp.id}, 'VOMITINO')" id="vomitino-${tmp.id}" value="VOMITINO">
 				&#129314 </span>  ` + map["VOMITINO"] + `<span onclick="send(${tmp.id}, 'TRISTE')" id="triste-${tmp.id}" value="TRISTE">
